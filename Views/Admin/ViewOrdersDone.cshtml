@@ -1,0 +1,134 @@
+@{
+    ViewData["Title"] = "Quản lí nhân viên";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/index1.css?v=11" />
+    <link rel="stylesheet" href="~/css/viewOrdersHistory.css?v=2" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using CourseTeachCook.Controllers;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Microsoft.AspNetCore.Http;
+@using System.Web;
+@using System.Globalization;
+
+<style>
+    #manage-staff tr:nth-child(even) {
+        background-color: #314359;
+    }
+
+    #manage-staff tr {
+        height: 40px;
+    }
+
+    #manage-staff tr:nth-child(odd) {
+        background-color: #203143;
+    }
+
+    #manage-staff th {
+        background-color: black;
+        height: 40px;
+    }
+
+    .page-item a {
+        color: black;
+    }
+</style>
+@using (var system = new CourseTeachingCookContext())
+{   
+    Order order1 = new Order();
+    List<Order> orders = ViewBag.orders;
+    double sum = Math.Ceiling(order1.GetListOrdersDone().Count() / (double)ViewBag.pageSize);
+
+    <div class="right-body col-lg-10">
+        <div class="title-body">
+            <div class="row">
+                <h4 class="col-lg-12" style="color: white;margin-left: 10px">Hóa đơn đã hoàn thành</h4>
+            </div><br>
+
+            <div class="row">
+                <div class="col-lg-5">
+
+                </div>
+                <form asp-controller="Admin" asp-action="SearchStaffs" class="col-lg-7" style="display: flex;" method="POST"
+                enctype="multipart/form-data">
+                    <label class="col-lg-5" for="cars" style="color: white"></label>
+                    <select name="type" class="col-lg-2" id="staff" style="outline: none">
+                        <option value="Họ tên">Họ tên</option>
+                        <option value="ID">ID</option>
+                        <option value="Vị trí">Vị trí</option>
+                        <option value="Email">Email</option>
+                        <option value="Điện thoại">Điện thoại</option>
+                        <option value="Trạng thái">Trạng thái</option>
+                    </select>
+                    <div class="col-lg-6 search" style="display: flex; border-radius: 10px">
+                        <input type="text" placeholder="   Tìm kiếm..." name="key"
+                        style="border: none; border-radius: 5px 0px 0px 5px; outline:none">
+                        <input type="submit" id="submit" value="Tìm kiếm">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="content-body">
+            <h4 style="color: white; margin-bottom: 35px">Có: @system.Orders.Where(o => o.OrderStatus == 1).ToList().Count() hóa đơn
+                </h4>
+            <table id="manage-staff" style="color: white">
+                <tr style="font-family: ;">
+                    <th class="col-lg-1">#</th>
+                    <th class="col-lg-2">KHÁCH HÀNG</th>
+                    <th class="col-lg-2">EMAIL</th>
+                    <th class="col-lg-3">NGÀY TẠO</th>
+                    <th class="col-lg-2">TỔNG HÓA ĐƠN</th>
+                    <th class="col-lg-2">TÁC VỤ</th>
+                </tr>
+                    @foreach (Order order in orders)
+                    {
+                    Customer customer = system.Customers.Find(order.CustomerId);
+                    List<Orderdetail> orderdetails = system.Orderdetails.Where(o => o.OrderId == order.OrderId).ToList();
+                        long total = 0;
+                        foreach(Orderdetail orderdetail in orderdetails){
+                        total += (orderdetail.CoursePrice + orderdetail.MaterialPrice) * orderdetail.Quantity;
+                        }
+                        <tr>
+                            <td class="col-lg-1">@order.OrderId</td>
+                            <td class="col-lg-2">@customer.CustomerName</td>
+                            <td class="col-lg-2">@customer.Email</td>
+                            <td class="col-lg-3">@order.OrderDate</td>
+                            <td class="col-lg-2">@string.Format(new CultureInfo("vi-VN"),"{0:c}", total)</td>
+                            <td class="col-lg-2"><a asp-controller="Admin" asp-action="ViewOrderDetails"
+                                asp-route-id="@order.OrderId" style="color: white;"><i class="fas fa-eye"></i></a></td>
+                        </tr>
+                        }
+
+
+            </table>
+            <div class="row" style="margin-top: 20px;">
+
+                <div class="col-lg-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="margin-left: 15px">
+                            
+                            @for (int i = 0; i < sum; i++)
+                            {
+                                if (i == ViewBag.index)
+                                {
+                                    <li class="page-item active"><a class="page-link" asp-controller="Admin"
+                                asp-action="ViewOrdersDone" asp-route-index="@i">@(i+1)</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="ViewOrdersDone"
+                                asp-route-index="@i">@(i+1)</a></li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+}

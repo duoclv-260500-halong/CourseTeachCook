@@ -1,0 +1,133 @@
+@using Microsoft.AspNetCore.Http;
+@using CourseTeachCook.Models;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] CourseTeachingCookCustomer</title>
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.ico" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css?v=3" />
+    <link rel="stylesheet" href="~/css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/css/owl.theme.defaul.min.css" />
+    <script src="js/site.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <header>
+
+        <div class="header-top">
+            <div class="container" style="height: 65px;">
+              
+
+                <h1 id="logo-top">
+                    <a asp-controller="Customer" asp-action="Index">
+                        <img src="/Image/ImageDesign/AdminDesign/Logo.png" alt="">
+                    </a>
+                </h1>
+            </div>
+        </div>
+
+
+        <div class="header_bot">
+            <div class="container">
+                
+            </div>
+        </div>
+
+    </header>
+
+
+
+    @RenderBody()
+
+
+
+    <footer style="background-color: #000000;">
+        <div>
+            <div class="row" id="logo" style="text-align: center ! important;  display: block;  margin: auto;">
+                <a href="#">
+                    <img src="/Image/ImageDesign/LogoImage/logosmall.png" width="83" height="91" alt="EzCooking Class">
+                </a>
+            </div>
+            <h3 class="text-ft">Công ty TNHH Bếp vui hà thành</h3>
+            <p class="text-ft">Địa chỉ: Tầng 5 – 142 Lê Duẩn, Đống Đa, Hà Nội</p>
+            <p class="text-ft">Hotline: 0915.565.858 – 0948.685.732 // Email:
+                <a href="#">info@ezcooking.vn</a>
+            </p>
+            <p class="text-ft">Mã số thuế: 0106821084</p>
+        </div>
+        <div class="container">
+            <div class="top-ft">
+                <div class="list-tag">
+                    <p class="text-ft">
+                        <a href="#">GIỚI THIỆU</a>&nbsp;|
+                        <a href="#">KHÓA HỌC</a>|
+                        <a href="#">SẢN PHẨM</a>&nbsp;|
+                        <a href="#">DỊCH VỤ&nbsp;</a>|
+                        <a href="#">LỊCH HỌC</a>&nbsp;&nbsp;|
+                        <a href="#">THƯ VIỆN</a>&nbsp;|
+                        <a href="#">TIN TỨC&nbsp;</a>|
+                        <a href="#">LIÊN HỆ</a>&nbsp;|
+                        <a href="#">BẾP&nbsp;GIA ĐÌNH</a>&nbsp;|
+                        <a href="#">ĐÀO TẠO ĐẦU BẾP</a>&nbsp;|<br>
+                        <a href="#">SÁCH HAY</a>&nbsp;|
+                        <a href="#">GIÁO VIÊN</a>&nbsp;|
+                        <a href="#">Ý KIẾN HỌC VIÊN</a>&nbsp;|
+                        <a href="#">HỌC VIÊN</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="bot-ft">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-xs-12 col-sm-7">
+                        <div class="coppyright">
+                            &copy; 2021 | Bản quyền thuộc về Bếp vui Hà Thành
+                            <a href="" style="color:#337AB7">Thiết kế website</a>
+                            <a href="" style="color:#337AB7">nhà hàng</a>"bởi"
+                            <a href="" style="color:#000000">Viet
+                                <span style="color:#B7720A">ISO</span>
+                            </a>
+                            "-"
+                            <a href="" style="color:#337AB7">EzCooking</a>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12 col-sm-5">
+                        <div class="list-social text-right">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-google"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/owl.carousel.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<head>
+    <link rel="stylesheet" href="~/css/sign.css?v=9">
+    <script src="js/sign.js"></script>
+</head>
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = "_LayoutLogin";
+}
+<div class="bg">
+
+    <div class="container-fluid" id="form-log">
+        <div class="forms-container">
+            <div class="signin">
+                <form asp-controller="Admin" asp-action="LoginAdmin" method="POST" enctype="multipart/form-data">
+                    <h2 class="title"><a style="color:red;font-size:20px;text-decoration: none">Đăng
+                            Nhập</a></h2>
+
+                    <div class="body_re">
+                        @* <i class="fas fa-envelope"></i> *@
+                        <label for="email" class="col-sm-4">Email</label>
+                        <input name="email" id="email" type="email" placeholder="Email" class="col-sm-8" />
+                        <br>
+                        @* <i class="fas fa-lock"></i> *@
+                        <label for="password" class="col-sm-4">Mật khẩu</label>
+                        <input name="password" id="password" type="password" placeholder="Mật khẩu" class="col-sm-8" />
+                        <br>
+
+                        <br>
+
+                        @if (ViewData["LoginFailed"] != null)
+                    {
+                        <p id="errorPassword" style="color: red;">@ViewData["LoginFailed"]</p>
+
+                    }
+                        <label for="" class="col-sm-4"></label>
+                        <input type="submit" class="btn " value="Đăng nhập" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+    

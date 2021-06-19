@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "Thêm nhân viên";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/layout.css" />
+    
+    <link rel="stylesheet" href="~/css/addStaff.css?v=9" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using System.Collections.Generic;
+@using System.Linq;
+
+    
+    <div class="right-body col-lg-10">
+      
+        <div class="content-body">
+          <h4>Thêm nhân viên</h4>
+            <form asp-controller="Admin" asp-action="AddStaff" onsubmit="return checkFormAddStaff()" method="POST" enctype="multipart/form-data">
+                <div class="row" id="divFirst">
+                    <p class="col-lg-1"></p>
+                    <p class="col-lg-2">Tên</p>
+                    <input class="col-lg-5" type="text" placeholder="Nhập tên nhân viên" name="name" id="name1">
+                    <span class="col-lg-4 error" id="errorName"></span>
+                </div>
+                <div class="row">
+                        <p class="col-lg-1"></p>
+                        <p class="col-lg-2">Vị trí</p>
+                        <select class="col-lg-5" name="jobPosition" id="staff">
+                            <option value="Quản lí khóa học">Quản lí khóa học</option>
+                            <option value="Quản lí tin tức">Quản lí tin tức</option>                           
+                        </select>
+                </div>
+                
+                <div class="row">
+                    <p class="col-lg-1"></p>
+                    <p class="col-lg-2">Email</p>
+                    <input class="col-lg-5" type="email" placeholder="Nhập email nhân viên" id="email" name="email">
+                    <span class="col-lg-4 error" id="errorEmail"></span>
+                </div>
+                 <div class="row">
+                     <p class="col-lg-1"></p>
+                     <p class="col-lg-2 style="color: white">Số điện thoại</p>
+                    <input class="col-lg-5" type="number" placeholder="Nhập số điện thoại nhân viên" id="phone" name="phoneNumber">
+                    <span class="col-lg-4 error" id="errorPhone"></span>
+                </div>
+                 <div class="row">
+                     <p class="col-lg-1"></p>
+                     <p class="col-lg-2 style="color: white">Mật khẩu nhân viên</p>
+                    <input class="col-lg-5" type="password" placeholder="Nhập mật khẩu nhân viên" id="password" name="password">
+                    <span class="col-lg-4 error" id="errorPassword"></span>
+                </div>
+                 <div class="row">
+                     <p class="col-lg-1"></p>
+                     <p class="col-lg-2 style="color: white">Xác nhận mật khẩu</p>
+                    <input class="col-lg-5" type="password" placeholder="Nhập lại mật khẩu nhân viên"id="passwordConfirm"  name="confirmPassword">
+                    <span class="col-lg-4 error" id="errorPasswordConfirm"></span>
+                </div>
+                @if (@ViewBag.resultCheck != null)
+                {
+                    <div class="row">
+                        <p class="col-lg-5"></p>
+                        <button type="button" class="col-lg-3 btn btn-danger">@ViewBag.resultCheck</button>                    
+                    </div>
+                }
+                @if (@ViewBag.result != null)
+                {
+                    <div class="row">
+                    <p class="col-lg-5"></p>
+                    @if ((@ViewBag.result).Equals(true))
+                    {
+                        <button type="button" class="col-lg-3 btn btn-success">Thêm nhân viên thành công</button>
+                    }
+                    else{
+                      <button type="button" class="col-lg-3 btn btn-danger">Thêm nhân viên không thành công</button>
+                    }
+
+                    @if (@ViewBag.result != null)
+                    {
+                        ViewBag.result = null;
+                    }
+                    
+                    </div>
+                }
+                <div class="row">
+                    <p class="col-lg-5"></p>
+                    <input class="col-lg-3" type="submit" id="submit" value="Thêm nhân viên">
+                </div>
+                </form>
+        </div>
+    </div>
+<script src="~/js/admin/addStaff.js?v=4"></script>

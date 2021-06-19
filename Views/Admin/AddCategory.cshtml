@@ -1,0 +1,50 @@
+@{
+  ViewData["Title"] = "Thêm khóa học";
+}
+
+<head>
+  <link rel="stylesheet" href="~/css/changeName.css?v=4" />
+  <link rel="stylesheet" href="~/css/addCourse.css?v=2" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using System.Collections.Generic;
+@using System.Linq;
+
+ 
+  <div class="right-body col-lg-10">
+
+    <div class="content-body">
+      <h4>Thêm danh mục</h4>
+      <form asp-controller="Admin" asp-action="AddCategory" method="POST" enctype="multipart/form-data">
+        <div class="row" id="divFirst">
+         <p class="col-lg-1"></p>
+          <p class="col-lg-2">Tên danh mục</p>
+          <input class="col-lg-5" type="text" placeholder="Nhập tên danh mục" name="categoryname">
+          
+         @if (@ViewBag.result != null)
+        {
+          <div class="row">
+            <p class="col-lg-3"></p>
+            @if ((@ViewBag.result).Equals(true))
+            {
+              <button type="button" class="col-lg-5 btn btn-success" style="margin-left: 10px;">Thêm danh mục thành công</button>
+            }
+            else
+            {
+              <button type="button" class="col-lg-5 btn btn-danger" style="margin-left: 10px;">Thêm danh mục không thành công</button>
+            }
+
+          </div>
+        }
+        </div>
+        
+        <div class="row">
+          <p class="col-lg-5"></p>
+          <input class="col-lg-3" type="submit" id="submit" value="Thêm danh mục">
+        </div>
+
+
+      </form>
+    </div>
+  </div>

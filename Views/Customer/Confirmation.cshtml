@@ -1,0 +1,43 @@
+@using CourseTeachCook.Models
+@using System.Globalization
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/confir.css?v=0">
+</head>
+
+@using (var connect = new CourseTeachingCookContext())
+{
+    Contactsinformation contact = ViewBag.contact;
+
+    Customer customer = ViewBag.customer;
+    Course course = ViewBag.course;
+    <div class="main_child main_success mb50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 bore-right bg_fff ">
+                    <h1 class="title"> Đăng ký thành công </h1>
+                    <div class="formatTextStandard">
+                        <p><strong>Thông báo đăng ký thành công!</strong></p>
+                        <p>Chúc mừng @customer.CustomerName (@customer.PhoneNumber) đã đăng ký khóa học thành công </p>
+                        <p>Khoá học: @course.CourseName </p>
+                        <p>Số người đăng kí: @ViewBag.quantity </p>
+                        <p>Giá khóa học: @string.Format(new CultureInfo("vi-VN"),"{0:c}",course.CoursePrice) </p>
+                        <p>Giá nguyên liệu: @string.Format(new CultureInfo("vi-VN"),"{0:c}",course.MaterialPrice)  </p>
+                        <p><strong>Tổng thanh toán: @string.Format(new CultureInfo("vi-VN"),"{0:c}",(course.CoursePrice + course.MaterialPrice)*ViewBag.quantity) </strong></p>
+                        
+                        <p>Chúng tôi đã nhận được yêu cầu của bạn. Chúng tôi sẽ kiểm tra thông tin đăng ký và sẽ phản hồi
+                            tới bạn trong vòng 24h.</p>
+                        <p> Vui lòng liên hệ nếu bạn cần hỗ trợ và giải đáp thắc mắc.</p>
+                        <p>Hotline: @contact.PhoneNumber </p>
+                        <p>Email: <a href="" > info@ezcooking.vn</a></p>
+                        <p>Trân trọng cảm ơn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

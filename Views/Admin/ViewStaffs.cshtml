@@ -1,0 +1,133 @@
+@{
+    ViewData["Title"] = "Quản lí nhân viên";
+}
+<head>
+    <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="~/css/index1.css?v=26" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using CourseTeachCook.Controllers;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Microsoft.AspNetCore.Http;
+@using System.Web;
+
+
+<style>
+    #manage-staff tr:nth-child(even) {
+        background-color: #314359;
+    }
+
+    #manage-staff tr {
+        height: 40px;
+    }
+
+    #manage-staff tr:nth-child(odd) {
+        background-color: #203143;
+    }
+    .page-item a {
+        color: black;
+    }
+</style>
+    @{
+        using(var system = new CourseTeachingCookContext()){
+            List<Admin> admin = new List<Admin>();
+            List<Staff> staffs = new List<Staff>();
+                    
+            staffs = @ViewBag.staffs;
+            double sum = Math.Ceiling(system.Staffs.ToList().Count()/(double)ViewBag.pageSize);
+    <div class="right-body col-lg-10">
+        <div class="title-body" style="margin-top: 10px; margin-bottom: 10px; background-color: #19232f">
+            <div class="row">
+                <h4 class="col-lg-12">Danh sách nhân viên</h4>
+            </div><br>
+            
+            <div class="row">
+                <div class="col-lg-5" id="add-staff">
+                    <a asp-controller="Admin" asp-action="AddStaff"><button>Thêm nhân viên</button></a>
+                </div>
+                <form asp-controller="Admin" onsubmit="return checkKey()" asp-action="SearchStaffs" class="col-lg-7" style="display: flex;" method="POST" enctype="multipart/form-data">
+                <label class="col-lg-3" for="cars" style="color: white"></label>
+                <select name="type" class="col-lg-3" id="staff" style="outline: none; margin-left: 30px">
+                    <option value="Họ tên">Họ tên</option>
+                    <option value="ID">ID</option>
+                    <option value="Vị trí">Vị trí</option>
+                    <option value="Email">Email</option>
+                    <option value="Điện thoại">Điện thoại</option>
+                    <option value="Trạng thái">Trạng thái</option>
+                </select>
+                <div class="col-lg-6 search" style="display: flex; border-radius: 10px">
+                <input type="text" placeholder="Tìm kiếm..." id="key" name="key" style="border: none; border-radius: 5px 0px 0px 5px; outline:none; padding-left: 10px">
+                <input type="submit" id="submit" value="Tìm kiếm">
+                </div>
+                </form>
+            </div>
+            
+        </div>
+        
+        <div class="content-body">
+            <h4>Bạn có: @system.Staffs.ToList().Count() nhân viên</h4>
+            <table id="manage-staff">
+                <tr>
+                    <th class="col-lg-1">#</th>
+                    <th class="col-lg-2">HỌ TÊN</th>
+                    <th class="col-lg-2">VỊ TRÍ</th>
+                    <th class="col-lg-3">EMAIL</th>
+                    <th class="col-lg-2">ĐIỆN THOẠI</th>
+                    <th class="col-lg-2">TÁC VỤ</th>
+                </tr>
+                
+                   
+                    @foreach (Staff staff in staffs)
+                    {
+                        <tr>
+                            <td class="col-lg-1">@staff.StaffId</td>
+                            <td class="col-lg-2">@staff.StaffName</td>
+                            <td class="col-lg-2">@staff.JobPosition</td>
+                            <td class="col-lg-3">@staff.Email</td>
+                            <td class="col-lg-2">@staff.PhoneNumber</td>
+                            <td class="col-lg-2"><a style="color: white; text-decoration:none" asp-controller="Admin" asp-action="ChangeStatusStaff" asp-route-id="@staff.StaffId">@if (staff.Status == 1)
+                                {
+                                    <i class="fas fa-unlock"></i>
+                                }
+                                else
+                                {
+                                    <i class='fas fa-lock'></i>
+                                }</a>
+                                <a style="color: white; margin-left: 10px" asp-controller="Admin" asp-action="ReissuePassword" asp-route-id="@staff.StaffId">
+                                    <i class="fas fa-undo-alt"></i>
+                                </a></td>
+                        </tr>
+                    }
+                    if (ViewBag.ListStaffs != null)
+                    {
+                        ViewBag.ListStaffs = null;
+                    }
+                    
+                
+
+            </table>
+            <div class="row" style="margin-top: 20px;">
+                
+                <div class="col-lg-3">
+                   <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="margin-left: 15px">
+                            @for (int i = 0; i < sum; i++)
+                            {
+                                if (i==ViewBag.index)
+                                {
+                                    <li class="page-item active"><a class="page-link" asp-controller="Admin" asp-action="ViewStaffs" asp-route-index="@i">@(i+1)</a></li>
+                                }
+                                else{
+                                    <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="ViewStaffs" asp-route-index="@i">@(i+1)</a></li>
+                                }
+                            }                           
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+}}
+<script src="~/js/admin/viewStaff.js"></script>

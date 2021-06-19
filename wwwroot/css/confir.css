@@ -1,0 +1,48 @@
+.mb50, .mv50, .ma50 {
+    margin-top: 70px !important;
+    margin-bottom: 50px!important;
+}
+
+@media (min-width: 992px)
+{.col-md-9 {
+    width: 75%;
+}}
+
+.h1, h1 {
+    font-size: 36px;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.formatTextStandard {
+    color: #333;
+}
+
+.formatTextStandard {
+    font-size: 15.008px;
+    line-height: 1.7;
+}
+
+.formatTextStandard p {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.formatTextStandard p {
+    margin-bottom: 10px;
+}
+
+.formatTextStandard a {
+    color: #699212;
+    text-decoration: underline;
+}

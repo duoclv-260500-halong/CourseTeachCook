@@ -1,0 +1,131 @@
+@{
+    ViewData["Title"] = "Quản lí nhân viên";
+}
+<head>
+    <link rel="stylesheet" href="~/css/index1.css?v=10" />
+    <link rel="stylesheet" href="~/css/searchStaff.css?v=1" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using CourseTeachCook.Controllers;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Microsoft.AspNetCore.Http;
+@using System.Web;
+
+
+<style>
+    #manage-staff tr:nth-child(even) {
+        background-color: #314359;
+    }
+
+    #manage-staff tr {
+        height: 40px;
+    }
+
+    #manage-staff tr:nth-child(odd) {
+        background-color: #203143;
+    }
+
+    #manage-staff th {
+        background-color: black;
+        height: 40px;
+    }
+
+    .page-item a {
+        color: black;
+    }
+</style>
+
+    <div class="right-body col-lg-10" style="margin-bottom: 10px; background-color: #273444">
+        <div class="title-body" style="margin-top: 10px; margin-bottom: 10px; background-color: #19232f">
+            <div class="row">
+                <h4 class="col-lg-12">Danh sách nhân viên</h4>
+            </div><br>
+            
+            <div class="row">
+                <div class="col-lg-5" id="add-staff">
+                    <a asp-controller="Admin" asp-action="AddStaff"><button>Thêm nhân viên</button></a>
+                </div>
+                <form asp-controller="Admin" onsubmit="return checkKey()" asp-action="SearchStaffs" class="col-lg-7" style="display: flex;" method="POST" enctype="multipart/form-data">
+                <label class="col-lg-4" for="cars" style="color: white"></label>
+                <select name="type" class="col-lg-3" id="staff" style="outline: none; margin-left: -22px">
+                    <option value="Họ tên">Họ tên</option>
+                    <option value="ID">ID</option>
+                    <option value="Vị trí">Vị trí</option>
+                    <option value="Email">Email</option>
+                    <option value="Điện thoại">Điện thoại</option>
+                    <option value="Trạng thái">Trạng thái</option>
+                </select>
+                <div class="col-lg-6 search" style="display: flex; border-radius: 10px">
+                <input type="text" placeholder="Tìm kiếm..." name="key" id="key" style="border: none; border-radius: 5px 0px 0px 5px; outline:none; padding-left:10px">
+                <input type="submit" id="submit" value="Tìm kiếm">
+                </div>
+                </form>
+            </div>
+            
+        </div>
+        
+        <div class="content-body">
+            <h4 style="color: white">Tìm được: @ViewBag.NumberOfResult kết quả</h4>
+            <table id="manage-staff" style="color: white; width: 100%">
+                <tr>
+                    <th class="col-lg-1">#</th>
+                    <th class="col-lg-2">HỌ TÊN</th>
+                    <th class="col-lg-2">VỊ TRÍ</th>
+                    <th class="col-lg-3">EMAIL</th>
+                    <th class="col-lg-2">ĐIỆN THOẠI</th>
+                    <th class="col-lg-2">TRẠNG THÁI</th>
+                </tr>
+                @using (var system = new CourseTeachingCookContext())
+                {
+                    List<Staff> staffs = new List<Staff>(); 
+                    staffs = @ViewBag.SearchStaffs;
+                    foreach (Staff staff in staffs)
+                    {
+                        <tr>
+                            <td class="col-lg-1">@staff.StaffId</td>
+                            <td class="col-lg-2">@staff.StaffName</td>
+                            <td class="col-lg-2">@staff.JobPosition</td>
+                            <td class="col-lg-3">@staff.Email</td>
+                            <td class="col-lg-2">@staff.PhoneNumber</td>
+                            <td class="col-lg-2"><a style="color: white" asp-controller="Admin" asp-action="ChangeStatusStaff" asp-route-id="@staff.StaffId">@if (staff.Status == 1)
+                                {
+                                    <i class="fas fa-unlock"></i>
+                                }
+                                else
+                                {
+                                    <i class='fas fa-lock'></i>
+                                }</a></td>
+                        </tr>
+                    }
+                }
+
+            </table>
+            <div class="row" style="margin-top: 20px;">
+                
+                <div class="col-lg-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="~/js/admin/viewStaff.js"></script>

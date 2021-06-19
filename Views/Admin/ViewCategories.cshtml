@@ -1,0 +1,94 @@
+@{
+    ViewData["Title"] = "Quản lí danh mục";
+}
+<head>
+    <link rel="stylesheet" href="~/css/index1.css?v=12" />
+    <link rel="stylesheet" href="~/css/indexCourse.css?v=4" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using CourseTeachCook.Controllers;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Microsoft.AspNetCore.Http;
+@using System.Web;
+@using System.Globalization;
+
+<style>
+    #view-course tr:nth-child(even) {
+        background-color: #314359;
+    }
+
+    #view-course tr {
+        height: 40px;
+    }
+
+    #view-course tr:nth-child(odd) {
+        background-color: #203143;
+    }
+
+    #view-course th {
+        background-color: black;
+        height: 40px;
+    }
+
+    .page-item a {
+        color: black;
+    }
+</style>
+
+    <div class="right-body col-lg-10" style="background-color: #273444; height: 100%">
+        <div class="title-body" style="margin-top: 10px; margin-bottom: 15px; background-color: #19232f">
+            <div class="row">
+                <h4 class="col-lg-12">Danh sách danh mục</h4>
+            </div><br>
+            
+            <div class="row">
+                <div class="col-lg-5" id="add-staff">
+                    <button style="height: 24px;"></button>
+                </div>
+                <form asp-controller="Admin" asp-action="SearchCategory" class="col-lg-7" style="display: flex;" method="POST" enctype="multipart/form-data">
+                <label class="col-lg-4" for="cars" style="color: white"></label>
+                <select name="type" class="col-lg-3" id="staff" style="outline: none; margin-left: -12px">
+                    <option value="Họ tên">Họ tên</option>  
+                    <option value="ID">ID</option>
+                    <option value="Vị trí">Vị trí</option>
+                    <option value="Email">Email</option>
+                    <option value="Điện thoại">Điện thoại</option>
+                    <option value="Trạng thái">Trạng thái</option>
+                </select>
+                <div class="col-lg-6 search" style="display: flex; border-radius: 10px">
+                <input type="text" placeholder="   Tìm kiếm..." name="key" style="border: none; border-radius: 5px 0px 0px 5px; outline:none">
+                <input type="submit" id="submit" value="Tìm kiếm">
+                </div>
+                </form>
+            </div>
+            
+        </div>
+        
+        <div class="content-body">
+            <h4>Bạn có: @ViewBag.number danh mục</h4>
+            <table id="view-course">
+                <tr>
+                    <th class="col-lg-1">#</th>
+                    <th class="col-lg-2">DANH MỤC</th>
+                </tr>
+                @using (var system = new CourseTeachingCookContext())
+                {   
+                    List<Category> categories = new List<Category>();
+                    categories = @ViewBag.categories;
+                    foreach (Category category in categories)
+                    {
+                        <tr>
+                            <td class="col-lg-1">@category.CategoryId</td>
+                            <td class="col-lg-2"><a asp-controller="Admin" asp-action="ChangeCategory" asp-route-id="@category.CategoryId">@category.CategoryName</a></td>
+                            
+                                                
+                        </tr>
+                    }
+                }
+
+            </table>
+            
+        </div>
+    </div>

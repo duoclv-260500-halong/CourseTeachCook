@@ -1,0 +1,68 @@
+
+  .accordion-button{
+    border-radius: 0em !important;
+  }
+  .top-statistical{
+    color: white;
+    background-color: #263342;
+    margin-right: 6%;
+    margin-top: 20px;
+  }
+  .title-body{
+    background-color: #19232f;
+    width: 98%;
+    margin-left: 1%;
+    padding-bottom: 20px;
+  }
+  .top-statistical p{
+    margin-left: 20px;
+    font-size: 25px;
+  }
+  .right-body{
+    padding: 0px;
+  }
+  .title-box{
+    display: flex;
+    font-size: 35px;
+    margin-left: 20px;
+  }
+  .title-box i{
+    font-size: 30px;
+    margin-top: 10px;
+    margin-right: 25px;
+  }
+  .title-body div h4{
+    color: white;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  input{
+    background-color: black;
+    color: white;
+    border: none;
+    height: 30px;
+    width: 245px;
+    font-size: 20px;
+    padding: 0px 10px;
+  }
+  .bottom-statistical{
+    display: flex;
+    margin-right: 6.8%;
+  }
+  .bottom-statistical span{
+   
+    margin-right: 40px;
+    font-size: 20px;
+  }
+  .title-box p{
+    margin-top: 5px;
+  }
+  form div{
+    margin-top: 10px;
+  }
+  input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+table tbody tr th, table tbody tr td{
+  text-align: center;
+}

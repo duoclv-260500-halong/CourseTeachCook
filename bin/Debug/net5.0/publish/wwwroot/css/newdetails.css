@@ -1,0 +1,137 @@
+.main_child{
+    margin-top: 70px;
+}
+
+.mb50, .mv50, .ma50 {
+    margin-bottom: 50px!important;
+}
+
+@media (min-width: 992px){
+.col-md-6 {
+    width: 75%;
+}}
+
+.box_gr {
+    border: 1px solid #e2e2e2;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.top_drsv1 h2 {
+    margin: 0 0 10px;
+    color: #464646;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.box_ttkm p {
+    line-height: 25px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.formatTextStandard {
+    color: #333;
+}
+
+.formatTextStandard {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.formatTextStandard p {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.formatTextStandard a {
+    color: #699212;
+    text-decoration: underline;
+}
+
+.formatTextStandard p {
+    margin-bottom: 10px;
+}
+
+
+.formatTextStandard h3{
+    font-weight: 500 !important;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.formatTextStandard ul {
+    list-style: none;
+    padding-left: 15px;
+}
+
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}   
+
+
+/* */
+
+@media (min-width: 992px){
+.col-md-3 {
+    width: 25%;
+}}
+
+.list_offkm_edmr {
+    margin-bottom: 45px;
+}
+
+.list_offkm {
+    font-family: 'UTMAlterGothic';
+}
+
+.box_rnews {
+    margin-top: 23px;
+}
+
+.top_rnews {
+    padding: 0 15px;
+    height: 36px;
+    border-left: 5px solid #699212;
+    background: #f2f2f2;
+}
+
+.top_rnews h3 {
+    line-height: 36px;
+    margin: 0;
+    color: #699212;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.mid_rnews ul li {
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+    list-style: none;
+    font-size: 14px;
+}
+
+.mid_rnews ul li a {
+    color: #3f3f3f;
+    transition: all 350ms;
+    -o-transition: all 350ms;
+    -ms-transition: all 350ms;
+    -moz-transition: all 350ms;
+    -webkit-transition: all 350ms;
+}
+
+
