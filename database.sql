@@ -1,3 +1,6 @@
+drop database if exists courseteachcook;
+create database if not exists CourseTeachCook;
+use CourseTeachCook;
 create table admin(
 adminID int auto_increment primary key,
 adminName varchar(50) not null,
@@ -187,8 +190,8 @@ insert into orders(orderDate, staffID, customerID, orderStatus, reasonCancel) va
 (current_timestamp(), 2, 2, 0, ''),
 (current_timestamp(), 1, 3, 1, ''),
 (current_timestamp(), 2, 4, 1, ''),
-(current_timestamp(), 1, -2, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, -2, 'khách hàng đổi khóa học');
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học');
 
 create table orderDetails(
 id int auto_increment primary key,
