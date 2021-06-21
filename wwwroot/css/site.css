@@ -88,6 +88,7 @@ p {
 }
 
 .textlg2{
+  white-space: nowrap;
   margin-left: 30px !important;
   margin-top: -15px !important;
 }
@@ -123,6 +124,10 @@ p {
 /* .dropbtn:hover, .dropbtn:focus {
   background-color: #2980B9;
 } */
+.dropdown-content a:hover {background-color: #ddd}
+.dropdown1:hover .dropdown-content {display: block;}
+.dropdown1:hover .dropbtn {background-color: #212529;}
+
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -291,7 +296,7 @@ button{
 }
 
 #btn_select-index {
-  background: url(../images/icon_search.png) no-repeat ;
+  background: url(../Image/ImageDesign/IconImage/icon_search.png) no-repeat ;
   width: 30px;
   height: 30px;
   outline: none;
@@ -301,6 +306,7 @@ button{
   padding: 5px 0 5px 12px;
   font-weight: 700;
   border:none;
+  margin-top: 5px;
 }
 
 .form-contrl{
@@ -318,12 +324,10 @@ button{
   border: 0px !important;
 }
 
-.hidden {
-  display: none!important;
-}
+
 
 .loading{
-  margin-top: -27px;
+  margin-top: -55px;
   padding: 0 15px 2px 2px;
 }
 
