@@ -69,7 +69,7 @@ namespace CourseTeachCook.Models
                 Order order = system.Orders.Find(id);
                 order.OrderStatus = 0;
                 order.Canceler = 0;
-                order.StaffId = 8;
+                order.StaffId = 2;
                 system.Orders.Update(order);
                 try
                 {
@@ -151,7 +151,7 @@ namespace CourseTeachCook.Models
                 Order order = new Order();
                 order.OrderStatus = -1;
                 order.OrderDate = DateTime.Now;
-                order.StaffId = 7;
+                order.StaffId = 1;
                 order.CustomerId = cus_id;
                 order.RequireInformation = requireInformation;
                 connect.Orders.Add(order);
