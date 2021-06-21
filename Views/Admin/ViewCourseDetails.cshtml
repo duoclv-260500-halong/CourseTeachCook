@@ -44,7 +44,8 @@
             <div class="row content" id="email">
               <p class="col-lg-3">Đánh giá</p>
               <p class="col-lg-4 detail">@course.CourseRates</p>
-    
+    <a asp-asp-controller="Admin" asp-action="ChangeRate" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
             </div>
             <div class="row content" id="email">
               <p class="col-lg-3">Lượt xem</p>
