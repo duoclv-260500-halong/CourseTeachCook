@@ -69,7 +69,6 @@ namespace DemoUpload
                     pattern: "{controller=Admin}/{action=Index}/{id?}");
 
             });
-
         }
     }
 }
