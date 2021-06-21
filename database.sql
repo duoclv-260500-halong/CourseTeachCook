@@ -10,7 +10,7 @@ phoneNumber varchar(15) unique not null,
 image varchar(200) not null
 );
 insert into admin(adminName, email, password, phoneNumber, image)
-values('Duoc Le', 'adminDuocLe@gmail.com', 'BCE49C1FD7E0BE2BC178F17C57344E7A', '0333020842', 'defaultImage.jpg');
+values('Duoc Le', 'adminDuocLe@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0333020842', 'anhDaiDien.png');
 
 
 create table staffs(
@@ -25,9 +25,9 @@ create table staffs(
 );
 INSERT into staffs(staffName, jobPosition, email, password, phoneNumber, status, image)
 values
-('Ngo Huy', 'Quản Lí Khóa Học', 'ngoHuy3@gmail.com', '123456', '0333020844', 1, 'defaultImage.jpg'),
-('Van Long', 'Quản Lí Tin Tức', 'vanLong3@gmail.com', '123456', '0123456782', 1, 'defaultImage.jpg'),
-('Le Duoc', 'Quản Lí Khóa Học', 'leDuoc3@gmail.com', '123456', '0123456799', 1, 'defaultImage.jpg');
+('Ngo Huy', 'Quản Lí Khóa Học', 'ngoHuy3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0333020844', 1, 'defaultImage.jpg'),
+('Van Long', 'Quản Lí Tin Tức', 'vanLong3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0123456782', 1, 'defaultImage.jpg'),
+('Le Duoc', 'Quản Lí Khóa Học', 'leDuoc3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0123456799', 1, 'defaultImage.jpg');
 
 create table customers(
 	customerID int auto_increment primary key,
@@ -43,10 +43,10 @@ create table customers(
     lastLoggedTime datetime not null
 );
 insert into customers(customerName, email, password, phoneNumber, address, timeRegister, image, numberOfPurchases, status, lastLoggedTime) values
-('Lê Văn Được', 'duoclv@gmail.com', 'BCE49C1FD7E0BE2BC178F17C57344E7A', '0967381905', 'Hà Nội', current_timestamp(), 'defaultImage.jpg', 0, 1, current_timestamp()),
-('Lê Văn Được1', 'duocclv01@gmail.com', 'BCE49C1FD7E0BE2BC178F17C57344E7A', '0967381904', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 1, 1, current_timestamp()),
-('Lê Văn Được2', 'duoclv02@gmail.com', 'BCE49C1FD7E0BE2BC178F17C57344E7A', '0967381903', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 2, 1, current_timestamp()),
-('Lê Văn Được3', 'duoclv03@gmail.com', 'BCE49C1FD7E0BE2BC178F17C57344E7A', '0967381902', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 3, 0, current_timestamp());
+('Lê Văn Được', 'duoclv@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381905', 'Hà Nội', current_timestamp(), 'defaultImage.jpg', 0, 1, current_timestamp()),
+('Lê Văn Được1', 'duocclv01@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381904', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 1, 1, current_timestamp()),
+('Lê Văn Được2', 'duoclv02@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381903', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 2, 1, current_timestamp()),
+('Lê Văn Được3', 'duoclv03@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381902', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 3, 0, current_timestamp());
 
 
 create table categories(
@@ -128,7 +128,7 @@ create table imagesCourse(
     constraint foreign key(courseID) references courses(courseID)
 );
 
-insert into ImagesCourse(imageSource,courseID) values
+insert into imagesCourse(imageSource,courseID) values
 ("banhkinhdoanh1.jpg",1),
 ("lopbeptruong1.jpg",2),
 ("banhngotchuyennghiep1.jpg",3),
@@ -136,7 +136,7 @@ insert into ImagesCourse(imageSource,courseID) values
 ("daubeptruong1.jpg",5),
 ("daubepchuyennghiep1.jpg",6),
 
-("mam-co-ngay-tet1.jpg",7),
+("mam-co-ngay-tet1.png",7),
 ("dam-toan-dien1.jpg",8),
 ("1.1.jpg",9),
 ("nauangiadinh1.jpg",10),
@@ -175,6 +175,7 @@ orderDate datetime,
 staffID int,
 customerID int not null,
 orderStatus int not null default 1,
+requireInformation varchar(500),
 reasonCancel varchar(200),
 canceler int,
 constraint foreign key(staffID) references staffs(staffID),
