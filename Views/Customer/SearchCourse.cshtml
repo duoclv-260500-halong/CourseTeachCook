@@ -1,0 +1,60 @@
+@using Microsoft.AspNetCore.Http;
+<head>
+    <link rel="stylesheet" href="~/css/find.css?v=1">
+</head>
+@{
+    ViewData["Title"] = "Seach Course";
+    Layout = "_LayoutCustomer";
+}
+@{
+    
+    List<Course> courses = ViewBag.courses;
+    int customerID = Int32.Parse(Context.Session.GetString("CustomerId"));
+<div class="main_child">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 ">
+                <div class="main_ct">
+                    <div class="row">
+                        <div class="top_khsv top_khdsmg clearfix"> 
+                            <img src="https://daynauan.vn/isocms/templates/default/skin/images/icon1.png"> 
+                                <span>
+                                    @ViewBag.number khóa học được tìm thấy 
+                                </span> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="list_clnews list_clnews1" style="margin: 0 auto; width: 1086px">
+                            <ul class="listul">
+                                @foreach (Course course in courses)
+                                {
+                                    <li class="col-lg-4">
+                                    <div class="box_liclnews">
+                                        <div class="top_boxli hidden768"> <span class="data_boxli"> </span> <span
+                                                class="h_boxli upper"> </span> </div>
+                                        <div class="img_boxliw"> <a href="" class="img_boxli"> <img
+                                                    src="/Image/ImageDesign/CourseImage/@course.FeatureImage"> </a> </div>
+                                        <div class="txt_boxli">
+                                            <h3><a asp-controller="Customer" asp-action="GetCourseDetails" asp-route-id="@course.CourseId">@course.CourseName</a></h3>
+                                        </div>
+                                        <div class="bot_boxli"> <a asp-controller="Customer" asp-action="GetCourseDetails" asp-route-id="@course.CourseId" class="mr_boxli">Chi
+                                                tiết</a> <a asp-controller="Customer" asp-action="Buy" asp-route-id="@course.CourseId" asp-route-id1="@customerID"
+                                                class="rg_boxli">
+                                                Đăng ký học <img
+                                                    src="https://daynauan.vn/isocms/templates/default/skin/images/icon/3.png"></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                }
+                                
+                                
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
