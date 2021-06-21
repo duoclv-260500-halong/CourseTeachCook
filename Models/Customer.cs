@@ -81,7 +81,7 @@ namespace CourseTeachCook.Models
                 Customer cus = new Customer();
                 cus.CustomerName = name;
                 cus.Email = email;
-                cus.Password = AdminController.EncryptPassword(password);
+                cus.Password = password;
                 cus.Address = address;
                 cus.PhoneNumber = phone;
                 cus.Image = "defaultImage.jpg";
@@ -167,11 +167,14 @@ namespace CourseTeachCook.Models
                 return customer;
             }
         }
-        public Customer ChangeInfor(int id, string name, string phoneNumber, string address)
+        public Customer ChangeInfor(int id, string name, string phoneNumber, string address, string fileName)
         {
             using (var connect = new CourseTeachingCookContext())
             {
                 Customer customer = connect.Customers.Find(id);
+                if(fileName != null){
+                    customer.Image = fileName;
+                }
                 customer.CustomerName = name;
                 customer.PhoneNumber = phoneNumber;
                 customer.Address = address;

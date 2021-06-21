@@ -89,13 +89,13 @@ namespace CourseTeachCook.Models
                 }
             }
         }
-        public bool CancelOrder(int id, string reason)
+        public bool CancelOrder(int canceler, int id, string reason)
         {
             using (var system = new CourseTeachingCookContext())
             {
                 Order order = system.Orders.Find(id);
                 order.OrderStatus = -2;
-                order.Canceler = 1;
+                order.Canceler = canceler;
                 order.ReasonCancel = reason;
                 system.Orders.Update(order);
                 try
@@ -111,7 +111,7 @@ namespace CourseTeachCook.Models
                 }
                 catch (System.Exception)
                 {
-
+                    return false;
                     throw;
                 }
             }
@@ -143,7 +143,7 @@ namespace CourseTeachCook.Models
                 }
             }
         }
-        public bool CreateOrder(int Cus_id, Course course, int quantity, string requireInformation)
+        public bool CreateOrder(int cus_id, Course course, int quantity, string requireInformation)
         {
             using (var connect = new CourseTeachingCookContext())
             {
@@ -152,7 +152,7 @@ namespace CourseTeachCook.Models
                 order.OrderStatus = -1;
                 order.OrderDate = DateTime.Now;
                 order.StaffId = 7;
-                order.CustomerId = 1;
+                order.CustomerId = cus_id;
                 order.RequireInformation = requireInformation;
                 connect.Orders.Add(order);
 
@@ -179,36 +179,45 @@ namespace CourseTeachCook.Models
 
             }
         }
-        public List<Order> GetOrderByTimeRange(DateTime firstDate, DateTime secondDate){
-            using(var system = new CourseTeachingCookContext()){
-                List<Order> orders = system.Orders.Where(o=>o.OrderDate >= firstDate)
-                                                    .Where(o=>o.OrderDate <= secondDate)
-                                                    .Where(o=>o.OrderStatus == 1).ToList();
+        public List<Order> GetOrderByTimeRange(DateTime firstDate, DateTime secondDate)
+        {
+            using (var system = new CourseTeachingCookContext())
+            {
+                List<Order> orders = system.Orders.Where(o => o.OrderDate >= firstDate)
+                                                    .Where(o => o.OrderDate <= secondDate)
+                                                    .Where(o => o.OrderStatus == 1).ToList();
                 return orders;
             }
 
         }
-        public List<Order> GetOrdersProcessing(int index, int pageSize){
-            using(var system = new CourseTeachingCookContext()){
-                List<Order> orders = system.Orders.Where(o=>o.OrderStatus == -1 || o.OrderStatus == 0)
-                                                    .Skip(index*pageSize).Take(pageSize).ToList();
+        public List<Order> GetOrdersProcessing(int index, int pageSize)
+        {
+            using (var system = new CourseTeachingCookContext())
+            {
+                List<Order> orders = system.Orders.Where(o => o.OrderStatus == -1 || o.OrderStatus == 0)
+                                                    .Skip(index * pageSize).Take(pageSize).ToList();
                 return orders;
             }
 
         }
-        public List<Order> GetOrdersDone(int index, int pageSize){
-            using(var system = new CourseTeachingCookContext()){
-                List<Order> orders = system.Orders.Where(o=>o.OrderStatus == 1).Skip(index*pageSize).Take(pageSize).ToList();
+        public List<Order> GetOrdersDone(int index, int pageSize)
+        {
+            using (var system = new CourseTeachingCookContext())
+            {
+                List<Order> orders = system.Orders.Where(o => o.OrderStatus == 1).Skip(index * pageSize).Take(pageSize).ToList();
                 return orders;
             }
 
         }
-        public List<Order> GetOrdersCanceled(int index, int pageSize){
-            using(var system = new CourseTeachingCookContext()){
-                List<Order> orders = system.Orders.Where(o=>o.OrderStatus == -2).Skip(index*pageSize).Take(pageSize).ToList();
+        public List<Order> GetOrdersCanceled(int index, int pageSize)
+        {
+            using (var system = new CourseTeachingCookContext())
+            {
+                List<Order> orders = system.Orders.Where(o => o.OrderStatus == -2).Skip(index * pageSize).Take(pageSize).ToList();
                 return orders;
             }
 
         }
+
     }
 }

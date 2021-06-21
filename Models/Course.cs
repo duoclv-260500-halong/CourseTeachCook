@@ -213,6 +213,12 @@ namespace CourseTeachCook.Models
                 return course;
             }
         }
+        public List<Course> SearchCourse(string key){
+            using(var system = new CourseTeachingCookContext()){
+                List<Course> courses = system.Courses.Where(c=>c.CourseName.Contains(key)).ToList();
+                return courses;
+            }
+        }
          public Course GetCourseCus(int id)
         {
             using (var system = new CourseTeachingCookContext())
@@ -368,6 +374,31 @@ namespace CourseTeachCook.Models
             {
                 Course course = system.Courses.Find(id);
                 course.CourseName = newName;
+                system.Courses.Update(course);
+                try
+                {
+                    if (system.SaveChanges() >= 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (System.Exception)
+                {
+                    return false;
+                    throw;
+                }
+            }
+        }
+        public bool ChangeRate(int id, int rate)
+        {
+            using (var system = new CourseTeachingCookContext())
+            {
+                Course course = system.Courses.Find(id);
+                course.CourseRates = rate;
                 system.Courses.Update(course);
                 try
                 {
