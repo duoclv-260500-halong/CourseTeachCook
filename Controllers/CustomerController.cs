@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CourseTeachCook.Models;
 using Microsoft.AspNetCore.Http;
-
+using System.IO;
 
 namespace CourseTeachCook.Controllers
 {
@@ -111,7 +111,54 @@ namespace CourseTeachCook.Controllers
 
             return View();
         }
+        public IActionResult ViewOrders(int id)
+        {
+            Customer customer = new Customer();
+            ViewBag.customer = customer.GetCustomer(id);
+            return View();
+        }
+        public IActionResult ViewOrderDetails(int id, int id1)
+        {
+            Customer customer = new Customer();
+            ViewBag.customer = customer.GetCustomer(id1);
+            Order order = new Order();
+            ViewBag.order = order.GetOrder(id);
+            return View();
+        }
+        public IActionResult CancelOrder(int id, int status)
+        {
 
+            Customer customer = new Customer();
+            ViewBag.customer = customer.GetCustomer(Int32.Parse(HttpContext.Session.GetString("CustomerId")));
+            Order order = new Order();
+            ViewBag.order = order.GetOrder(id);
+            if (status == 1)
+            {
+                ViewBag.result = "Hủy khóa học thành công";
+            }
+            else if (status == -1)
+            {
+                ViewBag.result = "Hủy khóa học thất bại, vui lòng thử lại sau";
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SubmitReason(int id, string reasonCancel)
+        {
+            Order order = new Order();
+            if (order.CancelOrder(-1, id, reasonCancel))
+            {
+                ViewBag.result = "Hủy khóa học thành công";
+                return RedirectToAction("CancelOrder", new { id = id, status = 1 });
+            }
+            else
+            {
+                ViewBag.result = "Hủy khóa học thất bại, vui lòng thử lại sau";
+                return RedirectToAction("CancelOrder", new { id = id, status = -1 });
+            }
+
+        }
 
         public IActionResult Introduce()
         {
@@ -167,7 +214,14 @@ namespace CourseTeachCook.Controllers
             }
             return View();
         }
-
+        [HttpPost]
+        public IActionResult SearchCourse(string key)
+        {
+            Course course = new Course();
+            ViewBag.courses = course.SearchCourse(key);
+            ViewBag.number = course.SearchCourse(key).Count();
+            return View();
+        }
         public IActionResult Login()
         {
             return View();
@@ -307,13 +361,31 @@ namespace CourseTeachCook.Controllers
             ViewBag.quantity = quantity;
             return View();
         }
-        public IActionResult ChangeInfor(int id, string name, string phoneNumber, string address)
+        [HttpPost]
+        public async Task<IActionResult> ChangeInfor(int id, string name, string phoneNumber, string address, IFormFile imageUser)
         {
-
-
-
             Customer customer = new Customer();
-            ViewBag.customer = customer.ChangeInfor(id, name, phoneNumber, address);
+            if (imageUser != null)
+            {
+                string[] typeAllow = { ".jpg", ".png", ".jpeg" };
+                if (!typeAllow.Contains(Path.GetExtension(imageUser.FileName).ToLower()))
+                {
+                    ViewBag.errorImage = "Bạn phải chọn đúng kiểu ảnh (jpg, png, jpeg)";
+                    return View();
+                }
+               
+                //return Content(Path.GetExtension(file.FileName).ToLower());
+                string filePath = "wwwroot/Image/ImageDesign/UserImage";
+                string fileName = imageUser.FileName.Replace(Path.GetExtension(imageUser.FileName), "") + ".png";
+                var fileNameWithPath = string.Concat(filePath, "\\", fileName);
+                
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    await imageUser.CopyToAsync(stream);
+                }
+                ViewBag.customer = customer.ChangeInfor(id, name, phoneNumber, address, fileName);
+            }
+            ViewBag.customer = customer.ChangeInfor(id, name, phoneNumber, address, null);
             HttpContext.Session.SetString("CustomerName", name);
             return RedirectToAction("Infor", "Customer", new { id = id });
         }

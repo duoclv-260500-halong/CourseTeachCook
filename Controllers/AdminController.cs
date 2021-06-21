@@ -367,6 +367,23 @@ namespace CourseTeachCook.Controllers
             ViewBag.result = result;
             return View();
         }
+        public IActionResult ChangeRate(int id)
+        {
+            Course course = new Course();
+            ViewBag.course = course.GetCourse(id);
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ChangeRate(int id, string rate)
+        {
+            int rate1 = Int32.Parse(rate);
+            Course course = new Course();
+            ViewBag.course = course.GetCourse(id);
+            bool result = course.ChangeRate(id, rate1);
+            ViewBag.result = result;
+            return View();
+        }
+
         public IActionResult ChangeCoursePrice(int id)
         {
             Course course = new Course();
@@ -535,11 +552,7 @@ namespace CourseTeachCook.Controllers
             string filePath = "wwwroot/Image/ImageDesign/CourseImage";
             string fileName = imageCourse.FileName.Replace(Path.GetExtension(imageCourse.FileName), "") + ".png";
             var fileNameWithPath = string.Concat(filePath, "\\", fileName);
-            if (System.IO.File.Exists(fileNameWithPath))
-            {
-                ViewBag.resultImage = "Ảnh đã tồn tại, vui lòng chọn ảnh khác";
-                return View();
-            }
+            
             var fileNameWithPath1 = string.Concat(filePath, "\\", course.FeatureImage);
             System.IO.File.Delete(fileNameWithPath1);
             bool result = course.ChangeImage(id, fileName);
@@ -609,11 +622,7 @@ namespace CourseTeachCook.Controllers
             string filePath = "wwwroot/Image/ImageDesign/CourseImage";
             string fileName = imageCourse.FileName.Replace(Path.GetExtension(imageCourse.FileName), "") + ".png";
             var fileNameWithPath = string.Concat(filePath, "\\", fileName);
-            if (System.IO.File.Exists(fileNameWithPath))
-            {
-                ViewBag.errorImage = "Ảnh này đã là ảnh của sản phẩm khác";
-                return View();
-            }
+           
             using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
             {
                 imageCourse.CopyToAsync(stream);
@@ -689,7 +698,7 @@ namespace CourseTeachCook.Controllers
         public IActionResult CancelOrder(int id, string reason)
         {
             Order order = new Order();
-            ViewBag.result = order.CancelOrder(id, reason);
+            ViewBag.result = order.CancelOrder(1, id, reason);
             return RedirectToAction("ViewOrderDetails", "Admin", new { @id = id });
         }
         public IActionResult Payment(int id)
