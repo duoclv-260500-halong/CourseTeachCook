@@ -26,19 +26,19 @@ namespace CourseTeachCook.Controllers
             if (firstDate == null && secondDate != null)
             {
                 DateTime date = DateTime.Now;
-                firstDate1 = new DateTime(date.Year, date.Month, 1);
+                firstDate1 = new DateTime(date.Year, date.Month, 1) + new TimeSpan(0, 0, 0);
                 secondDate1 = DateTime.Parse(secondDate);
             }
             else if (secondDate == null && firstDate != null)
             {
                 firstDate1 = DateTime.Parse(firstDate);
-                secondDate1 = DateTime.Today;
+                secondDate1 = DateTime.Today+ new TimeSpan(23, 59, 0);
             }
             else if (firstDate == null && secondDate == null)
             {
                 DateTime date = DateTime.Now;
-                firstDate1 = new DateTime(date.Year, date.Month, 1);
-                secondDate1 = DateTime.Today;
+                firstDate1 = new DateTime(date.Year, date.Month, 1) + new TimeSpan(01, 00, 00);
+                secondDate1 = DateTime.Today + new TimeSpan(23, 59, 59);
             }
             else
             {
