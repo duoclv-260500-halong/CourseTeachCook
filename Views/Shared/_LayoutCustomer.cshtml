@@ -114,14 +114,14 @@
                         <ul class="list_social">
                             <li>
                                 <div class="search" style="width: 350px; margin: 0 auto;">
-                                    <form id="find" method="post" action="">
+                                    <form id="find" method="post" asp-controller="Customer" asp-action="SearchCourse">
                                         <div class="box-search">
                                             <div class="find-index">
                                                 <input type="text" id="keysearch" name="key" class="form-contrl"
                                                     maxlength="255" autocomplete="off" placeholder="Nhập tên khóa học">
 
                                                 <div class="find-icon">
-                                                    <div class="loading hidden">
+                                                    <div class="loading">
                                                         <i class="fas fa-search"></i>
                                                     </div>
                                                     <input type="submit" value class="btn_select" id="btn_select-index">
