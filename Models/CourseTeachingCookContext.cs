@@ -36,7 +36,7 @@ namespace CourseTeachCook.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("server=localhost;user id=root;password=Donationminimum100$;port=3306;database=CourseTeachingCook;");
+                optionsBuilder.UseMySQL("server=localhost;user id=root;password=Donationminimum100$;port=3306;database=CourseTeachCook;");
             }
         }
 
