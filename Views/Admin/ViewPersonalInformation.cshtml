@@ -16,7 +16,7 @@
 
     <div class="content-body">
       <h4>Thông tin cá nhân</h4>
-      @using (var system = new CourseTeachingCookContext())
+      @using (var system = new CourseTeachCookContext())
       {
         Admin admin = system.Admins.Find(1);
         <div class="row" id="head">

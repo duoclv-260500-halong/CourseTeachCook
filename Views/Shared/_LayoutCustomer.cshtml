@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>@ViewData["Title"] CourseTeachingCookCustomer</title>
+    <title>@ViewData["Title"] CourseTeachCookCustomer</title>
     <link rel="shortcut icon" type="image/png" href="/images/favicon.ico" />
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -48,9 +48,9 @@
                                         <a class="dropdown-item droptext" asp-controller="Customer"
                                             asp-action="Introduce">Giới thiệu</a>
 
-                                        <a class="dropdown-item droptext" data-toggle="dropdown">Khóa học</a>
+                                        
                                         <ul class="dropdown-menu" style="padding: 0;">
-                                            @using (var connect = new CourseTeachingCookContext())
+                                            @using (var connect = new CourseTeachCookContext())
                                             {
                                                 Category category = new Category();
                                                 List<Category> categories = new List<Category>();
@@ -75,11 +75,7 @@
 
                                     </li>
 
-                                    @* <a class="dropdown-item droptext" asp-controller="Customer"
-                                        asp-action="ViewAllCourse" data-toggle="dropdown">Khóa học
-
-
-                                        </a> *@
+                      
 
                                 </div>
 
@@ -194,7 +190,7 @@
         <div class="header_bot">
             <div class="container">
                 <ul class="nav-menu menu">
-                    @using (var connect = new CourseTeachingCookContext())
+                    @using (var connect = new CourseTeachCookContext())
                     {
                         Category danhmuc1 = new Category();
 

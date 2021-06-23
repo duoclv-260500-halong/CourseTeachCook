@@ -35,7 +35,7 @@
 </style>
 
 @{
-    using (var system = new CourseTeachingCookContext())
+    using (var system = new CourseTeachCookContext())
     {
         int numberOfStaff = system.Staffs.ToList().Count();
         int numberOfCustomer = system.Customers.ToList().Count();
@@ -142,7 +142,7 @@
                         <th class="col-lg-2">TỔNG HÓA ĐƠN</th>
                         <th class="col-lg-2">TÁC VỤ</th>
                     </tr>
-                    @using (var system1 = new CourseTeachingCookContext())
+                    @using (var system1 = new CourseTeachCookContext())
                     {
 
 

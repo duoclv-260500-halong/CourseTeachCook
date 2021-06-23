@@ -77,7 +77,7 @@
                     <th class="col-lg-2">ĐIỆN THOẠI</th>
                     <th class="col-lg-2">TRẠNG THÁI</th>
                 </tr>
-                @using (var system = new CourseTeachingCookContext())
+                @using (var system = new CourseTeachCookContext())
                 {
                     List<Staff> staffs = new List<Staff>(); 
                     staffs = @ViewBag.SearchStaffs;

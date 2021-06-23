@@ -15,7 +15,7 @@
   <div class="right-body col-lg-10">
     <div class="content-body">
       <h4>Cập nhật danh mục</h4>
-      @using (var system = new CourseTeachingCookContext())
+      @using (var system = new CourseTeachCookContext())
       {
           List<Category> categories = ViewBag.listCategories;
           Course course = new Course();

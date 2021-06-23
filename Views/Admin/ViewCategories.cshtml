@@ -73,7 +73,7 @@
                     <th class="col-lg-1">#</th>
                     <th class="col-lg-2">DANH MỤC</th>
                 </tr>
-                @using (var system = new CourseTeachingCookContext())
+                @using (var system = new CourseTeachCookContext())
                 {   
                     List<Category> categories = new List<Category>();
                     categories = @ViewBag.categories;

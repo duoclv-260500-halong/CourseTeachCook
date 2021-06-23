@@ -18,7 +18,7 @@
       <form asp-controller="Admin" asp-action="AddCourse" method="POST" enctype="multipart/form-data">
         <div class="row" id="divFirst">
           <p class="col-lg-1"></p>
-          @using (var system = new CourseTeachingCookContext())
+          @using (var system = new CourseTeachCookContext())
           {
             List<Category> categories = ViewBag.listCategories;
             Course course = new Course();

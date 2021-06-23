@@ -15,7 +15,7 @@
 
     <div class="content-body">
       <h4>Thông tin khóa học</h4>
-      @using (var system = new CourseTeachingCookContext())
+      @using (var system = new CourseTeachCookContext())
       {
         Course course = ViewBag.course;
         Category category = system.Categories.Find(course.CategoryId);

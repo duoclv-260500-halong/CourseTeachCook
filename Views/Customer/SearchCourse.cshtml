@@ -9,7 +9,10 @@
 @{
     
     List<Course> courses = ViewBag.courses;
-    int customerID = Int32.Parse(Context.Session.GetString("CustomerId"));
+    int customerID = 0;
+    if(Context.Session.GetString("CustomerId") != null){
+        customerID = Int32.Parse(Context.Session.GetString("CustomerId"));
+    }
 <div class="main_child">
     <div class="container">
         <div class="row">
@@ -32,7 +35,7 @@
                                     <div class="box_liclnews">
                                         <div class="top_boxli hidden768"> <span class="data_boxli"> </span> <span
                                                 class="h_boxli upper"> </span> </div>
-                                        <div class="img_boxliw"> <a href="" class="img_boxli"> <img
+                                        <div class="img_boxliw"> <a asp-controller="Customer" asp-action="GetCourseDetails" asp-route-id="@course.CourseId" class="img_boxli"> <img
                                                     src="/Image/ImageDesign/CourseImage/@course.FeatureImage"> </a> </div>
                                         <div class="txt_boxli">
                                             <h3><a asp-controller="Customer" asp-action="GetCourseDetails" asp-route-id="@course.CourseId">@course.CourseName</a></h3>
