@@ -321,7 +321,18 @@ namespace CourseTeachCook.Controllers
 
         public IActionResult Buy(int id, int id1)
         {
-
+            Customer cus = new Customer();
+            if (id1 == 0)
+            {
+                HttpContext.Session.SetString("Coursebuy", id.ToString());
+                return RedirectToAction(controllerName: "Customer", actionName: "Login");
+            }
+            else
+            {
+                Customer customers = cus.GetCustomer(id1);
+                // return Content(id1.ToString());
+                ViewBag.customers = customers;
+            }
 
             Course chitiet = new Course();
 
@@ -329,7 +340,7 @@ namespace CourseTeachCook.Controllers
             ViewBag.chitietkhoahoc = chitietkhoahoc;
 
 
-            Customer cus = new Customer();
+            
 
             if (HttpContext.Session.GetString("CustomerName") == null)
             {
@@ -373,12 +384,12 @@ namespace CourseTeachCook.Controllers
                     ViewBag.errorImage = "Bạn phải chọn đúng kiểu ảnh (jpg, png, jpeg)";
                     return View();
                 }
-               
+
                 //return Content(Path.GetExtension(file.FileName).ToLower());
                 string filePath = "wwwroot/Image/ImageDesign/UserImage";
                 string fileName = imageUser.FileName.Replace(Path.GetExtension(imageUser.FileName), "") + ".png";
                 var fileNameWithPath = string.Concat(filePath, "\\", fileName);
-                
+
                 using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
                 {
                     await imageUser.CopyToAsync(stream);
