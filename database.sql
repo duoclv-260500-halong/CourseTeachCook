@@ -272,11 +272,11 @@ create table contactsInformation(
 );
 
 insert into contactsInformation(jobPosition, email, image, phoneNumber, description1, description2, description3) values
-('Giáo vụ', 'giaovu1@ezcooking.vn', 'ic_contact.png', '0963.938.523', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Kế toán', 'ketoan1@ezcooking.vn', 'ic_contact1.png', '024.3773.9943', 'Quan hệ giao thương', 'Lên thực phẩm', 'Theo dõi công nợ về học phí của học viên'),
-('Marketing', 'marketing@ezcooking.vn', 'ic_contact2.png', '0963.938.524', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Tuyển sinh', 'tuyensinh@ezcooking.vn', '1450835234ic_contact3.png', '0963.938.525', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Hành chính - Nhân sự', 'hanhchinhnhansu@ezcooking.vn', '1450834578ic_contact5.png', '0963.938.526', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Tuyển dụng nghề bếp', 'tuyendungnghebep@ezcooking.vn', '1450834541ic_contact4.png', '0963.938.527', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học');
+('Giáo vụ', 'giaovu1@ezcooking.vn', 'giaovu1.png', '0963.938.523', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
+('Kế toán', 'ketoan1@ezcooking.vn', 'ketoan.png', '024.3773.9943', 'Quan hệ giao thương', 'Lên thực phẩm', 'Theo dõi công nợ về học phí của học viên'),
+('Marketing', 'marketing@ezcooking.vn', 'marketing.png', '0963.938.524', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
+('Tuyển sinh', 'tuyensinh@ezcooking.vn', 'tuyensinh.png', '0963.938.525', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
+('Hành chính - Nhân sự', 'hanhchinhnhansu@ezcooking.vn', 'hanhchinh.png', '0963.938.526', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
+('Tuyển dụng nghề bếp', 'tuyendungnghebep@ezcooking.vn', 'tuyendung.png', '0963.938.527', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học');
 
 
