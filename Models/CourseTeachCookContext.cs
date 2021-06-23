@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CourseTeachCook.Models
 {
-    public partial class CourseTeachingCookContext : DbContext
+    public partial class CourseTeachCookContext : DbContext
     {
-        public CourseTeachingCookContext()
+        public CourseTeachCookContext()
         {
         }
 
-        public CourseTeachingCookContext(DbContextOptions<CourseTeachingCookContext> options)
+        public CourseTeachCookContext(DbContextOptions<CourseTeachCookContext> options)
             : base(options)
         {
         }

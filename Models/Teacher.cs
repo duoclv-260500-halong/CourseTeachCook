@@ -13,7 +13,7 @@ namespace CourseTeachCook.Models
         public string TeacherImage { get; set; }
         public List<Teacher> GetListTeacher()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Teacher> danhsachgiangvien = new List<Teacher>();
 

@@ -18,7 +18,7 @@ namespace CourseTeachCook.Models
         public virtual ICollection<Course> Courses { get; set; }
         public Category GetCategory(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Category category = system.Categories.Find(id);
                 return category;
@@ -26,7 +26,7 @@ namespace CourseTeachCook.Models
         }
         public List<Category> GetCategories()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Category> categories = new List<Category>();
                 categories = system.Categories.Take(7).ToList();
@@ -34,7 +34,7 @@ namespace CourseTeachCook.Models
             }
         }
         public Category ViewCategory(int id){
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 Category category = new Category();
 
@@ -46,7 +46,7 @@ namespace CourseTeachCook.Models
         
         public bool ChangeCategory(int id, string categoryName)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Category category = system.Categories.Find(id);
                 category.CategoryName = categoryName;

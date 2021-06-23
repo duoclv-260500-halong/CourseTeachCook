@@ -16,7 +16,7 @@ namespace CourseTeachCook.Models
 
         public Admin LoginAdmin(string email, string password)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Admin admin = new Admin();
                 try
@@ -34,7 +34,7 @@ namespace CourseTeachCook.Models
         }
         public List<Staff> SearchStaffs(string type, string key)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Staff> staffs = null;
                 if (type.Equals("Họ tên"))
@@ -71,7 +71,7 @@ namespace CourseTeachCook.Models
             {
                 return false;
             }
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Admin admin = system.Admins.Find(id);
                 admin.AdminName = name;
@@ -92,7 +92,7 @@ namespace CourseTeachCook.Models
             {
                 return false;
             }
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Admin admin = system.Admins.Find(id);
                 admin.PhoneNumber = phoneNumber;
@@ -110,7 +110,7 @@ namespace CourseTeachCook.Models
 
         public bool ChangePassword(int id, string oldPassword, string newPassword)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Admin admin = system.Admins.Find(id);
                 if (admin.Password == oldPassword)

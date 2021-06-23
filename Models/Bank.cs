@@ -12,7 +12,7 @@ namespace CourseTeachCook.Models
         public string AccountNumber { get; set; }
         public string NameOwner { get; set; }
         public List<Bank> GetBanks(){
-            using (var system = new CourseTeachingCookContext()){
+            using (var system = new CourseTeachCookContext()){
                 List<Bank> banks = system.Banks.ToList();
                 return banks;
             }

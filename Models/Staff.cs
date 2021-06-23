@@ -24,13 +24,13 @@ namespace CourseTeachCook.Models
         public virtual ICollection<Order> Orders { get; set; }
 
         public Staff GetStaff(int id){
-            using (var system = new CourseTeachingCookContext()){
+            using (var system = new CourseTeachCookContext()){
                 Staff staff = system.Staffs.Find(id);
                 return staff;
             }
         }
         public bool CheckEmail(string email){
-            using(var system = new CourseTeachingCookContext()){
+            using(var system = new CourseTeachCookContext()){
                 try
                 {
                     Staff staff = system.Staffs.Single(s=>s.Email == email);
@@ -44,7 +44,7 @@ namespace CourseTeachCook.Models
             }
         }
         public bool CheckPhone(string phoneNumber){
-            using(var system = new CourseTeachingCookContext()){
+            using(var system = new CourseTeachCookContext()){
                 try
                 {
                     Staff staff = system.Staffs.Single(s=>s.PhoneNumber == phoneNumber);
@@ -58,14 +58,14 @@ namespace CourseTeachCook.Models
             }
         }
         public List<Staff> GetStaffs(int index, int pageSize){
-            using(var system = new CourseTeachingCookContext()){
+            using(var system = new CourseTeachCookContext()){
                 List<Staff> staffs = system.Staffs.Skip(index*pageSize).Take(pageSize).ToList();
                 return staffs;
             }
         }
         public bool AddStaff(string name, string jobPosition, string email, string password, string phoneNumber)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Staff staff = new Staff();
                 staff.StaffName = name;
@@ -93,14 +93,14 @@ namespace CourseTeachCook.Models
             }
         }
         public List<Staff> ViewStaffs(){
-            using (var system = new CourseTeachingCookContext()){
+            using (var system = new CourseTeachCookContext()){
                 List<Staff> staffs = system.Staffs.ToList();
                 return staffs;
             }
         }
 
         public bool ChangeStatus(int id){
-            using (var system = new CourseTeachingCookContext()){
+            using (var system = new CourseTeachCookContext()){
                 Staff staff = system.Staffs.Find(id);
                 if(staff.Status == 0){
                     staff.Status = 1;
@@ -127,7 +127,7 @@ namespace CourseTeachCook.Models
         }
 
         public bool ReissuePassword(int id, string newPassword){
-            using (var system = new CourseTeachingCookContext()){
+            using (var system = new CourseTeachCookContext()){
                 Staff staff = system.Staffs.Find(id);
                 staff.Password = newPassword;
                 system.Staffs.Update(staff);

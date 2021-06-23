@@ -28,7 +28,7 @@ namespace CourseTeachCook.Models
 
         public bool CheckEmail(string email)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 try
                 {
@@ -52,7 +52,7 @@ namespace CourseTeachCook.Models
         }
         public bool CheckPhone(string phone)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 try
                 {
@@ -76,7 +76,7 @@ namespace CourseTeachCook.Models
         }
         public bool Register(string email, string password, string name, string phone, string address)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 Customer cus = new Customer();
                 cus.CustomerName = name;
@@ -110,7 +110,7 @@ namespace CourseTeachCook.Models
 
         public Customer Login(string email, string password)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
 
                 try
@@ -143,7 +143,7 @@ namespace CourseTeachCook.Models
         }
         public List<Customer> GetCustomers(int index, int pageSize)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Customer> customers = system.Customers.Skip(index * pageSize).Take(pageSize).ToList();
                 return customers;
@@ -151,7 +151,7 @@ namespace CourseTeachCook.Models
         }
         public int GetNumberOfNewCustomer(DateTime firstDate, DateTime secondDate)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 int result = system.Customers.Where(c => c.TimeRegister >= firstDate)
                                                 .Where(c => c.TimeRegister <= secondDate)
@@ -161,7 +161,7 @@ namespace CourseTeachCook.Models
         }
         public Customer GetCustomer(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Customer customer = system.Customers.Find(id);
                 return customer;
@@ -169,7 +169,7 @@ namespace CourseTeachCook.Models
         }
         public Customer ChangeInfor(int id, string name, string phoneNumber, string address, string fileName)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 Customer customer = connect.Customers.Find(id);
                 if(fileName != null){
@@ -192,7 +192,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangePassword(int id, string oldPassword, string newPassword)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 if (id == 0 || oldPassword == null || newPassword == null)
                 {
@@ -220,7 +220,7 @@ namespace CourseTeachCook.Models
         }
         public List<Customer> GetCustomers()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Customer> customers = system.Customers.ToList();
 
@@ -229,7 +229,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeStatus(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Customer customer = system.Customers.Find(id);
                 if (customer.Status == 0)

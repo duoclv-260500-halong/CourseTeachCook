@@ -14,7 +14,7 @@ namespace CourseTeachCook.Models
         public virtual Course Course { get; set; }
         public List<Imagescourse> GetImagescourses(int id)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Imagescourse> image = new List<Imagescourse>();
 

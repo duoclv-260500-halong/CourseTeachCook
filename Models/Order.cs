@@ -20,7 +20,7 @@ namespace CourseTeachCook.Models
         public virtual Staff Staff { get; set; }
         public List<Order> GetListOrdersProcessing()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Order> orders = system.Orders.Where(o => (o.OrderStatus == -1) || (o.OrderStatus == 0)).ToList();
                 return orders;
@@ -29,7 +29,7 @@ namespace CourseTeachCook.Models
 
         public List<Order> GetListOrdersDone()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Order> orders = system.Orders.Where(o => o.OrderStatus == 1).ToList();
                 return orders;
@@ -37,7 +37,7 @@ namespace CourseTeachCook.Models
         }
         public List<Order> GetListOrdersCanceled()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Order> orders = system.Orders.Where(o => o.OrderStatus == -2).ToList();
                 return orders;
@@ -46,7 +46,7 @@ namespace CourseTeachCook.Models
 
         public Order GetOrder(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Order order = system.Orders.Find(id);
                 return order;
@@ -55,7 +55,7 @@ namespace CourseTeachCook.Models
 
         public List<Orderdetail> GetOrderDetails(int orderID)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Orderdetail> orderdetails = new List<Orderdetail>();
                 orderdetails = system.Orderdetails.Where(o => o.OrderId == orderID).ToList();
@@ -64,7 +64,7 @@ namespace CourseTeachCook.Models
         }
         public bool AcceptOrder(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Order order = system.Orders.Find(id);
                 order.OrderStatus = 0;
@@ -91,7 +91,7 @@ namespace CourseTeachCook.Models
         }
         public bool CancelOrder(int canceler, int id, string reason)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Order order = system.Orders.Find(id);
                 order.OrderStatus = -2;
@@ -118,7 +118,7 @@ namespace CourseTeachCook.Models
         }
         public bool Payment(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Order order = system.Orders.Find(id);
                 order.OrderStatus = 1;
@@ -145,7 +145,7 @@ namespace CourseTeachCook.Models
         }
         public bool CreateOrder(int cus_id, Course course, int quantity, string requireInformation)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
 
                 Order order = new Order();
@@ -181,7 +181,7 @@ namespace CourseTeachCook.Models
         }
         public List<Order> GetOrderByTimeRange(DateTime firstDate, DateTime secondDate)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Order> orders = system.Orders.Where(o => o.OrderDate >= firstDate)
                                                     .Where(o => o.OrderDate <= secondDate)
@@ -192,7 +192,7 @@ namespace CourseTeachCook.Models
         }
         public List<Order> GetOrdersProcessing(int index, int pageSize)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Order> orders = system.Orders.Where(o => o.OrderStatus == -1 || o.OrderStatus == 0)
                                                     .Skip(index * pageSize).Take(pageSize).ToList();
@@ -202,7 +202,7 @@ namespace CourseTeachCook.Models
         }
         public List<Order> GetOrdersDone(int index, int pageSize)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Order> orders = system.Orders.Where(o => o.OrderStatus == 1).Skip(index * pageSize).Take(pageSize).ToList();
                 return orders;
@@ -211,7 +211,7 @@ namespace CourseTeachCook.Models
         }
         public List<Order> GetOrdersCanceled(int index, int pageSize)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Order> orders = system.Orders.Where(o => o.OrderStatus == -2).Skip(index * pageSize).Take(pageSize).ToList();
                 return orders;

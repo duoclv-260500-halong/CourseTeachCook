@@ -17,14 +17,14 @@ namespace CourseTeachCook.Models
         public string Description2 { get; set; }
         public string Description3 { get; set; }
         public string GetHotLine(){
-            using (var system = new CourseTeachingCookContext()){
+            using (var system = new CourseTeachCookContext()){
                 Contactsinformation contactsinformation = system.Contactsinformations.Single(c => c.JobPosition == "Giáo vụ");
                 return contactsinformation.PhoneNumber;
             }
         }
          public List<Contactsinformation> GetContactAll()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Contactsinformation> contacts = new List<Contactsinformation>();
                 contacts = system.Contactsinformations.ToList();
@@ -36,7 +36,7 @@ namespace CourseTeachCook.Models
         }
           public Contactsinformation GetContact()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Contactsinformation contact = new Contactsinformation();
                 contact = system.Contactsinformations.Single(C => C.JobPosition == "Tuyển Sinh");

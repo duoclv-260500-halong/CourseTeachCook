@@ -33,7 +33,7 @@ namespace CourseTeachCook.Models
         public virtual ICollection<Imagescourse> Imagescourses { get; set; }
         public List<Course> ViewListCourses()
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Course> courses = new List<Course>();
                 courses = system.Courses.OrderByDescending(c => c.CourseId).ToList();
@@ -46,7 +46,7 @@ namespace CourseTeachCook.Models
                             int numberOfSessions, int numberOfDishs, int numberOfHours,
                             string addressLearn, DateTime dateOfOpening)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = new Course();
                 course.CategoryId = categoryID;
@@ -86,7 +86,7 @@ namespace CourseTeachCook.Models
 
         public List<Course> GetAllCourse(int id)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
 
                 List<Course> ViewAllCourse = new List<Course>();
@@ -98,7 +98,7 @@ namespace CourseTeachCook.Models
         }
         public List<Course> GetListKhoahochot()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsachkhoahochot = new List<Course>();
                 danhsachkhoahochot = connect.Courses.OrderByDescending(C => C.CourseRates).Take(12).ToList();
@@ -109,7 +109,7 @@ namespace CourseTeachCook.Models
 
         public List<Course> GetListNghebep()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsachkhoahoc = new List<Course>();
 
@@ -124,7 +124,7 @@ namespace CourseTeachCook.Models
 
         public List<Course> GetListGiadinh()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsachgiadinh = new List<Course>();
 
@@ -138,7 +138,7 @@ namespace CourseTeachCook.Models
 
         public List<Course> GetListTrevaobep()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsachtre = new List<Course>();
 
@@ -151,7 +151,7 @@ namespace CourseTeachCook.Models
         }
         public List<Course> GetListCake()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsachcake = new List<Course>();
 
@@ -165,7 +165,7 @@ namespace CourseTeachCook.Models
 
         public List<Course> GetListBartender()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsachban = new List<Course>();
 
@@ -179,7 +179,7 @@ namespace CourseTeachCook.Models
 
         public List<Course> GetListvisual_arts()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsacharts = new List<Course>();
 
@@ -193,7 +193,7 @@ namespace CourseTeachCook.Models
 
         public List<Course> GetListworld_cuisine()
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 List<Course> danhsachworld = new List<Course>();
 
@@ -206,7 +206,7 @@ namespace CourseTeachCook.Models
         }
         public Course GetCourse(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 
@@ -214,14 +214,14 @@ namespace CourseTeachCook.Models
             }
         }
         public List<Course> SearchCourse(string key){
-            using(var system = new CourseTeachingCookContext()){
+            using(var system = new CourseTeachCookContext()){
                 List<Course> courses = system.Courses.Where(c=>c.CourseName.Contains(key)).ToList();
                 return courses;
             }
         }
          public Course GetCourseCus(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.Views += 1;
@@ -231,14 +231,14 @@ namespace CourseTeachCook.Models
             }
         }
         public List<Course> GetCourses(int index, int pageSize){
-            using(var system = new CourseTeachingCookContext()){
+            using(var system = new CourseTeachCookContext()){
                 List<Course> courses = system.Courses.OrderByDescending(c=>c.CourseId).Skip(index*pageSize).Take(pageSize).ToList();
                 return courses;
             }
         }
         public List<Course> SearchCourse(string type, int price, string key)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 List<Course> courses = new List<Course>();
                 if (key == "" || key == null)
@@ -370,7 +370,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeName(int id, string newName)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.CourseName = newName;
@@ -395,7 +395,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeRate(int id, int rate)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.CourseRates = rate;
@@ -420,7 +420,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeStatus(int id, int status)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.Status = status;
@@ -445,7 +445,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeCategory(int id, int categoryID)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.CategoryId = categoryID;
@@ -471,7 +471,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeDescription(int id, string description)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.CourseDescription = description;
@@ -497,7 +497,7 @@ namespace CourseTeachCook.Models
 
         public bool ChangeCoursePrice(int id, int newPrice)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.CoursePrice = newPrice;
@@ -524,7 +524,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeNumberOfLessions(int id, int numberOfLessions)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.NumberOfSession = numberOfLessions;
@@ -551,7 +551,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeNumberOfDishs(int id, int numberOfDishs)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.NumberOfDishs = numberOfDishs;
@@ -578,7 +578,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeNumberOfHours(int id, int numberOfHours)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.NumberOfHours = numberOfHours;
@@ -605,7 +605,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeMaterialPrice(int id, int newPrice)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.MaterialPrice = newPrice;
@@ -631,7 +631,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeNumberOfStudent(int id, string numberOfStudent)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.NumberOfStudent = numberOfStudent;
@@ -657,7 +657,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeAddressLearn(int id, string addressLearn)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.AddressLearn = addressLearn;
@@ -682,7 +682,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeDateOfOpening(int id, DateTime dateOfOpening)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.DateOfOpening = dateOfOpening;
@@ -707,7 +707,7 @@ namespace CourseTeachCook.Models
         }
         public bool ChangeImage(int id, string imageSource)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 course.FeatureImage = imageSource;

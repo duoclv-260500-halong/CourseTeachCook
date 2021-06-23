@@ -19,7 +19,7 @@ namespace CourseTeachCook.Models
 
         public Orderdetail GetDetails(int id)
         {
-            using (var system = new CourseTeachingCookContext())
+            using (var system = new CourseTeachCookContext())
             {
                 Orderdetail orderdetail = system.Orderdetails.Single(o => o.OrderId == id);
                 return orderdetail;
@@ -60,7 +60,7 @@ namespace CourseTeachCook.Models
         }
         public bool InsertOrderdetails(int orderid, Course course, int quantity)
         {
-            using (var connect = new CourseTeachingCookContext())
+            using (var connect = new CourseTeachCookContext())
             {
                 Orderdetail orderdetail = new Orderdetail();
 
