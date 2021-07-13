@@ -1,0 +1,136 @@
+@using CourseTeachCook.Models;
+@using System.Globalization
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+<head>
+    <link rel="stylesheet" href="~/css/Infor.css?v=2">
+
+</head>
+@using (var connect = new CourseTeachCookContext())
+{
+    int id = ViewBag.id;
+    int id1 = ViewBag.id1;
+    Order order = new Order();
+    Customer customer = new Customer();
+    order = order.GetOrder(id);
+    customer = customer.GetCustomer(id1);
+    Orderdetail orderdetail = new Orderdetail();
+    orderdetail = connect.Orderdetails.Single(orderdetail=>orderdetail.OrderId == order.OrderId);
+    Course course = connect.Courses.Find(orderdetail.CourseId);
+    int total = (orderdetail.CoursePrice + orderdetail.MaterialPrice)*orderdetail.Quantity;
+    <div class="main_child">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div id="ctl00_divCenter" class="full-width col-sm-12">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4">
+                            <section class="user-sidebar clearfix">
+                                <div class="userinfo clearfix">
+                                    <figure>
+                                        <img alt="" src="/Image/ImageDesign/UserImage/@customer.Image" class="avatar user-img">
+                                        <figcaption>
+                                            <div class="title">Tài khoản của</div>
+                                            <div class="user-name">
+                                                @customer.CustomerName
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                @* <i class="fa fa-angle-down"></i> *@
+                            </section>
+                            <nav class="user-sidelink clearfix">
+                                <ul>
+                                    <li class="hvr-sweep-to-right "><a asp-controller="Customer" asp-action="Infor" asp-route-id="@customer.CustomerId"
+                                        style="text-decoration: none;">
+                                            <i class="fa fa-info-circle"></i> Thông tin tài khoản</a></li>
+                                    <li class="hvr-sweep-to-right"><a asp-controller="Customer" asp-action="ChangePassword" asp-route-id="@customer.CustomerId"
+                                        style="text-decoration: none;">
+                                            <i class="fa fa-lock"></i> Đổi mật khẩu</a></li>
+                                    <li class="hvr-sweep-to-right active"><a asp-controller="Customer"
+                                        asp-action="ViewOrders" asp-route-id="@customer.CustomerId" style="text-decoration: none;">
+                                            <i class="fa fa-list-alt"></i> Quản lý đơn hàng</a></li>
+                                    <li class="hvr-sweep-to-right">
+                                        <a asp-controller="Customer" asp-action="Logout"><i class="fa fa-sign-out"></i>
+                                            Thoát</a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="col-md-9 col-sm-8">
+                            <div id="ctl00_mainContent_pnlUser" class="user-page clearfix">
+                                
+                                    <div style="display: -webkit-box;">
+                                        <h1 class="col-md-5 postname"> Hủy đơn hàng - @order.OrderId</h1>
+                                       
+                                        <h6 class="col-md-3" style="float: right;padding:8px">Ngày đặt hàng :@order.OrderDate.ToString("dd/MM/yyyy")
+                                        </h6>
+                                        <h6 class="col-md-4" style="float: right;padding:8px">
+                                                    Trạng thái :@if (order.OrderStatus == -1)
+                                                            {
+                                                                <td>
+                                                                    Đang chờ chấp nhận
+                                                                </td>
+                                                            }
+                                                            else if (order.OrderStatus == 0)
+                                                            {
+                                                                <td>
+                                                                    Đang chờ thanh toán
+                                                                </td>
+                                                            }
+                                                            else if (order.OrderStatus == 1)
+                                                            {
+                                                                <td>
+                                                                    Đã thanh toán
+                                                                </td>
+                                                            }
+                                                            else if (order.OrderStatus == -2)
+                                                            {
+                                                                <td>
+                                                                    Đã hủy
+                                                                </td>
+                                                            }
+                                        </h6>
+
+                                </div>
+                                
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form asp-controller="Order" asp-action="CancelOrderCustomer" asp-route-id="@order.OrderId" method="POST">
+                                            <label for="reasonCancel" style="font-size: 14px;">Lí do hủy</label>
+                                            <textarea class="form-control box_textarea_control" id="reasonCancel" placeholder="Lí do hủy" cols="44" rows="5" name="reasonCancel">
+
+                                            </textarea> 
+                                            <input type="submit" value="Hủy khóa học" class="btn btn-danger" style="width: 15%%;margin-top:20px">
+                                            @if (ViewBag.result != null)
+                                            {
+                                                <p>@ViewBag.result</p>
+                                            }
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+}

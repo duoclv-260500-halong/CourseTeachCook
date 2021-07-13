@@ -45,8 +45,8 @@
                                         <a class="dropdown-item droptext" asp-controller="Customer" 
                                             asp-action="Index">Trang chủ</a>
 
-                                        <a class="dropdown-item droptext" asp-controller="Customer"
-                                            asp-action="Introduce">Giới thiệu</a>
+                                        <a class="dropdown-item droptext" asp-controller="Introduction"
+                                            asp-action="Index">Giới thiệu</a>
 
                                         
                                         <ul class="dropdown-menu" style="padding: 0;">
@@ -68,10 +68,10 @@
                                             }
                                         </ul>
 
-                                        <a class="dropdown-item droptext" asp-controller="Customer" asp-action="ViewNews">Tin
+                                        <a class="dropdown-item droptext" asp-controller="News" asp-action="ViewNews">Tin
                                             tức</a>
-                                        <a class="dropdown-item droptext" asp-controller="Customer"
-                                            asp-action="Contactsinformation">Liên hệ</a>
+                                        <a class="dropdown-item droptext" asp-controller="Contact"
+                                            asp-action="Index">Liên hệ</a>
 
                                     </li>
 
@@ -110,7 +110,7 @@
                         <ul class="list_social">
                             <li>
                                 <div class="search" style="width: 350px; margin: 0 auto;">
-                                    <form id="find" method="post" asp-controller="Customer" asp-action="SearchCourse">
+                                    <form id="find" method="post" asp-controller="Course" asp-action="SearchCourseCustomer">
                                         <div class="box-search">
                                             <div class="find-index">
                                                 <input type="text" id="keysearch" name="key" class="form-contrl"
@@ -203,7 +203,7 @@
                         @foreach (Category danhmuc in danhmucs)
                         {
                             <li class="menu-item menu-item-header1">
-                                <a asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId"
+                                <a asp-controller="Course" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId"
                             class="menu-link" style="color: #333; "
                             title="@danhmuc.CategoryName">@danhmuc.CategoryName</a>
                             </li>

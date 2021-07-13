@@ -1,0 +1,127 @@
+@{
+  ViewData["Title"] = "Thông tin khóa học";
+}
+<head>
+  <link rel="stylesheet" href="~/css/layout.css" />
+  <link rel="stylesheet" href="~/css/viewCourseDetails.css?v=6" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Globalization;
+ 
+  <div class="right-body col-lg-10">
+
+    <div class="content-body">
+      <h4>Thông tin khóa học</h4>
+      @using (var system = new CourseTeachCookContext())
+      {
+        Course course = ViewBag.course;
+        Category category = system.Categories.Find(course.CategoryId);
+        
+          <form class="" asp-controller="Course" asp-action="UpdateCourse" asp-route-id="@course.CourseId"
+          method="POST" enctype="multipart/form-data">
+            <div id="content">
+              <div class="row content" id="email">
+                <p class="col-lg-3">Danh mục</p>
+                <p class="col-lg-4 detail">@category.CategoryName</p>
+                <a asp-asp-controller="Course" asp-action="ChangeCategoryCourse" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+              </div>
+              <div class="row content" id="email">
+              <p class="col-lg-3">Tên khóa học</p>
+              <p class="col-lg-4 detail">@course.CourseName</p>
+              <a asp-asp-controller="Course" asp-action="ChangeNameCourse" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+             <div class="row content" id="email">
+              <p class="col-lg-3">Mô tả</p>
+              <p class="col-lg-4 detail">@course.CourseDescription</p>
+              <a asp-asp-controller="Course" asp-action="ChangeDescriptionCourse" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Đánh giá</p>
+              <p class="col-lg-4 detail">@course.CourseRates</p>
+    <a asp-asp-controller="Course" asp-action="ChangeRate" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Lượt xem</p>
+              <p class="col-lg-4 detail">@course.Views</p>
+              
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Giá khóa học</p>
+              <p class="col-lg-4 detail">@string.Format(new CultureInfo("vi-VN"),"{0:c}", course.CoursePrice)</p>
+              <a asp-asp-controller="Course" asp-action="ChangeCoursePrice" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Giá nguyên liệu</p>
+              <p class="col-lg-4 detail">@string.Format(new CultureInfo("vi-VN"),"{0:c}", course.MaterialPrice)</p>
+              <a asp-asp-controller="Course" asp-action="ChangeMaterialPrice" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Ảnh</p>
+              <img class="col-lg-4 detail" src="~/Image/ImageDesign/CourseImage/@course.FeatureImage" alt="" style="border: 1px solid white;">
+              <a asp-asp-controller="Course" asp-action="ChangeImageCourse" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Số buổi học</p>
+              <p class="col-lg-4 detail">@course.NumberOfSession</p>
+              <a asp-asp-controller="Course" asp-action="ChangeNumberOfLessions" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Số món ăn</p>
+              <p class="col-lg-4 detail">@course.NumberOfDishs</p>
+              <a asp-asp-controller="Course" asp-action="ChangeNumberOfDishs" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Số giờ học</p>
+              <p class="col-lg-4 detail">@course.NumberOfHours</p>
+              <a asp-asp-controller="Course" asp-action="ChangeNumberOfHours" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Số lượng học viên</p>
+              <p class="col-lg-4 detail">@course.NumberOfStudent</p>
+              <a asp-asp-controller="Course" asp-action="ChangeNumberOfStudent" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Địa chỉ học</p>
+              <p class="col-lg-4 detail">@course.AddressLearn</p>
+              <a asp-asp-controller="Course" asp-action="ChangeAddressLearn" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Ngày khai giảng</p>
+              <p class="col-lg-4 detail">@course.DateOfOpening.Date.ToString("dd/MM/yyyy")</p>
+              <a asp-asp-controller="Course" asp-action="ChangeDateOfOpening" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-3">Trạng thái</p>
+              @if (@course.Status == 1)
+              {
+                  <p class="col-lg-4 detail">Hoạt động</p>
+              }
+              else{
+                <p class="col-lg-4 detail">Ngừng hoạt động</p>
+              }
+              
+              <a asp-asp-controller="Course" asp-action="ChangeStatusCourse" asp-route-id="@course.CourseId"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            </div>
+          </form>
+
+      }
+    </div>
+  </div>

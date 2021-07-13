@@ -1,0 +1,111 @@
+@model CourseTeachCook.Models.Course;
+@{
+    ViewData["Title"] = "Quản lí khóa học";
+}
+<head>
+    <link rel="stylesheet" href="~/css/index1.css?v=12" />
+    <link rel="stylesheet" href="~/css/indexCourse.css?v=4" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using CourseTeachCook.Controllers;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Microsoft.AspNetCore.Http;
+@using System.Web;
+@using System.Globalization;
+
+<style>
+    #view-course tr:nth-child(even) {
+        background-color: #314359;
+    }
+
+    #view-course tr {
+        height: 40px;
+    }
+
+    #view-course tr:nth-child(odd) {
+        background-color: #203143;
+    }
+
+    #view-course th {
+        background-color: black;
+        height: 40px;
+    }
+
+    .page-item a {
+        color: black;
+    }
+</style>
+@using (var system = new CourseTeachCookContext())
+{  
+    Course course1 = new Course();
+                    string type = ViewBag.type;
+                    int price = ViewBag.price;
+                    string key = ViewBag.key;
+                    List<Course> courses = new List<Course>();
+                    courses = course1.SearchCourse(type, price, key);
+   
+    <div class="right-body col-lg-10" style="background-color: #273444; height: 100%">
+        <div class="title-body" style="margin-top: 10px; margin-bottom: 15px; background-color: #19232f">
+            <div class="row">
+                <h4 class="col-lg-12">Danh sách khóa học</h4>
+            </div><br>
+            
+            <div class="row">
+                <div class="col-lg-5" id="add-staff">
+                    <a asp-controller="Course" asp-action="AddCourse"><button>Thêm khóa học</button></a>
+                </div>
+                <form asp-controller="Course" asp-action="SearchCourse" class="col-lg-7" style="display: flex;" method="POST" enctype="multipart/form-data">
+                <select name="type" class="col-lg-3" id="staff" style="outline: none; margin-left: 22px">
+                    <option value="name">Tên khóa học</option>  
+                    <option value="category">Danh mục</option>
+                    <option value="dateOfOpening">Ngày khai giảng (+ cũ hơn)</option>
+                    
+                </select>
+                <select name="price" class="col-lg-3" id="staff" style="outline: none; margin-left: 15px">
+                    <option value="0">Giá</option>  
+                    <option value="1"> &lt 5 triệu</option>
+                    <option value="2">5 triệu - 10 triệu</option>
+                    <option value="3"> > 10 triệu</option>
+                    
+                </select>
+                <div class="col-lg-6 search" style="display: flex; border-radius: 10px">
+                <input type="text" placeholder="   Tìm kiếm..." name="key" style="border: none; border-radius: 5px 0px 0px 5px; outline:none">
+                <input type="submit" id="submit" value="Tìm kiếm">
+                </div>
+                </form>
+            </div>
+            
+        </div>
+        
+        <div class="content-body">
+            <h4>Tìm thấy: @courses.Count() khóa học</h4>
+            <table id="view-course">
+                <tr>
+                    <th class="col-lg-2">KHÓA HỌC</th>
+                    <th class="col-lg-2">DANH MỤC</th>
+                    <th class="col-lg-3">ẢNH</th>
+                    <th class="col-lg-2">GIÁ KHÓA HỌC</th>
+                    <th class="col-lg-2">GIÁ NGUYÊN LIỆU</th>
+                    <th class="col-lg-1">MỞ DẠY</th>
+                </tr>
+                    @foreach (Course course in courses)
+                    { 
+                        Category category = system.Categories.Find(course.CategoryId);
+                        <tr>
+                            <td class="col-lg-2"><a asp-controller="Course" asp-action="ViewCourseDetails" asp-route-id="@course.CourseId">@course.CourseName</a></td>
+                            <td class="col-lg-2">@category.CategoryName</td>
+                            <td class="col-lg-3"><img src="/Image/ImageDesign/Courseimage/@course.FeatureImage" alt=""> </td>
+                            <td class="col-lg-2">@string.Format(new CultureInfo("vi-VN"),"{0:c}", course.CoursePrice)</td>
+                            <td class="col-lg-2">@string.Format(new CultureInfo("vi-VN"),"{0:c}", course.MaterialPrice)</td>
+                            <td class="col-lg-1">@course.DateOfOpening.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    }
+                
+
+            </table>
+          
+        </div>
+    </div>
+}

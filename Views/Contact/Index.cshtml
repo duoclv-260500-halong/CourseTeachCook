@@ -1,0 +1,57 @@
+@using CourseTeachCook.Models
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+<head>
+    <link rel="stylesheet" href="~/css/contacts.css?v=2">
+</head>
+
+<div class="main_child">
+    <div class="container">
+        <div class="row">
+            @using (var connect = new CourseTeachCookContext())
+            {
+                String[] colors = { "#23afc8", "#21977d", "#f18c50", "#4dce8f", "#b02b25", "#699212" };
+
+                Contactsinformation contactsinformation = new Contactsinformation();
+                
+                List<Contactsinformation> contact1 = new List<Contactsinformation>();
+                contact1 = ViewBag.contact;
+
+                int index = 0;
+
+                foreach (Contactsinformation contact in contact1)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="box_contact" style="background: @colors[index]">
+                            <div class="top_bcontact clearfix"> <a class="ic_bcontact" rel="nofollow"> <img
+                                src="/Image/ImageDesign/ContactImage/@contact.Image"> </a>
+                                <div class="txt_bcontact">
+                                    <h2>@contact.JobPosition</h2>
+                                    <p><span><img src="/Image/ImageDesign/ContactImage/icon_hl.png"></span><a>@contact.PhoneNumber</a></p>
+                                    <p><span><img src="/Image/ImageDesign/ContactImage/icon_hl1.png"></span><a rel="nofollow"
+                                    href="mailto:@contact.Email" style="text-decoration: none;">@contact.Email</a></p>
+                                </div>
+                            </div>
+                            <div class="bot_bcontact">
+                                <div class="text">
+                                    <p> @contact.Description1</p>
+                                    <p> @contact.Description2</p>
+                                    <p> @contact.Description3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    index = index + 1;
+
+                }
+
+              
+            }
+
+        </div>
+        <div class="clearfix mt30"></div>
+    </div>
+</div>

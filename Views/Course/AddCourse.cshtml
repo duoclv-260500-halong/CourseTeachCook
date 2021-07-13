@@ -1,0 +1,133 @@
+@{
+  ViewData["Title"] = "Thêm khóa học";
+}
+
+<head>
+  <link rel="stylesheet" href="~/css/addCourse.css?v=4" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using System.Collections.Generic;
+@using System.Linq;
+
+  
+  <div class="right-body col-lg-10">
+
+    <div class="content-body">
+      <h4>Thêm khóa học</h4>
+      <form asp-controller="Course" asp-action="AddCourse" method="POST" enctype="multipart/form-data">
+        <div class="row" id="divFirst">
+          <p class="col-lg-1"></p>
+          @using (var system = new CourseTeachCookContext())
+          {
+            List<Category> categories = ViewBag.listCategories;
+            Course course = new Course();
+            course = system.Courses.Find(1);
+            <p class="col-lg-2">Danh mục</p>
+            <select class="col-lg-5" name="categoryID" id="categoryID">
+              @foreach (Category category in categories)
+              {
+                <option value=@category.CategoryId>@category.CategoryName</option>
+              }
+            </select>
+          }
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2">Tên khóa học</p>
+          <input class="col-lg-5" type="text" placeholder="Nhập tên khóa học" name="courseName">
+          @if (@ViewBag.errorName != null)
+          {
+            <div class="row">
+              <p class="col-lg-3"></p>
+              <button type="button" class="col-lg-5 btn btn-danger" style="margin-left: 10px;">@ViewBag.errorName</button>
+            </div>
+          }
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2">Mô tả</p>
+          <input class="col-lg-5" type="text" placeholder="Nhập mô tả khóa học" name="courseDescription">
+        </div>
+
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2">Ảnh</p>
+          <input class="col-lg-5" type="file" name="imageCourse" style="padding-top:5px">
+          @if (@ViewBag.errorImage != null)
+          {
+            <div class="row">
+              <p class="col-lg-3"></p>
+              <button type="button" class="col-lg-5 btn btn-danger" style="margin-left: 10px;">@ViewBag.errorImage</button>
+            </div>
+          }
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Giá khóa học</p>
+          <input class="col-lg-5" type="text" placeholder="Nhập giá khóa học" name="coursePrice">
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Giá nguyên liệu</p>
+          <input class="col-lg-5" type="text" placeholder="Nhập giá nguyên liệu khóa học" name="materialPrice">
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Số lượng buổi học</p>
+          <input class="col-lg-5" type="number" placeholder="Nhập số lượng buổi học" name="numberOfSessions">
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Số lượng món ăn</p>
+          <input class="col-lg-5" type="number" placeholder="Nhập số lượng món ăn" name="numberOfDishs">
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Số lượng giờ học</p>
+          <input class="col-lg-5" type="number" placeholder="Nhập số lượng giờ học" name="numberOfHours">
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Số lượng người học</p>
+          <input class="col-lg-5" type="text" placeholder="Nhập số lượng người học" name="numberOfStudent">
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Địa chỉ học</p>
+          <input class="col-lg-5" type="text" placeholder="Nhập địa chỉ học" name="addressLearn">
+        </div>
+        <div class="row">
+          <p class="col-lg-1"></p>
+          <p class="col-lg-2 style=" color: white">Ngày khai giảng</p>
+          <input class="col-lg-5" type="date" name="dateOfOpening">
+        </div>
+        @if (@ViewBag.addCourseResult != null)
+        {
+          <div class="row">
+            <p class="col-lg-5"></p>
+            @if ((@ViewBag.addCourseResult).Equals(true))
+            {
+              <button type="button" class="col-lg-3 btn btn-success">Thêm khóa học thành công</button>
+            }
+            else
+            {
+              <button type="button" class="col-lg-3 btn btn-danger">Thêm khóa học không thành công</button>
+            }
+
+            @if (@ViewBag.addCourseResult != null)
+            {
+              ViewBag.addCourseResult = null;
+            }
+
+          </div>
+        }
+        <div class="row">
+          <p class="col-lg-5"></p>
+          <input class="col-lg-3" type="submit" id="submit" value="Thêm khóa học">
+        </div>
+
+
+      </form>
+    </div>
+  </div>

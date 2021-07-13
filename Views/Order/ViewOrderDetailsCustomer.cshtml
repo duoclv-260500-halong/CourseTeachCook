@@ -5,16 +5,18 @@
     Layout = "_LayoutCustomer";
 }
 <head>
-    <link rel="stylesheet" href="~/css/Infor.css?v=1">
+    <link rel="stylesheet" href="~/css/Infor.css?v=2">
 
 </head>
 @using (var connect = new CourseTeachCookContext())
 {
     Customer customer = ViewBag.customer;
 
-List<Order> orders = connect.Orders.Where(o=>o.CustomerId == customer.CustomerId).ToList();
-
-    
+    Order order = ViewBag.order;
+    Orderdetail orderdetail = new Orderdetail();
+    orderdetail = connect.Orderdetails.Single(orderdetail=>orderdetail.OrderId == order.OrderId);
+    Course course = connect.Courses.Find(orderdetail.CourseId);
+    int total = (orderdetail.CoursePrice + orderdetail.MaterialPrice)*orderdetail.Quantity;
     <div class="main_child">
 
         <div class="container">
@@ -43,7 +45,7 @@ List<Order> orders = connect.Orders.Where(o=>o.CustomerId == customer.CustomerId
                                 <ul>
 
                                     <li class="hvr-sweep-to-right active">
-                                        <a asp-controller="Customer" asp-action="Infor" asp-route-id="@customer.CustomerId" style="text-decoration: none;"><i class="fa fa-info-circle"></i> Thông tin tài khoản</a>
+                                        <a asp-controller="Customer" asp-action="Infor" asp-route-id="@customer.CustomerId"  style="text-decoration: none;"><i class="fa fa-info-circle"></i> Thông tin tài khoản</a>
                                         </li>
                                     <li class="hvr-sweep-to-right"><a asp-controller="Customer" asp-action="ChangePassword" asp-route-id="@customer.CustomerId" style="text-decoration: none;">
                                             <i class="fa fa-lock"></i> Đổi mật khẩu</a></li>
@@ -60,47 +62,14 @@ List<Order> orders = connect.Orders.Where(o=>o.CustomerId == customer.CustomerId
 
                         <div class="col-md-9 col-sm-8">
                             <div id="ctl00_mainContent_pnlUser" class="user-page clearfix">
-
-                                <h1 class="postname"> Khóa học của tôi </h1>
-
-
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table" style="background: #f2f2f2;">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Mã đơn hàng</th>
-                                                    <th scope="col">Ngày mua</th>
-                                                    <th scope="col">Khóa học</th>
-                                                    <th scope="col">Tổng tiền</th>
-                                                    <th scope="col">Trạng thái đơn hàng</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (Order order in orders)
-
-                                                {
-                                                    int total = 0;
-                                                    List<Orderdetail> orderdetails = connect.Orderdetails.Where(o => o.OrderId == order.OrderId).ToList();
-                                                    foreach (Orderdetail orderdetail in orderdetails)
-                                                    {
-                                                        total = (orderdetail.CoursePrice+ orderdetail.MaterialPrice)*orderdetail.Quantity;
-
-                                                    }
-                                                    
-                                                    Course course = new Course();
-
-                                                    course = course.GetCourseDetails(orderdetails[0].CourseId);
-
-                                                    <tr>
-                                                        <td scope="row"  ><a asp-controller="Order" asp-action="ViewOrderDetailsCustomer" asp-route-id="@order.OrderId" asp-route-id1="@customer.CustomerId" style="color: #0084ff;">@order.OrderId</a></td>
-                                                        <td>@order.OrderDate</td>
-                                                        <td>@course.CourseName</td>
-                                                        <td>@string.Format(new CultureInfo("vi-VN"),"{0:c}",@total)
-                                                        </td>
-                                                        
-                                                            @if (order.OrderStatus == -1)
+                                
+                                    <div style="display: -webkit-box;">
+                                        <h1 class="col-md-5 postname"> Chi tiết đơn hàng - @order.OrderId</h1>
+                                       
+                                        <h6 class="col-md-3" style="float: right;padding:8px">Ngày đặt hàng :@order.OrderDate.ToString("dd/MM/yyyy")
+                                        </h6>
+                                        <h6 class="col-md-3" style="float: right;padding:8px">
+                                                    Trạng thái :@if (order.OrderStatus == -1)
                                                             {
                                                                 <td>
                                                                     Đang chờ chấp nhận
@@ -122,23 +91,43 @@ List<Order> orders = connect.Orders.Where(o=>o.CustomerId == customer.CustomerId
                                                             {
                                                                 <td>
                                                                     Đã hủy
+                                                                </td><br>
+                                                                <td>
+                                                                    Lí do: @order.ReasonCancel
                                                                 </td>
                                                             }
-                                                            else{
-                                                                 <td>
-                                                                    @order.OrderStatus
-                                                                </td>
-                                                            }
-                                                        
-                                                    </tr>
+                                        </h6>
 
-                                                }
+                                </div>
+                                
 
-
-
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table" style="background: #f2f2f2;">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Khóa học</th>
+                                                    <th scope="col">Giá khóa học</th>
+                                                    <th scope="col">Giá nguyên liệu</th>
+                                                    <th scope="col">Số lượng</th>
+                                                    <th scope="col">Tạm tính</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               <tr>
+                                                   <td>@course.CourseName</td>
+                                                   <td>@string.Format(new CultureInfo("vi-VN"),"{0:c}",@orderdetail.CoursePrice)</td>
+                                                   <td>@string.Format(new CultureInfo("vi-VN"),"{0:c}",@orderdetail.MaterialPrice)</td>
+                                                   <td>@orderdetail.Quantity</td>
+                                                   <td>@string.Format(new CultureInfo("vi-VN"),"{0:c}",@total)</td>
+                                                   <td>
+                                                        @if (order.OrderStatus == -1 || order.OrderStatus == 0){
+                                                        <a class="btn btn-danger" asp-controller="Order" asp-action="CancelOrderCustomer" asp-route-id="@order.OrderId" asp-route-id1="@customer.CustomerId" style="width: 100%;margin-top:-10px">Hủy</a>
+                                                        }
+                                                   </td>
+                                               </tr>
                                             </tbody>
                                         </table>
-
                                     </div>
                                 </div>
 
@@ -146,12 +135,9 @@ List<Order> orders = connect.Orders.Where(o=>o.CustomerId == customer.CustomerId
 
                             </div>
                         </div>
+
+
                     </div>
-
-
-
-
-
 
                 </div>
 
