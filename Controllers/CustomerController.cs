@@ -65,37 +65,13 @@ namespace CourseTeachCook.Controllers
             return View();
         }
 
-        public IActionResult Productdetails()
-        {
 
 
 
-            return View();
-        }
-        public IActionResult Newdetails()
-        {
 
-
-            return View();
-        }
-
-        public IActionResult ViewAllCourse(int id)
-        {
-            Course khoahoc = new Course();
-
-            Category danhmuc = new Category();
-
-            ViewBag.danhmuc = danhmuc.ViewCategory(id);
-            List<Course> xemtatca = khoahoc.GetAllCourse(id);
-            ViewBag.ViewAllCourse = xemtatca;
-
-            return View();
-        }
 
         public IActionResult Infor(int id)
         {
-
-
             Customer cus = new Customer();
 
             if (HttpContext.Session.GetString("CustomerName") == null)
@@ -111,83 +87,12 @@ namespace CourseTeachCook.Controllers
 
             return View();
         }
-        public IActionResult ViewOrders(int id)
-        {
-            Customer customer = new Customer();
-            ViewBag.customer = customer.GetCustomer(id);
-            return View();
-        }
-        public IActionResult ViewOrderDetails(int id, int id1)
-        {
-            Customer customer = new Customer();
-            ViewBag.customer = customer.GetCustomer(id1);
-            Order order = new Order();
-            ViewBag.order = order.GetOrder(id);
-            return View();
-        }
-        public IActionResult CancelOrder(int id, int status)
-        {
-
-            Customer customer = new Customer();
-            ViewBag.customer = customer.GetCustomer(Int32.Parse(HttpContext.Session.GetString("CustomerId")));
-            Order order = new Order();
-            ViewBag.order = order.GetOrder(id);
-            if (status == 1)
-            {
-                ViewBag.result = "Hủy khóa học thành công";
-            }
-            else if (status == -1)
-            {
-                ViewBag.result = "Hủy khóa học thất bại, vui lòng thử lại sau";
-            }
-
-            return View();
-        }
-        [HttpPost]
-        public IActionResult SubmitReason(int id, string reasonCancel)
-        {
-            Order order = new Order();
-            if (order.CancelOrder(-1, id, reasonCancel))
-            {
-                ViewBag.result = "Hủy khóa học thành công";
-                return RedirectToAction("CancelOrder", new { id = id, status = 1 });
-            }
-            else
-            {
-                ViewBag.result = "Hủy khóa học thất bại, vui lòng thử lại sau";
-                return RedirectToAction("CancelOrder", new { id = id, status = -1 });
-            }
-
-        }
-
-        public IActionResult Introduce()
-        {
-
-
-            Teacher giangvien = new Teacher();
-
-            List<Teacher> danhsachgiangvien = giangvien.GetListTeacher();
-            ViewBag.danhsachgiangvien = danhsachgiangvien;
-
-            return View();
-        }
-
-        public IActionResult Contactsinformation()
-        {
-
-            Contactsinformation lienhe = new Contactsinformation();
-
-            ViewBag.contact = lienhe.GetContactAll();
 
 
 
-            return View();
-        }
 
-        public IActionResult ViewNews()
-        {
-            return View();
-        }
+
+
 
         [HttpPost]
         public IActionResult Register(string email, string password, string name, string phone, string address)
@@ -203,7 +108,7 @@ namespace CourseTeachCook.Controllers
                 ViewBag.result = "Số điện thoại đã được đăng kí";
                 return View();
             }
-            bool result = cus.Register(email, AdminController.EncryptPassword(password), name, phone, address);
+            bool result = cus.Register(email, EncryptController.EncryptPassword(password), name, phone, address);
             if (result == true)
             {
                 ViewBag.result = "Đăng ký thành Công";
@@ -214,14 +119,7 @@ namespace CourseTeachCook.Controllers
             }
             return View();
         }
-        [HttpPost]
-        public IActionResult SearchCourse(string key)
-        {
-            Course course = new Course();
-            ViewBag.courses = course.SearchCourse(key);
-            ViewBag.number = course.SearchCourse(key).Count();
-            return View();
-        }
+
         public IActionResult Login()
         {
             return View();
@@ -231,11 +129,11 @@ namespace CourseTeachCook.Controllers
         {
             Customer cus = new Customer();
 
-            cus = cus.Login(email, AdminController.EncryptPassword(password));
+            cus = cus.Login(email, EncryptController.EncryptPassword(password));
 
             if (cus != null)
             {
-                if (AdminController.EncryptPassword(password) == cus.Password)
+                if (EncryptController.EncryptPassword(password) == cus.Password)
                 {
                     if (cus.Status == 0)
                     {
@@ -244,7 +142,6 @@ namespace CourseTeachCook.Controllers
                     }
                     HttpContext.Session.SetString("CustomerName", cus.CustomerName);
                     HttpContext.Session.SetString("CustomerId", cus.CustomerId.ToString());
-                    // return Content(HttpContext.Session.GetString("CustomerId"));
                     if (HttpContext.Session.GetString("Coursebuy") != null)
                     {
                         return RedirectToAction(actionName: "Buy", controllerName: "Customer", new { id = HttpContext.Session.GetString("Coursebuy"), id1 = cus.CustomerId });
@@ -259,9 +156,7 @@ namespace CourseTeachCook.Controllers
             else
             {
                 ViewBag.resultLogin = "Email không tồn tại";
-
             }
-
             return View();
 
         }
@@ -271,76 +166,27 @@ namespace CourseTeachCook.Controllers
             HttpContext.Session.Remove("CustomerName");
 
             HttpContext.Session.Remove("CustomerId");
-
+            HttpContext.Session.Remove("Coursebuy");
             return RedirectToAction("Login");
         }
-
-        public IActionResult GetCourseDetails(int id, string CourseImage)
+        public IActionResult ViewCustomers(int index)
         {
-
-
-            Customer cus = new Customer();
-
-            if (HttpContext.Session.GetString("CustomerName") == null)
+            if (HttpContext.Session.GetString("adminName") == null)
             {
-
+                return RedirectToAction(controllerName: "Admin", actionName: "LoginAdmin");
             }
-            else
-            {
-                Customer customers = cus.GetCustomer(Int32.Parse(HttpContext.Session.GetString("CustomerId")));
-                // return Content(HttpContext.Session.GetString("CustomerId"));
-                ViewBag.customers = customers;
-            }
+            int pageSize = 10;
+            Customer customer = new Customer();
 
-
-            Course chitiet = new Course();
-
-            Course chitietkhoahoc = chitiet.GetCourseCus(id);
-            ViewBag.chitietkhoahoc = chitietkhoahoc;
-
-
-            Contactsinformation contact = new Contactsinformation();
-            ViewBag.contact = contact.GetContact();
-
-
-            Bank bank = new Bank();
-
-            List<Bank> banks = bank.GetBanks();
-            ViewBag.banks = banks;
-
-
-            Imagescourse image = new Imagescourse();
-
-            List<Imagescourse> imagescourses = image.GetImagescourses(id);
-            ViewBag.imagescourses = imagescourses;
-
-
-
+            ViewBag.customers = customer.GetCustomers(index, pageSize);
+            ViewBag.pageSize = pageSize;
+            ViewBag.index = index;
             return View();
         }
 
-        public IActionResult Buy(int id, int id1)
+        public IActionResult Buy(int id)
         {
             Customer cus = new Customer();
-            if (id1 == 0)
-            {
-                HttpContext.Session.SetString("Coursebuy", id.ToString());
-                return RedirectToAction(controllerName: "Customer", actionName: "Login");
-            }
-            else
-            {
-                Customer customers = cus.GetCustomer(id1);
-                // return Content(id1.ToString());
-                ViewBag.customers = customers;
-            }
-
-            Course chitiet = new Course();
-
-            Course chitietkhoahoc = chitiet.GetCourse(id);
-            ViewBag.chitietkhoahoc = chitietkhoahoc;
-
-
-            
 
             if (HttpContext.Session.GetString("CustomerName") == null)
             {
@@ -349,14 +195,31 @@ namespace CourseTeachCook.Controllers
             }
             else
             {
-                Customer customers = cus.GetCustomer(id1);
-                // return Content(id1.ToString());
-                ViewBag.customers = customers;
+                int id1 = Int32.Parse(HttpContext.Session.GetString("CustomerId"));
+                ViewBag.id1 = id1;
             }
 
+            Course chitiet = new Course();
+
+            Course chitietkhoahoc = chitiet.GetCourseDetails(id);
+            ViewBag.chitietkhoahoc = chitietkhoahoc;
             return View();
         }
-
+        public IActionResult GetCourseCus(int id){
+            ViewBag.courseId = id;
+            return View();
+        }
+        public IActionResult GetCourseDetails(int id)
+        {
+            ViewBag.courseId = id;
+            return View();
+        }
+        public IActionResult ViewOrders(int id)
+        {
+            Customer customer = new Customer();
+            ViewBag.customer = customer.GetCustomer(id);
+            return View();
+        }
         public IActionResult Confirmation(int id, int id1, int quantity)
         {
 
@@ -368,7 +231,7 @@ namespace CourseTeachCook.Controllers
 
             ViewBag.customer = customer.GetCustomer(id1);
             Course course = new Course();
-            ViewBag.course = course.GetCourse(id);
+            ViewBag.course = course.GetCourseDetails(id);
             ViewBag.quantity = quantity;
             return View();
         }
@@ -413,8 +276,14 @@ namespace CourseTeachCook.Controllers
 
             Customer customer = new Customer();
             ViewBag.customer = customer.GetCustomer(id);
-            ViewBag.result = customer.ChangePassword(id, AdminController.EncryptPassword(oldPassword), AdminController.EncryptPassword(newPassword));
+            ViewBag.result = customer.ChangePassword(id, EncryptController.EncryptPassword(oldPassword), EncryptController.EncryptPassword(newPassword));
             return View();
+        }
+        public IActionResult ChangeStatusCustomer(int id)
+        {
+            Customer customer = new Customer();
+            customer.ChangeStatus(id);
+            return RedirectToAction("ViewCustomers", "Customer");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
