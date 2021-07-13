@@ -52,7 +52,7 @@ namespace CourseTeachCook.Models
                 course.CategoryId = categoryID;
                 course.CourseName = courseName;
                 course.CourseDescription = courseDescription;
-                course.CourseRates = 1;
+                course.CourseRates = 5;
                 course.CoursePrice = coursePrice;
                 course.MaterialPrice = materialPrice;
                 course.NumberOfSession = numberOfSessions;
@@ -204,22 +204,25 @@ namespace CourseTeachCook.Models
 
             }
         }
-        public Course GetCourse(int id)
+        public Course GetCourseDetails(int id)
         {
             using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
                 
                 return course;
+
             }
         }
-        public List<Course> SearchCourse(string key){
-            using(var system = new CourseTeachCookContext()){
-                List<Course> courses = system.Courses.Where(c=>c.CourseName.Contains(key)).ToList();
+        public List<Course> SearchCourse(string key)
+        {
+            using (var system = new CourseTeachCookContext())
+            {
+                List<Course> courses = system.Courses.Where(c => c.CourseName.Contains(key)).ToList();
                 return courses;
             }
         }
-         public Course GetCourseCus(int id)
+        public Course GetCourseCus(int id)
         {
             using (var system = new CourseTeachCookContext())
             {
@@ -230,9 +233,11 @@ namespace CourseTeachCook.Models
                 return course;
             }
         }
-        public List<Course> GetCourses(int index, int pageSize){
-            using(var system = new CourseTeachCookContext()){
-                List<Course> courses = system.Courses.OrderByDescending(c=>c.CourseId).Skip(index*pageSize).Take(pageSize).ToList();
+        public List<Course> GetCourses(int index, int pageSize)
+        {
+            using (var system = new CourseTeachCookContext())
+            {
+                List<Course> courses = system.Courses.OrderByDescending(c => c.CourseId).Skip(index * pageSize).Take(pageSize).ToList();
                 return courses;
             }
         }
