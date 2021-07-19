@@ -91,7 +91,7 @@ namespace CourseTeachCook.Controllers
             }
             Staff staff = new Staff();
             staff.ChangeStatus(id);
-            return RedirectToAction(controllerName: "Admin", actionName: "ViewStaffs");
+            return RedirectToAction(controllerName: "Staff", actionName: "ViewStaffs");
         }
         public IActionResult ReissuePassword(int id)
         {

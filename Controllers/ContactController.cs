@@ -15,13 +15,6 @@ namespace CourseTeachCook.Controllers
     {
         public IActionResult Index()
         {
-
-            Contactsinformation lienhe = new Contactsinformation();
-
-            ViewBag.contact = lienhe.GetContactAll();
-
-
-
             return View();
         }
     }

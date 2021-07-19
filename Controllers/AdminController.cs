@@ -39,7 +39,7 @@ namespace CourseTeachCook.Controllers
             {
                 DateTime date = DateTime.Now;
                 firstDate1 = new DateTime(date.Year, date.Month, 1) + new TimeSpan(01, 00, 00);
-                secondDate1 = DateTime.Today + new TimeSpan(23, 59, 59);
+                secondDate1 = DateTime.Today + new TimeSpan(22, 00, 00);
             }
             else
             {
