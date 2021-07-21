@@ -36,7 +36,7 @@ namespace CourseTeachCook.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("server=localhost;user id=root;password=Donationminimum100$;port=3306;database=CourseTeachCook;");
+                optionsBuilder.UseMySQL("server=localhost;user id=DuocVanLe;password=Donationminimum100$;port=3306;database=CourseTeachCook;");
             }
         }
 
@@ -122,7 +122,7 @@ namespace CourseTeachCook.Models
                 entity.HasKey(e => e.ContactId)
                     .HasName("PRIMARY");
 
-                entity.ToTable("contactsinformation");
+                entity.ToTable("contactsInformation");
 
                 entity.HasIndex(e => e.Email, "email")
                     .IsUnique();
@@ -280,7 +280,7 @@ namespace CourseTeachCook.Models
                 entity.HasKey(e => e.ImageId)
                     .HasName("PRIMARY");
 
-                entity.ToTable("imagelogo");
+                entity.ToTable("imageLogo");
 
                 entity.Property(e => e.ImageId).HasColumnName("imageID");
 
@@ -295,7 +295,7 @@ namespace CourseTeachCook.Models
                 entity.HasKey(e => e.ImageId)
                     .HasName("PRIMARY");
 
-                entity.ToTable("imagescourse");
+                entity.ToTable("imagesCourse");
 
                 entity.HasIndex(e => e.CourseId, "courseID");
 
@@ -402,7 +402,7 @@ namespace CourseTeachCook.Models
             {
                 entity.HasIndex(e => e.Id, "id");
 
-                entity.ToTable("orderdetails");
+                entity.ToTable("orderDetails");
 
                 entity.HasIndex(e => e.CourseId, "courseID");
 
