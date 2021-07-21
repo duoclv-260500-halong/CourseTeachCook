@@ -12,7 +12,7 @@ using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.HttpOverrides;
 
-namespace DemoUpload
+namespace CourseTeachCook
 {
     public class Startup
     {
@@ -33,6 +33,13 @@ namespace DemoUpload
           options.ForwardedForHeaderName = "Header_Name_Used_By_Proxy_For_X-Forwarded-For_Header";
           options.ForwardedProtoHeaderName = "Header_Name_Used_By_Proxy_For_X-Forwarded-Proto_Header";
       });
+            services.Configure<ForwardedHeadersOptions>(options =>
+      {
+          options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+          options.ForwardLimit = 2;
+          options.ForwardedForHeaderName = "Header_Name_Used_By_Proxy_For_X-Forwarded-For_Header";
+          options.ForwardedProtoHeaderName = "Header_Name_Used_By_Proxy_For_X-Forwarded-Proto_Header";
+      });
             services.AddSingleton<IFileProvider>(new PhysicalFileProvider(
                 Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
             services.AddControllersWithViews();
@@ -42,10 +49,8 @@ namespace DemoUpload
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+            
+            app.UseForwardedHeaders();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,7 +71,7 @@ namespace DemoUpload
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Index}/{id?}");
+                    pattern: "{controller=Customer}/{action=Index}/{id?}");
 
             });
         }
