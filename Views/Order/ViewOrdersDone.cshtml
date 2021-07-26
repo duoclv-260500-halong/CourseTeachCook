@@ -97,7 +97,7 @@
                             <td class="col-lg-1">@order.OrderId</td>
                             <td class="col-lg-2">@customer.CustomerName</td>
                             <td class="col-lg-2">@customer.Email</td>
-                            <td class="col-lg-3">@order.OrderDate</td>
+                            <td class="col-lg-3">@order.OrderDate.ToString("dd/MM/yyyy")</td>
                             <td class="col-lg-2">@string.Format(new CultureInfo("vi-VN"),"{0:c}", total)</td>
                             <td class="col-lg-2"><a asp-controller="Order" asp-action="ViewOrderDetails"
                                 asp-route-id="@order.OrderId" style="color: white;"><i class="fas fa-eye"></i></a></td>
