@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8AmTzLEYuAFR7qokXnbI7EnLIcpKMWYMfe/o32HQ95mogQG8AKjYuIcivg8v2kmUqQne3x95MSsHzUaJbxsaxw==",
+  "dgSpecHash": "yvifT4+guhbcYvqvTNkkw7C9l3BUFMw77o5gjo+b6LigV0xE39KO3MdbRUbLle/fReWhJiz1RrEf6ts32NIemw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\OneDrive\\Tài liệu\\ProjectSEM2\\CourseTeachCook\\CourseTeachCook.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\CourseTeachCook.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

@@ -1580,11 +1580,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\OneDrive\\Tài liệu\\ProjectSEM2\\CourseTeachCook\\CourseTeachCook.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\CourseTeachCook.csproj",
       "projectName": "CourseTeachCook",
-      "projectPath": "C:\\Users\\Administrator\\OneDrive\\Tài liệu\\ProjectSEM2\\CourseTeachCook\\CourseTeachCook.csproj",
+      "projectPath": "C:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\CourseTeachCook.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\OneDrive\\Tài liệu\\ProjectSEM2\\CourseTeachCook\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
