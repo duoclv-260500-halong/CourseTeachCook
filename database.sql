@@ -1,4 +1,4 @@
-drop database if exists courseteachcook;
+drop database if exists CourseTeachCook;
 create database if not exists CourseTeachCook CHARACTER SET utf8 COLLATE utf8_general_ci;
 use CourseTeachCook;
 create table admin(
@@ -25,9 +25,9 @@ create table staffs(
 );
 INSERT into staffs(staffName, jobPosition, email, password, phoneNumber, status, image)
 values
-('Ngo Huy', 'Quản Lí Khóa Học', 'ngoHuy3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0333020844', 1, 'defaultImage.jpg'),
-('Van Long', 'Quản Lí Tin Tức', 'vanLong3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0123456782', 1, 'defaultImage.jpg'),
-('Le Duoc', 'Quản Lí Khóa Học', 'leDuoc3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0123456799', 1, 'defaultImage.jpg');
+('Ngo Huy', N'Quản Lí Khóa Học', 'ngoHuy3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0333020844', 1, 'defaultImage.jpg'),
+('Van Long', N'Quản Lí Tin Tức', 'vanLong3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0123456782', 1, 'defaultImage.jpg'),
+('Le Duoc', N'Quản Lí Khóa Học', 'leDuoc3@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0123456799', 1, 'defaultImage.jpg');
 
 create table customers(
 	customerID int auto_increment primary key,
@@ -192,6 +192,16 @@ insert into orders(orderDate, staffID, customerID, orderStatus, reasonCancel) va
 (current_timestamp(), 1, 3, 1, ''),
 (current_timestamp(), 2, 4, 1, ''),
 (current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
 (current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học');
 
 create table orderDetails(
@@ -215,18 +225,16 @@ insert into orderDetails(orderID, courseID, coursePrice, materialPrice, quantity
 (7, 14, 4000000, 500000, 1),
 (8, 15, 6000000, 500000, 1),
 (9, 15, 6000000, 500000, 1),
-(10, 16, 3500000, 500000, 1);
-
-insert into orderDetails(orderID, courseID, coursePrice, materialPrice, quantity) values
+(10, 16, 3500000, 500000, 1),
 (11, 10, 350000, 500000, 1),
 (12, 10, 350000, 500000, 1),
 (13, 12, 1200000, 600000, 1),
 (14, 12, 1200000, 600000, 1),
 (15, 13, 3600000, 500000, 1),
-(5, 13, 3600000, 500000, 1),
 (18, 14, 4000000, 500000, 1),
 (21, 14, 4000000, 500000, 1),
 (22, 15, 6000000, 500000, 1);
+
 
 create table banks(
 	bankID int auto_increment primary key,
