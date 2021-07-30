@@ -43,10 +43,10 @@ create table customers(
     lastLoggedTime datetime not null
 );
 insert into customers(customerName, email, password, phoneNumber, address, timeRegister, image, numberOfPurchases, status, lastLoggedTime) values
-('Lê Văn Được', 'duoclv@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381905', 'Hà Nội', current_timestamp(), 'defaultImage.jpg', 0, 1, current_timestamp()),
-('Lê Văn Được1', 'duocclv01@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381904', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 1, 1, current_timestamp()),
-('Lê Văn Được2', 'duoclv02@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381903', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 2, 1, current_timestamp()),
-('Lê Văn Được3', 'duoclv03@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381902', 'Hà Nội', current_timestamp(),  'defaultImage.jpg', 3, 0, current_timestamp());
+(N'Lê Văn Được', 'duoclv@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381905', N'Hà Nội', current_timestamp(), 'defaultImage.jpg', 0, 1, current_timestamp()),
+(N'Lê Văn Được1', 'duocclv01@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381904', N'Hà Nội', current_timestamp(),  'defaultImage.jpg', 1, 1, current_timestamp()),
+(N'Lê Văn Được2', 'duoclv02@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381903', N'Hà Nội', current_timestamp(),  'defaultImage.jpg', 2, 1, current_timestamp()),
+(N'Lê Văn Được3', 'duoclv03@gmail.com', '9DB982E6EB99F1704AADA61D50476874', '0967381902', N'Hà Nội', current_timestamp(),  'defaultImage.jpg', 3, 0, current_timestamp());
 
 
 create table categories(
@@ -55,13 +55,13 @@ create table categories(
 );
 
 insert into categories (categoryName) values
-('Đào tạo nghề bếp'),
-('Bếp gia đình'),
-('Trẻ vào bếp'),
-('Bánh ngọt - kem chè'),
-('Học pha chế'),
-('Nghệ thuật tạo hình'),
-('Ẩm thực thế giới');
+(N'Đào tạo nghề bếp'),
+(N'Bếp gia đình'),
+(N'Trẻ vào bếp'),
+(N'Bánh ngọt - kem chè'),
+(N'Học pha chế'),
+(N'Nghệ thuật tạo hình'),
+(N'Ẩm thực thế giới');
 
 create table courses(
 	courseID int auto_increment primary key,
@@ -86,39 +86,39 @@ create table courses(
     constraint foreign key(categoryID) references categories(categoryID)
 );
 insert into courses(categoryID,courseName,featureImage,courseRates,coursePrice,courseDescription,materialPrice,numberOfStudent,addressLearn,status,numberOfSessions,numberOfDishs,numberOfHours,dateOfOpening) values 
-(1, N'Bánh kinh doanh', 'banhkinhdoanh.jpg', 5, 3500000,'Đảm bảo học viên học thành công, đặc biệt với khoá  học mang tính chất kinh doanh. Học viên được cấp chứng chỉ với điều kiện làm lại thành công món ăn và được sự đánh giá tốt từ phía giáo viên sẽ chia sẻ cách kiểm soát trong mua nguyên liệu, bảo quản nguyên liệu với số lượng lớn tránh hao hụt, sơ chế và cấp đông nguyên liệu an toàn cho những nhà hàng quy mô lớn…' , 500000, 'Từ 7 - 10' ,'tầng 5 – 142 Lê Duẩn, Hà Nội ',1,1,2,3, current_timestamp()),
-(1, N'Lớp Bếp Trưởng', 'lopbeptruong.jpg', 4, 6800000,'Học là cách duy nhất để rút ngắn thời gian nâng cao trình độ,là bếp trưởng bạn cần giỏi chuyển môn, cách quản lý, sắp sếp tổ chức chuyên nghiệp, cách lên menu thực đơn cho từng loại bếp nóng, bếp lạnh và biết cách tính giá cost cho bất kỳ món ăn nào, các kỹ năng tài chính, thống kê.. ' , 5190000, 'Từ 6 - 8 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,42,100,3,current_timestamp()),
-(1, N'Đào tạo làm bánh ngọt chuyên nghiệp', 'banhngotchuyennghiep.jpg', 5, 4590000,' Khóa học Đào tạo bánh ngọt chuyên nghiệp là một trong các khóa đào tạo về bánh tại EZcooking. Khóa học sẽ giúp những bạn yêu thích, đam mê và theo đuổi nghề bánh thực hiện ước mơ của mình.Hiện nay, nghề làm bánh thực sự là ngành kinh doanh đầy hấp dẫn, có thể đạt sự thành công và lợi nhuận cao. ' , 1650000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,15,30,3,current_timestamp()),
-(1, N'Cô dâu mới đi học nấu ăn trước khi về nhà chồng', 'hocnauan.jpg', 5, 2500000,' Lấy chồng là một trong những sự kiện quan trọng nhất của đời người, đi cùng với niềm hân hoan hạnh phúc và chờ đợi ngày vui cận kề là nỗi lo khi phải một mình chăm sóc gia đình nhà chồng. ' , 500000, 'Từ 4 - 8 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,50,3,current_timestamp()),
-(1, N'Khóa học nghề đầu bếp trưởng', 'daubeptruong.jpg', 5, 10600000,' Chương trình đào tạo được thiết kế riêng, phù hợp với vị trí Bếp trưởng và cập nhật xu thế ẩm thực cùng với kỹ năng quản lý cần thiết của Bếp trưởng.' , 7300000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,42,100,3,current_timestamp()),
-(1, N'Khóa học bếp chuyên nghiệp', 'daubepchuyennghiep.jpg', 5, 6800000,' Đào tạo nghề bếp tại EZcooking đáp ứng nhu cầu để thành bếp trưởng, nấu bếp trong những năm gần đây tăng nhanh, nghề bếp được nhiều bạn trẻ săn đón và lựa chọn thành nghề, thành nghiệp vì đam mê và xu hướng xã hội. Nhu cầu học của các bạn cũng khác nhau, có bạn mong muốn học nấu ăn để làm bếp cơ bản tại các nhà hàng nhỏ, có bạn mong muốn học để trở thành một đầu bếp, bếp trưởng giỏi... ' , 5190000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,42,100,3,current_timestamp()),
-(2, N'Mâm cỗ ngày tết - Tết Trọn Yêu Thương', 'mam-co-ngay-tet.png', 4, 2530000,'Trong đời sống tinh thần của người Việt, Tết Nguyên Đán là khởi đầu cho một năm mới, vận hội mới của gia đình, cộng đồng và cả dân tộc. Thế nên gia đình dù còn khó khăn, người ta vẫn gắng sắm sửa mâm cỗ Tết thịnh soạn để tưởng nhớ ông bà, Tổ tiên, mong Tổ tiên phù hộ cho con cháu sức khỏe, học hành tấn tới, làm ăn phát tài phát lộc. ' , 1200000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,16,2,current_timestamp()),
-(2, N'Đảm Toàn Diện', 'dam-toan-dien.jpg', 5, 3250000 , 'Khóa học ĐẢM TOÀN DIỆN là lựa chọn hàng đầu cho các chị em phụ nữ những tuyệt chiêu, bí quyết nấu ăn NGON -  DINH DƯỠNG -  KHOA HỌC sẽ được đầu bếp EZcooking chia sẻ tại khóa học, ngoài ra học viên còn bổ sung thêm vào menu: làm bánh, pha chế và cắm hoa. ' , 1150000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,12,26,3,current_timestamp()),
-(2, N'Khóa học nấu ăn gia đình thực hành', '1.jpg', 4, 2850000,'Nấu ăn sao cho ngon, tiết kiệm chi phí nhưng vẫn đảm bảo chế độ dinh dưỡng không phải là việc đơn giản. Làm sao để ngày nào gia đình cũng vui như có hội, bữa cơm nào cũng đầm ấp yêu thương như nhà có cỗ? Khóa học nấu ăn gia đình thực hành là giải pháp giúp chị em nâng cao tay nghề nấu ăn bản thân và quan trọng là gìn giữ mái ấm gia đình. ' , 2200000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,30,3,current_timestamp()),
-(2, N'Lớp dạy nấu ăn gia đình', '1.jpg', 4, 2850000,' Đàn ông xây nhà, đàn bà xây bếp .Nếp sống này vẫn được đặc biệt coi trọng trong các gia đình Việt Nam cho đến ngày nay. Trong gia đình, một người vợ tuyệt vời trong mắt các ông chồng là người nấu ăn giỏi, biết làm chủ căn bếp của mình.' , 2200000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,30,3,current_timestamp()),
-(3, N'Khóa học Trẻ vui vào bếp', 'trevuivaobep.jpg', 5, 190000,'Làm thế nào để ngoài những giờ học căng thẳng con vừa được vui chơi và vừa giúp con đáp ứng được những điều mà con đang tò mò trong bếp của mẹ? Con sẽ có vô vàn những thứ hay ho để kể cho bạn bè và con sẽ tự hào hơn bởi những điều con đã làm được.  Ba/mẹ không cần lo đâu EZcooking ở đây để cùng con tìm hiểu và rèn luyện những kỹ năng giúp con tự tin hơn với bạn bè rồi.' , 10, 'Từ 6 - 10 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,10,2,current_timestamp()),
-(3, N'Khóa học Dạy trẻ nấu ăn nâng cao – Start to cook 2', 'tre-nau-an-nang-cao.jpg', 5, 2630000,'Nhiều năm qua, phụ huynh đã tin tưởng gửi gắm con em mình tham gia trong các khóa học Trẻ vào bếp tại EZcooking. Khóa học này được thiết kế menu riêng với mục tiêu nhiều thách thức hơn về kỹ năng làm bếp của trẻ. Chương trình đào tạo với 12 buổi và nhiều món yêu cầu cao: món ngon trong những bữa cơm gia đình, làm bánh pizza, học nấu chè…' , 920000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,20,3,current_timestamp()),
-(3, N'Khóa học MOON KIDS – Dạy trẻ làm bánh Trung thu', 'moonkids.jpg', 5, 150000,'Để con vừa chơi, vừa học và hiểu thêm những giá trị văn hóa Trung thu truyền thống qua hoạt động làm bánh Trung thu cũng là một buổi sinh hoạt ngoại khóa lý tưởng mà các phụ huynh, nhà trường có thể tổ chức cho các con trong dịp Trung thu này.Khóa học Moon Kids – Dạy trẻ làm bánh Trung thu là hoạt động thú vị, ý nghĩa màEZcooking gửi tới các bậc cha mẹ mùa Trung thu năm nay.' , 340000, 'Từ 10 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,1,2,2,current_timestamp()),
-(3, N'Lớp Start To Cook Dạy Trẻ Nấu Ăn', 's2.jpg', 5, 2500000,'Mỗi dịp hè, những khóa học “Trẻ vào bếp” tại EZcooking luôn nhộn nhịp. Lớp học luôn nhận được sự quan tâm đặc biệt của phụ huynh và các em nhỏ. Đây thực sự là món quà ý nghĩa thiết thực của bố mẹ dành cho các con của mình.' , 10, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,10,2,current_timestamp()),
-(3, N'Start to bake – Dạy trẻ làm bánh', 'daytrelambanh-2.jpg', 2, 172500,'Khóa học dạy trẻ làm bánh sẽ giúp các bé thỏa mãn niềm yêu thích với bánh ngọt. Lớp học sẽ là môi trường tốt để phát hiện năng khiếu và rèn kỹ năng giao tiếp với cộng đồng thông qua hoạt động  tương tác trong lớp học, tính tỉ mỉ, kiên nhẫn cho trẻ từ học làm bánh cùng các bạn.' , 875000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,9,2,current_timestamp()),
-(4, N'Lớp học nấu chè', 'nau-che.jpg', 5, 6000000,' Nấu chè ngon sẽ trở nên thật đơn giản khi có trong tay công thức nấu 15 món chè từ EZcooking đậm đà hương vị ẩm thực Việt Nam. Khóa học nấu chè không chỉ giúp bạn tự tin làm những món chè ngon đúng điệu mà còn tư vấn, hỗ trợ bạn mở quán kinh doanh chuyên nghiệp để làm thương hiệu.' , 10, 'Từ 3 - 6 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,15,2,current_timestamp()),
-(4, N'Khoá học làm kem', 'kem.jpg', 1, 3000000,' Khóa học làm kem đang là khóa học thu hút nhiều học viên tham dự. Với chương trình đào tạo kỹ năng làm kem ngon cũng như sáng tạo trong chế biến kem bằng nhiều công thức làm kem hấp dẫn. Lớp học làm kem tại EZcooking giúp bạn có được kỹ năng tốt nhất để chế biến kem ngon tuyệt hảo, mở quán kinh doanh với chất lượng sản phẩm tốt.' , 500000, 'Từ 5 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,10,2,current_timestamp()),
-(4, N'Khóa học chè và các món ăn vặt mùa đông', 'che-mua-dong.jpg', 5, 2000000,'Mùa nào thức nấy, các món chè mùa đông rất được nhiều người quan tâm và tìm lớp đăng ký học vì chè mùa đông khá ngon nhưng đặc trưng và không hề dễ làm. Chè mùa đông và các món ăn vặt là cơ hội kinh doanh rất hay và thú vị mà các bạn có thể tham khảo. ' , 400000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,2,current_timestamp()),
-(4, N'Dạy học làm bánh ngọt', 'dayamthuc.jpg', 5,1840000,'Khóa học các loại bánh được sắp xếp theo chủ đề giúp học viên nắm vững kiến thức cách làm cụ thể từng dòng bánh cơ bản bắt đầu từ khâu chuẩn bị nguyên liệu trộn bột, đánh bột cho đến lúc làm ra một chiếc bánh ngọt hoàn hảo dành tặng những người thân yêu nhất ' , 1450000, 'Từ 6 - 15 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,12,2,current_timestamp()),
-(4, N'Khoá học làm bánh Việt Nam', 'banh-viet-nam.jpg', 5, 2500000,'Khóa học dạy làm các món bánh đặc sản của Việt Nam, bánh đặc sản vùng miền. Đặc sản bánh Việt vô cùng đa dạng từ màu sắc, hình dạng cũng như cách chế biến phù hợp với đặc trưng của từng vùng miền. Ví như đặc sản bánh miền Bắc có bánh cuốn Thanh Trì, bánh giò, bánh đúc,… Miền Trung có bánh bèo, bánh khọt…, Miền Nam có bánh xèo, bánh bò… ' ,300000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,12,2,current_timestamp()),
-(4, N'Khóa học làm bánh mì', 'banh-mi.jpg', 5, 2700000,'Khóa học làm bánh mì tại EZcooking sẽ cung cấp cho bạn toàn bộ kiến thức để phân biệt đặc trưng của các loại bánh mì mà chỉ người sành mới biết được. Tham gia khóa học để nâng cao tay nghề nội trợ của mình. Đặc biệt tự tay làm cho gia đình những chiếc bánh mì không có chất bảo quản, hóa chất độc hại là món quà sức khỏe cho cả gia đình ' , 300000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,4,11,2,current_timestamp()),
-(5, N'Khóa học pha chế căn bản', 'pha-che-co-ban.jpg', 5, 1000000,'Khóa học pha chế căn bản giúp bạn có những kiến thức pha chế cơ bản phục vụ mục đích kinh doanh quán đồ uống hoặc pha chế gia đình với 5 chủ đề các loại đồ uống được quan tâm nhất trên thị trường hiện nay. Các loại đồ uống mới và hiện đại được giới trẻ ưa thích như dòng pha chế cà phê, trà, các loại đồ uống đá xay, sinh tố và Soda, sữa chua lắc…' , 10, 'Từ 6 - 10 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,21,2,current_timestamp()),
-(5, N'Khóa học đào tạo pha chế chuyên nghiệp', 'pha-che-chuyen-nghiep.jpg', 5, 4150000,'Dành cho đối tượng học nghề pha chế để làm việc chuyên nghiệp. Đảm bảo học viên có đủ các kỹ năng tiêu chuẩn để có mức thu nhập cao trong nghề. Đảm bảo việc làm cho học viên sau khi tốt nghiệp.' , 2130000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,15,60,3,current_timestamp()),
-(5, N'Khóa dạy học pha chế gia đình', 'pha-che-do-an.jpg', 5, 1460000,'Khóa học dạy pha chế căn bản giúp bạn có những kiến thức pha chế cơ bản phục vụ mục đích kinh doanh quán đồ uống hoặc pha chế gia đình với 5 chủ đề các loại đồ uống được quan tâm nhất trên thị trường hiện nay. Các loại đồ uống mới và hiện đại được giới trẻ ưa thích như dòng pha chế cà phê, trà, các loại đồ uống đá xay, sinh tố và Soda, sữa chua lắc…' , 1230000, 'Từ 6 - 10 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,21,2,current_timestamp()),
-(6, N'Dạy nấu ăn cho cô dâu', 'hoc-cam-hoa-voi-nghe-nhan.jpg', 2, 2130000,'Dạy nấu ăn cho cô dâu là lựa chọn hàng đầu cho những bạn gái. Những tuyệt chiêu, bí quyết nấu ăn NGON -  DINH DƯỠNG -  KHOA HỌC sẽ được những chuyên gia ẩm thực, đầu bếp EZcooking chia sẻ tại khóa học. EZcooking sẽ giúp bạn trở thành người phụ nữ lý tưởng của gia đình trong mắt người bạn đời. ' , 980000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,30,2,current_timestamp()),
+(1, N'Bánh kinh doanh', 'banhkinhdoanh.jpg', 5, 3500000,N'Đảm bảo học viên học thành công, đặc biệt với khoá  học mang tính chất kinh doanh. Học viên được cấp chứng chỉ với điều kiện làm lại thành công món ăn và được sự đánh giá tốt từ phía giáo viên sẽ chia sẻ cách kiểm soát trong mua nguyên liệu, bảo quản nguyên liệu với số lượng lớn tránh hao hụt, sơ chế và cấp đông nguyên liệu an toàn cho những nhà hàng quy mô lớn…' , 500000, 'Từ 7 - 10' ,'tầng 5 – 142 Lê Duẩn, Hà Nội ',1,1,2,3, current_timestamp()),
+(1, N'Lớp Bếp Trưởng', 'lopbeptruong.jpg', 4, 6800000,N'Học là cách duy nhất để rút ngắn thời gian nâng cao trình độ,là bếp trưởng bạn cần giỏi chuyển môn, cách quản lý, sắp sếp tổ chức chuyên nghiệp, cách lên menu thực đơn cho từng loại bếp nóng, bếp lạnh và biết cách tính giá cost cho bất kỳ món ăn nào, các kỹ năng tài chính, thống kê.. ' , 5190000, 'Từ 6 - 8 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,42,100,3,current_timestamp()),
+(1, N'Đào tạo làm bánh ngọt chuyên nghiệp', 'banhngotchuyennghiep.jpg', 5, 4590000,N' Khóa học Đào tạo bánh ngọt chuyên nghiệp là một trong các khóa đào tạo về bánh tại EZcooking. Khóa học sẽ giúp những bạn yêu thích, đam mê và theo đuổi nghề bánh thực hiện ước mơ của mình.Hiện nay, nghề làm bánh thực sự là ngành kinh doanh đầy hấp dẫn, có thể đạt sự thành công và lợi nhuận cao. ' , 1650000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,15,30,3,current_timestamp()),
+(1, N'Cô dâu mới đi học nấu ăn trước khi về nhà chồng', 'hocnauan.jpg', 5, 2500000,N' Lấy chồng là một trong những sự kiện quan trọng nhất của đời người, đi cùng với niềm hân hoan hạnh phúc và chờ đợi ngày vui cận kề là nỗi lo khi phải một mình chăm sóc gia đình nhà chồng. ' , 500000, 'Từ 4 - 8 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,50,3,current_timestamp()),
+(1, N'Khóa học nghề đầu bếp trưởng', 'daubeptruong.jpg', 5, 10600000,N' Chương trình đào tạo được thiết kế riêng, phù hợp với vị trí Bếp trưởng và cập nhật xu thế ẩm thực cùng với kỹ năng quản lý cần thiết của Bếp trưởng.' , 7300000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,42,100,3,current_timestamp()),
+(1, N'Khóa học bếp chuyên nghiệp', 'daubepchuyennghiep.jpg', 5, 6800000,N' Đào tạo nghề bếp tại EZcooking đáp ứng nhu cầu để thành bếp trưởng, nấu bếp trong những năm gần đây tăng nhanh, nghề bếp được nhiều bạn trẻ săn đón và lựa chọn thành nghề, thành nghiệp vì đam mê và xu hướng xã hội. Nhu cầu học của các bạn cũng khác nhau, có bạn mong muốn học nấu ăn để làm bếp cơ bản tại các nhà hàng nhỏ, có bạn mong muốn học để trở thành một đầu bếp, bếp trưởng giỏi... ' , 5190000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,42,100,3,current_timestamp()),
+(2, N'Mâm cỗ ngày tết - Tết Trọn Yêu Thương', 'mam-co-ngay-tet.png', 4, 2530000,N'Trong đời sống tinh thần của người Việt, Tết Nguyên Đán là khởi đầu cho một năm mới, vận hội mới của gia đình, cộng đồng và cả dân tộc. Thế nên gia đình dù còn khó khăn, người ta vẫn gắng sắm sửa mâm cỗ Tết thịnh soạn để tưởng nhớ ông bà, Tổ tiên, mong Tổ tiên phù hộ cho con cháu sức khỏe, học hành tấn tới, làm ăn phát tài phát lộc. ' , 1200000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,16,2,current_timestamp()),
+(2, N'Đảm Toàn Diện', 'dam-toan-dien.jpg', 5, 3250000 , N'Khóa học ĐẢM TOÀN DIỆN là lựa chọn hàng đầu cho các chị em phụ nữ những tuyệt chiêu, bí quyết nấu ăn NGON -  DINH DƯỠNG -  KHOA HỌC sẽ được đầu bếp EZcooking chia sẻ tại khóa học, ngoài ra học viên còn bổ sung thêm vào menu: làm bánh, pha chế và cắm hoa. ' , 1150000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,12,26,3,current_timestamp()),
+(2, N'Khóa học nấu ăn gia đình thực hành', '1.jpg', 4, 2850000,N'Nấu ăn sao cho ngon, tiết kiệm chi phí nhưng vẫn đảm bảo chế độ dinh dưỡng không phải là việc đơn giản. Làm sao để ngày nào gia đình cũng vui như có hội, bữa cơm nào cũng đầm ấp yêu thương như nhà có cỗ? Khóa học nấu ăn gia đình thực hành là giải pháp giúp chị em nâng cao tay nghề nấu ăn bản thân và quan trọng là gìn giữ mái ấm gia đình. ' , 2200000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,30,3,current_timestamp()),
+(2, N'Lớp dạy nấu ăn gia đình', '1.jpg', 4, 2850000,N' Đàn ông xây nhà, đàn bà xây bếp .Nếp sống này vẫn được đặc biệt coi trọng trong các gia đình Việt Nam cho đến ngày nay. Trong gia đình, một người vợ tuyệt vời trong mắt các ông chồng là người nấu ăn giỏi, biết làm chủ căn bếp của mình.' , 2200000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,30,3,current_timestamp()),
+(3, N'Khóa học Trẻ vui vào bếp', 'trevuivaobep.jpg', 5, 190000,N'Làm thế nào để ngoài những giờ học căng thẳng con vừa được vui chơi và vừa giúp con đáp ứng được những điều mà con đang tò mò trong bếp của mẹ? Con sẽ có vô vàn những thứ hay ho để kể cho bạn bè và con sẽ tự hào hơn bởi những điều con đã làm được.  Ba/mẹ không cần lo đâu EZcooking ở đây để cùng con tìm hiểu và rèn luyện những kỹ năng giúp con tự tin hơn với bạn bè rồi.' , 10, 'Từ 6 - 10 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,10,2,current_timestamp()),
+(3, N'Khóa học Dạy trẻ nấu ăn nâng cao – Start to cook 2', 'tre-nau-an-nang-cao.jpg', 5, 2630000,N'Nhiều năm qua, phụ huynh đã tin tưởng gửi gắm con em mình tham gia trong các khóa học Trẻ vào bếp tại EZcooking. Khóa học này được thiết kế menu riêng với mục tiêu nhiều thách thức hơn về kỹ năng làm bếp của trẻ. Chương trình đào tạo với 12 buổi và nhiều món yêu cầu cao: món ngon trong những bữa cơm gia đình, làm bánh pizza, học nấu chè…' , 920000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,20,3,current_timestamp()),
+(3, N'Khóa học MOON KIDS – Dạy trẻ làm bánh Trung thu', 'moonkids.jpg', 5, 150000,N'Để con vừa chơi, vừa học và hiểu thêm những giá trị văn hóa Trung thu truyền thống qua hoạt động làm bánh Trung thu cũng là một buổi sinh hoạt ngoại khóa lý tưởng mà các phụ huynh, nhà trường có thể tổ chức cho các con trong dịp Trung thu này.Khóa học Moon Kids – Dạy trẻ làm bánh Trung thu là hoạt động thú vị, ý nghĩa màEZcooking gửi tới các bậc cha mẹ mùa Trung thu năm nay.' , 340000, 'Từ 10 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,1,2,2,current_timestamp()),
+(3, N'Lớp Start To Cook Dạy Trẻ Nấu Ăn', 's2.jpg', 5, 2500000,N'Mỗi dịp hè, những khóa học “Trẻ vào bếp” tại EZcooking luôn nhộn nhịp. Lớp học luôn nhận được sự quan tâm đặc biệt của phụ huynh và các em nhỏ. Đây thực sự là món quà ý nghĩa thiết thực của bố mẹ dành cho các con của mình.' , 10, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,10,2,current_timestamp()),
+(3, N'Start to bake – Dạy trẻ làm bánh', 'daytrelambanh-2.jpg', 2, 172500,N'Khóa học dạy trẻ làm bánh sẽ giúp các bé thỏa mãn niềm yêu thích với bánh ngọt. Lớp học sẽ là môi trường tốt để phát hiện năng khiếu và rèn kỹ năng giao tiếp với cộng đồng thông qua hoạt động  tương tác trong lớp học, tính tỉ mỉ, kiên nhẫn cho trẻ từ học làm bánh cùng các bạn.' , 875000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,9,2,current_timestamp()),
+(4, N'Lớp học nấu chè', 'nau-che.jpg', 5, 6000000,N' Nấu chè ngon sẽ trở nên thật đơn giản khi có trong tay công thức nấu 15 món chè từ EZcooking đậm đà hương vị ẩm thực Việt Nam. Khóa học nấu chè không chỉ giúp bạn tự tin làm những món chè ngon đúng điệu mà còn tư vấn, hỗ trợ bạn mở quán kinh doanh chuyên nghiệp để làm thương hiệu.' , 10, 'Từ 3 - 6 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,15,2,current_timestamp()),
+(4, N'Khoá học làm kem', 'kem.jpg', 1, 3000000,N' Khóa học làm kem đang là khóa học thu hút nhiều học viên tham dự. Với chương trình đào tạo kỹ năng làm kem ngon cũng như sáng tạo trong chế biến kem bằng nhiều công thức làm kem hấp dẫn. Lớp học làm kem tại EZcooking giúp bạn có được kỹ năng tốt nhất để chế biến kem ngon tuyệt hảo, mở quán kinh doanh với chất lượng sản phẩm tốt.' , 500000, 'Từ 5 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,10,2,current_timestamp()),
+(4, N'Khóa học chè và các món ăn vặt mùa đông', 'che-mua-dong.jpg', 5, 2000000,N'Mùa nào thức nấy, các món chè mùa đông rất được nhiều người quan tâm và tìm lớp đăng ký học vì chè mùa đông khá ngon nhưng đặc trưng và không hề dễ làm. Chè mùa đông và các món ăn vặt là cơ hội kinh doanh rất hay và thú vị mà các bạn có thể tham khảo. ' , 400000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,2,current_timestamp()),
+(4, N'Dạy học làm bánh ngọt', 'dayamthuc.jpg', 5,1840000,N'Khóa học các loại bánh được sắp xếp theo chủ đề giúp học viên nắm vững kiến thức cách làm cụ thể từng dòng bánh cơ bản bắt đầu từ khâu chuẩn bị nguyên liệu trộn bột, đánh bột cho đến lúc làm ra một chiếc bánh ngọt hoàn hảo dành tặng những người thân yêu nhất ' , 1450000, 'Từ 6 - 15 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,12,2,current_timestamp()),
+(4, N'Khoá học làm bánh Việt Nam', 'banh-viet-nam.jpg', 5, 2500000,N'Khóa học dạy làm các món bánh đặc sản của Việt Nam, bánh đặc sản vùng miền. Đặc sản bánh Việt vô cùng đa dạng từ màu sắc, hình dạng cũng như cách chế biến phù hợp với đặc trưng của từng vùng miền. Ví như đặc sản bánh miền Bắc có bánh cuốn Thanh Trì, bánh giò, bánh đúc,… Miền Trung có bánh bèo, bánh khọt…, Miền Nam có bánh xèo, bánh bò… ' ,300000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,12,2,current_timestamp()),
+(4, N'Khóa học làm bánh mì', 'banh-mi.jpg', 5, 2700000,N'Khóa học làm bánh mì tại EZcooking sẽ cung cấp cho bạn toàn bộ kiến thức để phân biệt đặc trưng của các loại bánh mì mà chỉ người sành mới biết được. Tham gia khóa học để nâng cao tay nghề nội trợ của mình. Đặc biệt tự tay làm cho gia đình những chiếc bánh mì không có chất bảo quản, hóa chất độc hại là món quà sức khỏe cho cả gia đình ' , 300000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,4,11,2,current_timestamp()),
+(5, N'Khóa học pha chế căn bản', 'pha-che-co-ban.jpg', 5, 1000000,N'Khóa học pha chế căn bản giúp bạn có những kiến thức pha chế cơ bản phục vụ mục đích kinh doanh quán đồ uống hoặc pha chế gia đình với 5 chủ đề các loại đồ uống được quan tâm nhất trên thị trường hiện nay. Các loại đồ uống mới và hiện đại được giới trẻ ưa thích như dòng pha chế cà phê, trà, các loại đồ uống đá xay, sinh tố và Soda, sữa chua lắc…' , 10, 'Từ 6 - 10 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,21,2,current_timestamp()),
+(5, N'Khóa học đào tạo pha chế chuyên nghiệp', 'pha-che-chuyen-nghiep.jpg', 5, 4150000,N'Dành cho đối tượng học nghề pha chế để làm việc chuyên nghiệp. Đảm bảo học viên có đủ các kỹ năng tiêu chuẩn để có mức thu nhập cao trong nghề. Đảm bảo việc làm cho học viên sau khi tốt nghiệp.' , 2130000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,15,60,3,current_timestamp()),
+(5, N'Khóa dạy học pha chế gia đình', 'pha-che-do-an.jpg', 5, 1460000,N'Khóa học dạy pha chế căn bản giúp bạn có những kiến thức pha chế cơ bản phục vụ mục đích kinh doanh quán đồ uống hoặc pha chế gia đình với 5 chủ đề các loại đồ uống được quan tâm nhất trên thị trường hiện nay. Các loại đồ uống mới và hiện đại được giới trẻ ưa thích như dòng pha chế cà phê, trà, các loại đồ uống đá xay, sinh tố và Soda, sữa chua lắc…' , 1230000, 'Từ 6 - 10 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,5,21,2,current_timestamp()),
+(6, N'Dạy nấu ăn cho cô dâu', 'hoc-cam-hoa-voi-nghe-nhan.jpg', 2, 2130000,N'Dạy nấu ăn cho cô dâu là lựa chọn hàng đầu cho những bạn gái. Những tuyệt chiêu, bí quyết nấu ăn NGON -  DINH DƯỠNG -  KHOA HỌC sẽ được những chuyên gia ẩm thực, đầu bếp EZcooking chia sẻ tại khóa học. EZcooking sẽ giúp bạn trở thành người phụ nữ lý tưởng của gia đình trong mắt người bạn đời. ' , 980000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,30,2,current_timestamp()),
 (6, N'Khóa học cắm hóa', 'nghethuattaohinh.jpg', 4, 1850000,'Thể hiện sự khéo léo của đôi bàn tay cùng với sự tinh tường trong cách bố trí, pha trộn màu sắc của các loài hoa sẽ khiến cho gian phòng khách, nơi làm việc hay góc thư giãn của bạn tràn ngập sức sống. Đến với khóa học cắm hoa tại EZcooking bạn sẽ được nghệ nhân cắm hoa chuyên nghiệp truyền đạt các kĩ năng cắm hoa sao cho hài hòa, tinh tế và mang ý nghĩa đặc trưng riêng của mỗi loại hoa cũng như phong cách riêng của người làm nên nó. ' , 1000000, 'Từ 5 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,8,24,3,current_timestamp()),
-(6, N'Khóa học cắt tỉa cơ bản', 'cat-tia-rau-cu-qua.jpg', 2, 2500000,'Việc trang trí món ăn đẹp sẽ giúp mâm cơm đủ đầy, đẹp mắt có sự hấp dẫn hơn về thị giác, giúp mọi người ăn ngon miệng hơn. Nắm được những kỹ năng cắt tỉa cơ bản bạn hoàn toàn có thể biến tấu những thực phẩm sẵn có trong nhà bếp thành những bông hoa xinh xắn. Học nấu ăn gia đình và học cắt tỉa cơ bản là giúp các chị em nội trợ có được những tuyệt chiêu song kiếm hợp bích tự tin là người phụ nữ nhiều người mơ ước.' , 300000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,12,3,current_timestamp()),
-(7, N'Ẩm thực Nhật Bản', 'mon-nhat.jpg', 4, 3000000,'Khóa học ẩm thực Nhật Bản tại EZcooking sẽ hướng dẫn bạn không chỉ cách làm các món ăn ngon, đặc trưng của đất nước Nhật Bản như Sushi, Súp, Salad... Bạn sẽ được học từ kiến thức nền tảng và biến đó thành kiến thức, kỹ năng của riêng bạn. ' , 2500000, 'Từ 5 - 6 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,3,current_timestamp()),
-(7, N'Lớp yêu cầu kinh doanh đặc biệt', 'nau-an-thuc-hanh.jpg', 5, 5000000,'Lớp dạy các món theo yêu cầu tại EZcooking đáp ứng những bạn muốn học nấu ăn để kinh doanh, chọn món để học, chọn giờ học và hơn hết học theo yêu cầu bạn sẽ học theo hình thức gia sư - tư vấn, bạn sẽ tương tác được với giáo viên nhiều hơn trong một buổi học để nắm bắt kiến thức một cách tốt nhất.' , 300000, 'Từ 1 - 2 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,1,1,3,current_timestamp()),
-(7, N'Khóa học nấu món Âu', 'mon-au.jpg', 5, 2160000,'Những món ăn Âu ngon đòi hỏi phải được chế biến công phu, kỹ lưỡng. Món Âu được chú trọng nhất ở việc chế biến các vị nước sốt, hương liệu, sắp đặt món ăn trên bàn tiệc…Vì sao bạn là người hay nấu nướng, khéo tay nhưng chưa thể làm được những món Âu ngon, đúng vị? Khóa học làm các món Âu tại Ezcooking sẽ thực sự là khóa học giúp bạn bổ dung kỹ năng nội trợ của mình' , 1550000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,7,21,3,current_timestamp()),
-(7, N'Khóa học nấu món Hàn Quốc', 'day-nau-mon-han-quoc.jpg', 5, 3050000,'Làm sao để có thể nấu món Hàn Quốc chuẩn vị như người Hàn vào bếp không phải là điều dễ dàng. Nhận biết hương vị trong các món ăn Hàn Quốc và am hiểu về ẩm thực Hàn đòi hỏi sự tinh tế và học bài bản. Khóa học nấu món Hàn nhằm mục đích giúp bạn trở thành một người nội trợ khéo léo và là một thực khách “sành” thưởng thức món ăn Hàn Quốc tại Việt Nam' , 1850000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,3,current_timestamp()),
-(7, N'Khoá học làm Pizza mỳ Ý Pasta', 'mon-y.jpg', 2, 2400000,'Khóa học làm Pizza, mỳ Ý, Pasta là khóa học nấu ăn chuyên đề dành riêng cho các bạn học viên có niềm đam mê với các món ăn châu Âu nổi tiếng, muốn tìm hiểu về văn hóa đồ ăn nhanh của phương Tây.' , 750000, 'Từ 5 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,2,current_timestamp()),
-(7, N'Khóa học các món ăn chay', 'chay.jpg', 4, 3090000,' Cuộc sống hiện đại, nhu cầu ăn uống đa dạng nhưng kèm theo đó là sử dụng nhiều thực phẩm không rõ nguồn gốc, sử dụng nhiều chất bảo quản gây độc hại cho con người. Học làm món chay là phương pháp giảm bớt nguy cơ mắc bệnh từ thực phẩm trong những bữa ăn hằng ngày. Đặc biệt đối với những ngươi ăn kiêng, giảm cân mắc bệnh…' , 1060000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,20,3,current_timestamp());
+(6, N'Khóa học cắt tỉa cơ bản', 'cat-tia-rau-cu-qua.jpg', 2, 2500000,N'Việc trang trí món ăn đẹp sẽ giúp mâm cơm đủ đầy, đẹp mắt có sự hấp dẫn hơn về thị giác, giúp mọi người ăn ngon miệng hơn. Nắm được những kỹ năng cắt tỉa cơ bản bạn hoàn toàn có thể biến tấu những thực phẩm sẵn có trong nhà bếp thành những bông hoa xinh xắn. Học nấu ăn gia đình và học cắt tỉa cơ bản là giúp các chị em nội trợ có được những tuyệt chiêu song kiếm hợp bích tự tin là người phụ nữ nhiều người mơ ước.' , 300000, 'Từ 6 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,12,3,current_timestamp()),
+(7, N'Ẩm thực Nhật Bản', 'mon-nhat.jpg', 4, 3000000,N'Khóa học ẩm thực Nhật Bản tại EZcooking sẽ hướng dẫn bạn không chỉ cách làm các món ăn ngon, đặc trưng của đất nước Nhật Bản như Sushi, Súp, Salad... Bạn sẽ được học từ kiến thức nền tảng và biến đó thành kiến thức, kỹ năng của riêng bạn. ' , 2500000, 'Từ 5 - 6 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,3,current_timestamp()),
+(7, N'Lớp yêu cầu kinh doanh đặc biệt', 'nau-an-thuc-hanh.jpg', 5, 5000000,N'Lớp dạy các món theo yêu cầu tại EZcooking đáp ứng những bạn muốn học nấu ăn để kinh doanh, chọn món để học, chọn giờ học và hơn hết học theo yêu cầu bạn sẽ học theo hình thức gia sư - tư vấn, bạn sẽ tương tác được với giáo viên nhiều hơn trong một buổi học để nắm bắt kiến thức một cách tốt nhất.' , 300000, 'Từ 1 - 2 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,1,1,3,current_timestamp()),
+(7, N'Khóa học nấu món Âu', 'mon-au.jpg', 5, 2160000,N'Những món ăn Âu ngon đòi hỏi phải được chế biến công phu, kỹ lưỡng. Món Âu được chú trọng nhất ở việc chế biến các vị nước sốt, hương liệu, sắp đặt món ăn trên bàn tiệc…Vì sao bạn là người hay nấu nướng, khéo tay nhưng chưa thể làm được những món Âu ngon, đúng vị? Khóa học làm các món Âu tại Ezcooking sẽ thực sự là khóa học giúp bạn bổ dung kỹ năng nội trợ của mình' , 1550000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,7,21,3,current_timestamp()),
+(7, N'Khóa học nấu món Hàn Quốc', 'day-nau-mon-han-quoc.jpg', 5, 3050000,N'Làm sao để có thể nấu món Hàn Quốc chuẩn vị như người Hàn vào bếp không phải là điều dễ dàng. Nhận biết hương vị trong các món ăn Hàn Quốc và am hiểu về ẩm thực Hàn đòi hỏi sự tinh tế và học bài bản. Khóa học nấu món Hàn nhằm mục đích giúp bạn trở thành một người nội trợ khéo léo và là một thực khách “sành” thưởng thức món ăn Hàn Quốc tại Việt Nam' , 1850000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,3,current_timestamp()),
+(7, N'Khoá học làm Pizza mỳ Ý Pasta', 'mon-y.jpg', 2, 2400000,N'Khóa học làm Pizza, mỳ Ý, Pasta là khóa học nấu ăn chuyên đề dành riêng cho các bạn học viên có niềm đam mê với các món ăn châu Âu nổi tiếng, muốn tìm hiểu về văn hóa đồ ăn nhanh của phương Tây.' , 750000, 'Từ 5 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,6,18,2,current_timestamp()),
+(7, N'Khóa học các món ăn chay', 'chay.jpg', 4, 3090000,N' Cuộc sống hiện đại, nhu cầu ăn uống đa dạng nhưng kèm theo đó là sử dụng nhiều thực phẩm không rõ nguồn gốc, sử dụng nhiều chất bảo quản gây độc hại cho con người. Học làm món chay là phương pháp giảm bớt nguy cơ mắc bệnh từ thực phẩm trong những bữa ăn hằng ngày. Đặc biệt đối với những ngươi ăn kiêng, giảm cân mắc bệnh…' , 1060000, 'Từ 8 - 12 ' ,' tầng 5 – 142 Lê Duẩn, Hà Nội ',1,10,20,3,current_timestamp());
 
 
 create table imagesCourse(
@@ -183,26 +183,26 @@ constraint foreign key(customerID) references customers(customerID)
 );
 
 insert into orders(orderDate, staffID, customerID, orderStatus, reasonCancel) values
-(current_timestamp(), 1, 1, -2, 'khách hàng đổi khóa học'),
-(current_timestamp(), 2, 2, -2, 'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 1, -2, N'khách hàng đổi khóa học'),
+(current_timestamp(), 2, 2, -2, N'khách hàng đổi khóa học'),
 (current_timestamp(), 1, 3, -1, ''),
 (current_timestamp(), 2, 4, -1, ''),
 (current_timestamp(), 1, 1, 0, ''),
 (current_timestamp(), 2, 2, 0, ''),
 (current_timestamp(), 1, 3, 1, ''),
 (current_timestamp(), 2, 4, 1, ''),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học'),
-(current_timestamp(), 1, 2, 1, 'khách hàng đổi khóa học');
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học'),
+(current_timestamp(), 1, 2, 1, N'khách hàng đổi khóa học');
 
 create table orderDetails(
 id int auto_increment primary key,
@@ -244,8 +244,8 @@ create table banks(
 );
 
 insert into banks(bankName, accountNumber, nameOwner) values
-('Vietcombank', '0931004219170', 'Le van Duoc'),
-('Agribank', '012345678910', 'Vu Van Long');
+('Vietcombank', '0931004219170', N'Lê Văn Được'),
+('Agribank', '012345678910', N'Vũ Văn Long');
 
 
 create table teachers(
@@ -256,18 +256,18 @@ create table teachers(
 );
 
 insert into teachers(teacherName, teacherDescription, teacherImage) values
-('Thầy Ninh Văn Hưởng', 'Bếp phó K.S Flower Garden', 'ThayNinhVanHuong.jpg'),
-('Thầy Chu Anh Tiệp', 'Bếp trưởng K.S Flower Garden', 'ThayChuAnhTiep.jpg'),
-('Thầy Hoàng Công Đam', 'K.S Sunway', 'ThayHoangCongDam.jpg'),
-('Cô Nguyễn Thị Kim Liên', 'Khách sạn Melia Hanoi', 'CoNguyenThiKimLien.png'),
-('Thầy Nguyễn Mạnh Cường', 'Trường trung cấp nấu ăn Hà Nội', 'ThayNguyenManhCuong.jpg'),
-('Thầy Nguyễn Mạnh Tuấn', 'Khách sạn Hanoi Sky Hotel', 'ThayNguyenManhTuan.jpg'),
-('Thầy Ngô Quốc Hưng', 'Bếp trưởng bếp Nhật K.S Melia', 'ThayNgoQuocHung.jpg'),
-('Thầy Lê Mộng Long', 'Bếp trưởng K.S Kim Liên Hà Nội', 'ThayLeMongLong.jpg'),
-('Thầy Nguyễn Năng Vinh', 'Nhà Hàng Neva', 'ThayNguyenNangVinh.jpg'),
-('Thầy Vũ Văn Bốn', 'Nghệ nhân cắt tỉa', 'ThayVuVanBon.jpg'),
-('Cô Trương Thúy Thưởng', 'Bếp trưởng bếp Arirang Hàn Quốc K.S Grand Plaza', 'CoTruongThuyThuong.jpg'),
-('Cô Nguyễn Thị Thanh', 'Giảng viên - Trường TCDL Hoa Sữa', 'CoNguyenThiThanh.jpg');
+(N'Thầy Ninh Văn Hưởng', N'Bếp phó K.S Flower Garden', 'ThayNinhVanHuong.jpg'),
+(N'Thầy Chu Anh Tiệp', N'Bếp trưởng K.S Flower Garden', 'ThayChuAnhTiep.jpg'),
+(N'Thầy Hoàng Công Đam', N'K.S Sunway', 'ThayHoangCongDam.jpg'),
+(N'Cô Nguyễn Thị Kim Liên', N'Khách sạn Melia Hanoi', 'CoNguyenThiKimLien.png'),
+(N'Thầy Nguyễn Mạnh Cường', N'Trường trung cấp nấu ăn Hà Nội', 'ThayNguyenManhCuong.jpg'),
+(N'Thầy Nguyễn Mạnh Tuấn', N'Khách sạn Hanoi Sky Hotel', 'ThayNguyenManhTuan.jpg'),
+(N'Thầy Ngô Quốc Hưng', N'Bếp trưởng bếp Nhật K.S Melia', 'ThayNgoQuocHung.jpg'),
+(N'Thầy Lê Mộng Long', N'Bếp trưởng K.S Kim Liên Hà Nội', 'ThayLeMongLong.jpg'),
+(N'Thầy Nguyễn Năng Vinh', N'Nhà Hàng Neva', 'ThayNguyenNangVinh.jpg'),
+(N'Thầy Vũ Văn Bốn', N'Nghệ nhân cắt tỉa', 'ThayVuVanBon.jpg'),
+(N'Cô Trương Thúy Thưởng', N'Bếp trưởng bếp Arirang Hàn Quốc K.S Grand Plaza', 'CoTruongThuyThuong.jpg'),
+(N'Cô Nguyễn Thị Thanh', N'Giảng viên - Trường TCDL Hoa Sữa', 'CoNguyenThiThanh.jpg');
 
 
 create table imageLogo(
@@ -290,11 +290,11 @@ create table contactsInformation(
 );
 
 insert into contactsInformation(jobPosition, email, image, phoneNumber, description1, description2, description3) values
-('Giáo vụ', 'giaovu1@ezcooking.vn', 'giaovu1.png', '0963.938.523', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Kế toán', 'ketoan1@ezcooking.vn', 'ketoan.png', '024.3773.9943', 'Quan hệ giao thương', 'Lên thực phẩm', 'Theo dõi công nợ về học phí của học viên'),
-('Marketing', 'marketing@ezcooking.vn', 'marketing.png', '0963.938.524', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Tuyển sinh', 'tuyensinh@ezcooking.vn', 'tuyensinh.png', '0963.938.525', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Hành chính - Nhân sự', 'hanhchinhnhansu@ezcooking.vn', 'hanhchinh.png', '0963.938.526', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học'),
-('Tuyển dụng nghề bếp', 'tuyendungnghebep@ezcooking.vn', 'tuyendung.png', '0963.938.527', 'Quản lí thông tin học viên', 'Tổ chức, sắp xếp lịch học', 'Chuẩn bị các tài liệu cho lớp học');
+(N'Giáo vụ', 'giaovu1@ezcooking.vn', 'giaovu1.png', '0963.938.523', N'Quản lí thông tin học viên', N'Tổ chức, sắp xếp lịch học', N'Chuẩn bị các tài liệu cho lớp học'),
+(N'Kế toán', 'ketoan1@ezcooking.vn', 'ketoan.png', '024.3773.9943', N'Quan hệ giao thương', N'Lên thực phẩm', N'Theo dõi công nợ về học phí của học viên'),
+(N'Marketing', 'marketing@ezcooking.vn', 'marketing.png', '0963.938.524', N'Quản lí thông tin học viên', N'Tổ chức, sắp xếp lịch học', N'Chuẩn bị các tài liệu cho lớp học'),
+(N'Tuyển sinh', 'tuyensinh@ezcooking.vn', 'tuyensinh.png', '0963.938.525', N'Quản lí thông tin học viên', N'Tổ chức, sắp xếp lịch học', N'Chuẩn bị các tài liệu cho lớp học'),
+(N'Hành chính - Nhân sự', 'hanhchinhnhansu@ezcooking.vn', 'hanhchinh.png', '0963.938.526', N'Quản lí thông tin học viên', N'Tổ chức, sắp xếp lịch học', N'Chuẩn bị các tài liệu cho lớp học'),
+(N'Tuyển dụng nghề bếp', 'tuyendungnghebep@ezcooking.vn', 'tuyendung.png', '0963.938.527', N'Quản lí thông tin học viên', N'Tổ chức, sắp xếp lịch học', N'Chuẩn bị các tài liệu cho lớp học');
 
 
