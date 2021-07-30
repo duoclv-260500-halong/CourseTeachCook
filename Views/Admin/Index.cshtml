@@ -1,0 +1,175 @@
+@{
+    ViewData["Title"] = "Thống kê";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/viewStatistical.css?v=4" />
+
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Globalization;
+<style>
+    #manage-staff tr:nth-child(even) {
+        background-color: #314359;
+    }
+
+    #manage-staff tr {
+        height: 40px;
+    }
+
+    #manage-staff tr:nth-child(odd) {
+        background-color: #203143;
+    }
+
+    #manage-staff th {
+        background-color: black;
+        height: 40px;
+    }
+
+    .page-item a {
+        color: black;
+    }
+</style>
+
+@{
+    using (var system = new CourseTeachCookContext())
+    {
+        int numberOfStaff = system.Staffs.ToList().Count();
+        int numberOfCustomer = system.Customers.ToList().Count();
+        int numberOfCourse = system.Courses.ToList().Count();
+        List<Order> orders = ViewBag.orders;
+        int superTotal = 0;
+        DateTime firstDate = DateTime.Parse(ViewBag.firstDate);
+        DateTime secondDate = DateTime.Parse(ViewBag.secondDate);
+        foreach (Order order1 in orders)
+        {
+            List<Orderdetail> orderdetails = system.Orderdetails.Where(o => o.OrderId == order1.OrderId).ToList();
+            foreach (Orderdetail orderdetails1 in orderdetails)
+            {
+                superTotal += (orderdetails1.CoursePrice + orderdetails1.MaterialPrice)*orderdetails1.Quantity;
+            }
+        }
+        <div class="right-body col-lg-10" style="background-color: #273444; height: 100%">
+            <div class="title-body" style="margin-top: 10px; margin-bottom: 10px">
+                <div class="row">
+                    <h4>Thống kê</h4>
+                </div>
+                <div class="row" style="color: white;">
+                    <div class="top-statistical col-lg-3" style="margin-left: 6%;">
+                        <div class="title-box">
+                            <i class="fas fa-users"></i>
+                            <p>Nhân viên</p>
+                        </div>
+
+                        <p>@numberOfStaff</p>
+                    </div>
+                    <div class="top-statistical col-lg-3">
+                        <div class="title-box">
+                            <i class="fas fa-user-friends"></i>
+                            <p>Khách hàng</p>
+                        </div>
+                        <p>@numberOfCustomer
+                    </div>
+                    <div class="top-statistical col-lg-3">
+                        <div class="title-box">
+                            <i class="fas fa-book-reader"></i>
+                            <p>Khóa học</p>
+                        </div>
+                        <p>@numberOfCourse</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="title-body" style="margin-top: 10px; margin-bottom: 10px">
+                <div class="row">
+                    <h4>Doanh thu (@ViewBag.firstDate - @ViewBag.secondDate)</h4>
+
+                </div>
+                <div class="row" style="color: white;">
+                    <form asp-controller="Admin" onsubmit="return checkDate()" asp-action="Index" method="POST" enctype="multipart/form-data">
+                        <div style="display: flex;">
+                            <div class="bottom-statistical col-lg-3" style="margin-left: 3.5%">
+                                <span>Từ</span>
+                                <input type="date" value="@firstDate" id="firstDate" name="firstDate">
+                            </div>
+                            <div class="bottom-statistical col-lg-3">
+                                <span style="margin-right: 27px;">Đến</span>
+                                <input type="date" value="@secondDate" id="secondDate" name="secondDate">
+                            </div>
+                            <div class="bottom-statistical col-lg-2">
+                                <input type="submit" value="Cập nhật" style="background-color: red; border-radius: 3px">
+                            </div>
+                        </div>
+                        <span class="col-lg-2 error" id="errorDate"></span>
+                    </form>
+                </div>
+                <div class="row" style="color: white; margin-top: 10px">
+                    <div class="top-statistical col-lg-3" style="margin-left: 6%;">
+                        <div class="title-box">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <p>Hóa đơn</p>
+                        </div>
+
+                        <p>@orders.Count()</p>
+                    </div>
+                    <div class="top-statistical col-lg-3">
+                        <div class="title-box">
+                            <i class="fas fa-money-check-alt"></i>
+                            <p>Doanh thu</p>
+                        </div>
+                        <p>@string.Format(new CultureInfo("vi-VN"),"{0:c}", superTotal)</p>
+                    </div>
+                    <div class="top-statistical col-lg-3">
+                        <div class="title-box">
+                            <i class="fas fa-user-friends"></i>
+                            <p>Khách mới</p>
+                        </div>
+                        <p>@ViewBag.NumberOfNewCustomer</p>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <h4>Danh sách hóa đơn</h4>
+                </div>
+                <table id="manage-staff" style="color: white; width: 97%;  margin-left: 1.5%; margin-top:20px">
+                    <tr style="font-family: ;">
+                        <th class="col-lg-1">#</th>
+                        <th class="col-lg-2">KHÁCH HÀNG</th>
+                        <th class="col-lg-2">EMAIL</th>
+                        <th class="col-lg-3">NGÀY TẠO</th>
+                        <th class="col-lg-2">TỔNG HÓA ĐƠN</th>
+                        <th class="col-lg-2">TÁC VỤ</th>
+                    </tr>
+                    @using (var system1 = new CourseTeachCookContext())
+                    {
+                        foreach (Order order in orders)
+                        {
+                            Customer customer = system.Customers.Find(order.CustomerId);
+                            List<Orderdetail> orderdetails = system.Orderdetails.Where(o => o.OrderId == order.OrderId).ToList();
+                            long total = 0;
+                            foreach (Orderdetail orderdetail in orderdetails)
+                            {
+                                total += (orderdetail.CoursePrice + orderdetail.MaterialPrice) * orderdetail.Quantity;
+                            }
+                            <tr>
+                                <td class="col-lg-1">@order.OrderId</td>
+                                <td class="col-lg-2">@customer.CustomerName</td>
+                                <td class="col-lg-2">@customer.Email</td>
+                                <td class="col-lg-3">@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                                <td class="col-lg-2">@string.Format(new CultureInfo("vi-VN"),"{0:c}", total)</td>
+                                <td class="col-lg-2"><a asp-controller="Admin" asp-action="ViewOrderDetails"
+                            asp-route-id="@order.OrderId" style="color: white;"><i class="fas fa-eye"></i></a></td>
+                            </tr>
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    }
+}
+<script src="~/js/admin/index.js"></script>

@@ -1,0 +1,47 @@
+<head>
+    <link rel="stylesheet" href="~/css/sign.css?v=9">
+    <script src="js/sign.js"></script>
+</head>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+<div class="bg">
+
+    <div class="container-fluid" id="form-log">
+        <div class="forms-container">
+            <div class="signin">
+                <form asp-controller="Customer" asp-action="Login" method="POST" enctype="multipart/form-data">
+                    <h2 class="title">Đăng Nhập <i class="fas fa-caret-right"
+                            style="color: red;margin-left: 140px;font-size:20px;">
+
+                        </i> <a asp-controller="Customer" asp-action="Register" style="color:red;font-size:20px;text-decoration: none">Đăng
+                            Ký</a></h2>
+
+                    <div class="body_re">
+                        @* <i class="fas fa-envelope"></i> *@
+                        <label for="email" class="col-sm-4">Email</label>
+                        <input name="email" id="email" type="email" placeholder="Email" class="col-sm-8" />
+                        <br>
+                        @* <i class="fas fa-lock"></i> *@
+                        <label for="password" class="col-sm-4">Mật khẩu</label>
+                        <input name="password" id="password" type="password" placeholder="Mật khẩu" class="col-sm-8" />
+                        <br>
+
+                        <br>
+
+                        @if (@ViewBag.resultLogin != null)
+                        {
+                            <p id="errorLogin">@ViewBag.resultLogin</p>
+                        }
+                        <label for="" class="col-sm-4"></label>
+                        <input type="submit" class="btn " value="Đăng nhập" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

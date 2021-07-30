@@ -1,0 +1,54 @@
+@{
+  ViewData["Title"] = "Thông tin cá nhân";
+}
+
+<head>
+  <link rel="stylesheet" href="~/css/viewPersonalInformation.css?v=5" />
+  <link rel="stylesheet" href="~/css/changeName.css?v=2" />
+  <link rel="stylesheet" href="~/css/layout.css" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using System.Collections.Generic;
+@using System.Linq;
+
+  <div class="right-body col-lg-10">
+
+    <div class="content-body">
+      <h4>Thông tin cá nhân</h4>
+      @using (var system = new CourseTeachCookContext())
+      {
+        Admin admin = system.Admins.Find(1);
+        <div class="row" id="head">
+          <div class="col-lg-2">
+            <img src="~/Image/ImageDesign/AdminDesign/@admin.Image" alt="">
+          </div>
+          <form class="col-lg-10" asp-controller="Admin" asp-action="ChangeName" asp-route-id="@admin.AdminId"
+          method="POST" enctype="multipart/form-data">
+            <div id="content">
+              <div class="row content" id="email">
+                <p class="col-lg-2">Email</p>
+                <p class="col-lg-4 detail">@admin.Email</p>
+              </div>
+              <div class="row content" id="email">
+              <p class="col-lg-2">Họ tên</p>
+              <p class="col-lg-4 detail">@admin.AdminName</p>
+              <a asp-asp-controller="Admin" asp-action="ChangeName"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+            <div class="row content" id="email">
+              <p class="col-lg-2">Điện thoại</p>
+              <p class="col-lg-4 detail">@admin.PhoneNumber</p>
+              <a asp-asp-controller="Admin" asp-action="ChangePhoneNumber"
+              style="color: white; width: 5%; text-decoration: none"><i class="far fa-edit col-lg-4"></i></a>
+            </div>
+             
+              
+
+            </div>
+          </form>
+        </div>
+
+      }
+    </div>
+  </div>

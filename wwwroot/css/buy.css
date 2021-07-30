@@ -1,0 +1,228 @@
+/* */
+#formRegister {
+    position: relative;
+}
+
+.pd_top_20px {
+    padding-top: 20px;
+}
+
+.box_left_regist {
+    position: relative;
+    padding-bottom: 50px;
+}
+
+@media (min-width: 1200px)
+{.container {
+    width: 1170px;
+}}
+
+.wrap {
+    width: 100%;
+    display: inline-block;
+}
+
+.main_regist_2019 .form-horizontal .control-label {
+    padding-top: 10px;
+    text-align: left;
+}
+
+@media (max-width: 768px)
+{.form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+}}
+
+.main_regist_2019 .form-horizontal .control-label {
+    padding-top: 10px;
+    text-align: left;
+    
+}
+
+.title{
+    font-size: 14px;
+    /* margin-top: 10px; */
+}
+
+.title1{
+    margin-top: 10px;
+}
+
+.col-sm-8{
+    margin-bottom: 15px;
+}
+
+/* */
+
+#formRegister:before {
+    content: "";
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #f7f8fa;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 10px 15px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.box_left_regist .body_regist {
+    padding-right: 15px;
+}
+
+.form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.main_regist_2019 .box_input_control {
+    -webkit-border-radius: 0;
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+label.error {
+    display: none!important;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.pd_top_20px {
+    padding-top: 20px;
+}
+
+@media (min-width: 992px){
+.col-md-6 {
+    width: 50%;
+}}
+
+.box_right_regist .body_regist {
+    padding-left: 15px;
+}
+
+.mb20, .mv20, .ma20 {
+    margin-bottom: 20px!important;
+}
+
+.body_regist .title_course_product {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+.menu_infor_course {
+    display: flex;
+    color: #646567;
+    font-size: 14px;
+}
+
+.menu_infor_course .infor_course {
+    margin: 0 15px;
+}
+
+.content_need_course {
+    padding-left: 15px;
+    color: #646567;
+}
+
+.fs_13px {
+    font-size: 13px;
+}
+
+.fs_16px {
+    font-size: 16px;
+}
+.form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.mt10, .mv10, .ma10 {
+    margin-top: 10px!important;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.date_pick {
+    position: relative;
+}
+
+.main_regist_2019 input.dateTxt {
+    background: #fff;
+    padding-left: 55px;
+    font-size: 16px;
+}
+
+.select_arrow {
+    position: relative;
+}
+
+.select_arrow .box_input_control {
+    padding-left: 55px;
+}
+
+.fs_18px {
+    font-size: 18px;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal;
+}
+
+.payment_2020 {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn_now .submitBtn {
+    width: 200px;
+    float: right;
+    height: 50px;
+    background: #b22b25;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    line-height: 50px;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding: 0 !important;
+}

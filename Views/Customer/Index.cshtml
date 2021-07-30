@@ -1,0 +1,850 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+
+@using System.Linq;
+@using System.Collections.Generic;
+@using CourseTeachCook.Models;
+@using System.Globalization
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/index.css?v=2">
+    <link rel="stylesheet" href="~/css/site.css?v=1">
+    <script src="js/site.js"></script>
+</head>
+
+
+<div class="list_course box_clnews-index">
+    <div class="clnews-title ">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="box_clnews-index-title">
+                        <h2 class="item_title_mobile">
+                            <a href="" style="text-decoration:none;">Lớp học nấu ăn EZCooking Class</a>
+                        </h2>
+                        <p class="hidden768">Các khóa học giúp bạn có những kỹ năng làm bếp cơ bản nhưng cần thiết nhất
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="carousel_clnews-index">
+        <div class="container">
+
+
+            <div class="carousel_clnews-index">
+
+                <div class="slide-product">
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="product-slide owl-carousel owl-loaded owl-drag " style="display: block;">
+                                    <div class="owl-stage-outers">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage " style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
+                                                @using (var connect = new CourseTeachCookContext())
+                                                {
+                                                    List<Course> listhot = ViewBag.listhot;
+
+                                                        int count = 1;
+                                                        
+
+                                                        foreach (Course khoahoc in listhot)
+                                                        {
+                                                            <div class="owl-item active">
+                                                                <div class="item">
+                                                                    <div class="product-item">
+                                                                        <div class="product-image">
+                                                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">
+                                                                                <img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;max-height:126px">
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="product-title">
+                                                                            <h3>
+                                                                                <span> @count </span>
+                                                                                 <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId" class="texttt" style="text-decoration: none"> @khoahoc.CourseName </a>
+                                                                            </h3>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            count = count + 1;
+                                                        }
+
+                                                }
+        
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="owl-nav">
+                                        <div class="owl-prev disabled"></div>
+                                        <div class="owl-next"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="course_pro">
+    <div class="container">
+         @using (var connect = new CourseTeachCookContext()){
+             
+            Category danhmuc = new Category();
+
+            danhmuc = connect.Categories.Single(C => C.CategoryId == 1);
+        <h2 class="item_title_mobile"> Đào tạo
+            <a class="color_b22b25" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId" title="" style="text-decoration: none">Nghề bếp</a>
+            
+            <a class="view_all color_b22b25" title="View all" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId">View all &gt;</a>
+        </h2>
+        }
+
+        <div class="box_course_pro">
+            <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="course_pro"
+                style="display: block; position:relative">
+
+                <div class="owl-stage-outer">
+                    <div class="owl-stage"
+                        style="transform: translate3d(-1155px, 0px, 0px); transition: all 0.25s ease 0s; width: 2310px;">
+
+                        @using (var connect = new CourseTeachCookContext())
+                        {
+                           
+                            List<Course> list = new List<Course>();
+                            
+                            list = @ViewBag.danhsachkhoahoc;
+
+                            int count = 1;
+                            
+                            foreach (Course khoahoc in list)
+                            {
+                                if (count >= 7)
+                                {
+                                    break;
+                                }
+                                count = count + 1;
+                                
+                            Category danhmuc = new Category();
+                            danhmuc = connect.Categories.Find(khoahoc.CategoryId);
+                           
+                            <div class="owl-item " style="width: 370px; margin-right: 15px;">
+                                <div class="box_content">
+                                    <div class="box_img">
+                                        <div class="product-image">
+                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId"><img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="body_course">
+                                        
+                                        <p class="cat_course"> <a  title="@danhmuc.CategoryName">@danhmuc.CategoryName</a> </p>
+                                        <h4 class="title"><a title="@khoahoc.CourseName" asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">@khoahoc.CourseName</a></h4>
+                                        
+                                         <div class="info_sub">
+                                             <label class="rate-1">
+                                                <div class="ratingStar ratingStar_pro56" course_id="56" number_rate="2"
+                                                style="overflow: auto;">
+                                                @for (int i = 1; i <= khoahoc.CourseRates; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: yellow; font-size: 130%"></i>
+                                                }
+                                                @for (int i = khoahoc.CourseRates+1; i <=5; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #d0d0d0; font-size: 130%"></i>
+                                                } 
+                                                </div> 
+                                                </label> 
+                                                <span style="margin-top: -5px"> (<span class="rate_numb rate_num56">@khoahoc.Views</span>)</span>
+                                            <p style="margin-top: -5px;"> Giá : <span class="pl_5px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahoc.CoursePrice) 
+                                             
+                                                </span>
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            }
+
+                        }
+                        
+                    </div>
+
+                </div>
+
+                <div class="owl-nav">
+                    <div class="owl-prev disabled"></div>
+                    <div class="owl-next"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="box_tcez-index">
+    <div class="container">
+        <div class="row">
+            <div class="list_tcez text-center">
+                <h2><a href="">Đội ngũ giáo viên giàu kinh nghiệm tại EZCooking</a></h2>
+                <p>
+                    Giáo viên tại EZcooking với nhiều năm đào tạo dạy nấu ăn đem lại cảm hứng cho hơn 3000 học viên/năm.
+                </p>
+                <p>
+                    Với mong muốn đem lại những trải nghiệm lý thú nhất cho học viên lớp nghề chuyên nghiệp, trung tâm
+                    dạy nấu ăn EZcooking luôn tìm kiếm các cơ hội để học viên có cơ hội giao lưu, học hỏi và nâng cao
+                    tay nghề.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box_carousel_teacher" style="overflow: hidden;">
+                <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="carousel_teacher">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style="width: 2850px;">
+
+                            @using (var connect = new CourseTeachCookContext())
+                            {
+                                List<Teacher> list = new List<Teacher>();
+                                list = @ViewBag.danhsachgiangvien;
+
+                                int count = 1;
+
+                                foreach (Teacher giangvien in list)
+                                {
+                                    if (count >= 13)
+                                    {
+                                        break;
+                                    }
+                                    count = count + 1;
+                                
+                                    <div class="owl-item" style="width: 270px; margin-right: 30px;">
+                                        <div class="w_cmnttcez">
+                                            <div class="box_img_teacher text-center">
+                                                <a href="#@giangvien.TeacherDescription" data-toggle="modal" class="img_cmttcez"> 
+                                                    <img class="owl-lazy" data-src="" src="/Image/ImageDesign/TeacherImage/@giangvien.TeacherImage" alt="" style="opacity: 1; margin:auto">
+                                                <div class="plus"> <i class="fa fa-plus"></i> </div>
+                                                </a> 
+                                            </div>
+
+                                            <div class="txt_cmttcez text-center" style="margin-top: 35px;">
+                                                <h3>@giangvien.TeacherName</h3>
+                                                <p>@giangvien.TeacherDescription</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            
+                            }
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="course_family">
+    <div class="container">
+         @using (var connect = new CourseTeachCookContext())
+        {
+    
+            Category danhmuc = new Category();
+
+            danhmuc = connect.Categories.Single(C => C.CategoryId == 2);
+        <h2 class="item_title_mobile"> Khóa học 
+            <a class="color_b22b25" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId" title="" style="text-decoration: none"> Bếp Gia Đình</a>
+            <a class="view_all color_b22b25" title="View all" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId">View all &gt;</a>
+        </h2>
+        }
+
+        <div class="box_course_family" style="overflow: hidden;">
+            <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="bepgiadinh"
+                style="display: block; position:relative">
+
+                <div class="owl-stage-outer">
+                    <div class="owl-stage"
+                        style="transform: translate3d(-1155px, 0px, 0px); transition: all 0.25s ease 0s; width: 2310px;">
+
+                        @using (var connect = new CourseTeachCookContext())
+                        {
+                           
+                            List<Course> list = new List<Course>();
+                            
+                            list = @ViewBag.danhsachgiadinh;
+
+                            int count = 1;
+
+                            foreach (Course khoahoc in list)
+                            {
+                                if (count >= 7)
+                                {
+                                    break;
+                                }
+                                count = count + 1;
+                                
+                            Category danhmuc = new Category();
+                            danhmuc = connect.Categories.Find(khoahoc.CategoryId);
+
+                            <div class="owl-item " style="width: 370px; margin-right: 15px;">
+                                <div class="box_content">
+                                    <div class="box_img">
+                                        <div class="product-image">
+                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId"><img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="body_course">
+                                        
+                                        <p class="cat_course"> <a  title="@danhmuc.CategoryName">@danhmuc.CategoryName</a> </p>
+                                        <h4 class="title"><a title="@khoahoc.CourseName" asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">@khoahoc.CourseName</a></h4>
+                                        <div class="info_sub">
+                                             <label class="rate-1">
+                                                <div class="ratingStar ratingStar_pro56" course_id="56" number_rate="2"
+                                                style="overflow: auto;">
+                                                @for (int i = 1; i <= khoahoc.CourseRates; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: yellow; font-size: 130%"></i>
+                                                }
+                                                @for (int i = khoahoc.CourseRates+1; i <=5; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #d0d0d0; font-size: 130%"></i>
+                                                } 
+                                                </div> 
+                                                </label> 
+                                                <span style="margin-top: -5px"> (<span class="rate_numb rate_num56">@khoahoc.Views</span>)</span>
+                                            <p style="margin-top: -5px;"> Giá : <span class="pl_5px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahoc.CoursePrice) 
+                                             
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            }
+
+                        }
+                        
+                    </div>
+
+                </div>
+
+                <div class="owl-nav">
+                    <div class="owl-prev disabled"></div>
+                    <div class="owl-next"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="course_child">
+    <div class="container">
+         @using (var connect = new CourseTeachCookContext())
+        {
+    
+            Category danhmuc = new Category();
+
+            danhmuc = connect.Categories.Single(C => C.CategoryId == 3);
+        <h2 class="item_title_mobile"> Khóa học - <a class="color_b22b25" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId" title="" style="text-decoration: none"> Trẻ vào bếp</a>
+            <a class="view_all color_b22b25" title="View all" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId">View all &gt;</a>
+        </h2>
+        }
+        <div class="box_course_child" style="overflow: hidden;">
+            <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="Child"
+                style="display: block;">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transform: translate3d(-1170px, 0px, 0px); transition: all 0.25s ease 0s; width: 2340px;">
+                        
+                        @using (var connect = new CourseTeachCookContext())
+                        {
+                           
+                            List<Course> list = new List<Course>();
+                            
+                            list = @ViewBag.danhsachtre;
+
+                            int count = 1;
+
+                            foreach (Course khoahoc in list)
+                            {
+                                if (count >= 7)
+                                {
+                                    break;
+                                }
+                                count = count + 1;
+                                
+                            Category danhmuc = new Category();
+                            danhmuc = connect.Categories.Find(khoahoc.CategoryId);
+
+                            <div class="owl-item " style="width: 370px; margin-right: 15px;">
+                                <div class="box_content">
+                                    <div class="box_img">
+                                        <div class="product-image">
+                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId"><img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="body_course">
+                                        
+                                        <p class="cat_course"> <a title="@danhmuc.CategoryName">@danhmuc.CategoryName</a> </p>
+                                        <h4 class="title"><a title="@khoahoc.CourseName" asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">@khoahoc.CourseName</a></h4>
+                                       <div class="info_sub">
+                                             <label class="rate-1">
+                                                <div class="ratingStar ratingStar_pro56" course_id="56" number_rate="2"
+                                                style="overflow: auto;">
+                                                @for (int i = 1; i <= khoahoc.CourseRates; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: yellow; font-size: 130%"></i>
+                                                }
+                                                @for (int i = khoahoc.CourseRates+1; i <=5; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #d0d0d0; font-size: 130%"></i>
+                                                } 
+                                                </div> 
+                                                </label> 
+                                                <span style="margin-top: -5px"> (<span class="rate_numb rate_num56">@khoahoc.Views</span>)</span>
+                                            <p style="margin-top: -5px;"> Giá : <span class="pl_5px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahoc.CoursePrice) 
+                                             
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            }
+
+                        }
+                        
+                    </div>
+                </div>
+
+                <div class="owl-nav">
+                    <div class="owl-prev disabled" style="display: none;"></div>
+                    <div class="owl-next" style="display: none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="course_cake">
+    <div class="container">
+         @using (var connect = new CourseTeachCookContext())
+        {
+    
+            Category danhmuc = new Category();
+
+            danhmuc = connect.Categories.Single(C => C.CategoryId == 4);
+        <h2 class="item_title_mobile"> Khóa học - <a class="color_b22b25" href="/Customer/ViewAllCourse/ @danhmuc.CategoryId" title="" style="text-decoration: none">Bánh ngọt - Kem - Chè
+            <a class="view_all color_b22b25" title="View all" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId">View all &gt;</a>
+        </h2>
+        }
+        <div class="box_course_cake" style="overflow: hidden;">
+            <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="Cake"
+                style="display: block;">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transform: translate3d(-1170px, 0px, 0px); transition: all 0.25s ease 0s; width: 2340px;">
+                        
+                        @using (var connect = new CourseTeachCookContext())
+                        {
+                           
+                            List<Course> list = new List<Course>();
+                            
+                            list = @ViewBag.danhsachcake;
+
+                            int count = 1;
+
+                            foreach (Course khoahoc in list)
+                            {
+                                if (count >= 7)
+                                {
+                                    break;
+                                }
+                                count = count + 1;
+                                
+                            Category danhmuc = new Category();
+                            danhmuc = connect.Categories.Find(khoahoc.CategoryId);
+
+                            <div class="owl-item " style="width: 370px; margin-right: 15px;">
+                                <div class="box_content">
+                                    <div class="box_img">
+                                        <div class="product-image">
+                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId"><img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="body_course">
+                                        
+                                        <p class="cat_course"> <a  title="@danhmuc.CategoryName">@danhmuc.CategoryName</a> </p>
+                                        <h4 class="title"><a title="@khoahoc.CourseName" asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">@khoahoc.CourseName</a></h4>
+                                         <div class="info_sub">
+                                             <label class="rate-1">
+                                                <div class="ratingStar ratingStar_pro56" course_id="56" number_rate="2"
+                                                style="overflow: auto;">
+                                                @for (int i = 1; i <= khoahoc.CourseRates; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: yellow; font-size: 130%"></i>
+                                                }
+                                                @for (int i = khoahoc.CourseRates+1; i <=5; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #d0d0d0; font-size: 130%"></i>
+                                                } 
+                                                </div> 
+                                                </label> 
+                                                <span style="margin-top: -5px"> (<span class="rate_numb rate_num56">@khoahoc.Views</span>)</span>
+                                            <p style="margin-top: -5px;"> Giá : <span class="pl_5px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahoc.CoursePrice) 
+                                             
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            }
+
+                        }
+                        
+                    </div>
+                </div>
+
+                <div class="owl-nav">
+                    <div class="owl-prev disabled" style="display: none;"></div>
+                    <div class="owl-next" style="display: none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="course_Bartender">
+    <div class="container">
+         @using (var connect = new CourseTeachCookContext())
+        {
+    
+            Category danhmuc = new Category();
+
+            danhmuc = connect.Categories.Single(C => C.CategoryId == 5);
+        <h2 class="item_title_mobile"> Khóa học - <a class="color_b22b25" href="/Customer/ViewAllCourse/ @danhmuc.CategoryId" title="" style="text-decoration: none">Pha chế
+            <a class="view_all color_b22b25" title="View all" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId">View all &gt;</a>
+        </h2>
+        }
+        <div class="box_course_Bartender" style="overflow: hidden;">
+            <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="Bartender"
+                style="display: block;">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transform: translate3d(-1170px, 0px, 0px); transition: all 0.25s ease 0s; width: 2340px;">
+                        
+                        @using (var connect = new CourseTeachCookContext())
+                        {
+                            
+                            List<Course> list = new List<Course>();
+                            
+                            list = @ViewBag.danhsachban;
+
+                            int count = 1;
+
+                            foreach (Course khoahoc in list)
+                            {
+                                if (count >= 7)
+                                {
+                                    break;
+                                }
+                                count = count + 1;
+                                
+                            Category danhmuc = new Category();
+                            danhmuc = connect.Categories.Find(khoahoc.CategoryId);
+
+                            <div class="owl-item " style="width: 370px; margin-right: 15px;">
+                                <div class="box_content">
+                                    <div class="box_img">
+                                        <div class="product-image">
+                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId"><img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="body_course">
+                                        
+                                        <p class="cat_course"> <a  title="@danhmuc.CategoryName ">@danhmuc.CategoryName</a> </p>
+                                        <h4 class="title"><a title="@khoahoc.CourseName" asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">@khoahoc.CourseName</a></h4>
+                                         <div class="info_sub">
+                                             <label class="rate-1">
+                                                <div class="ratingStar ratingStar_pro56" course_id="56" number_rate="2"
+                                                style="overflow: auto;">
+                                                @for (int i = 1; i <= khoahoc.CourseRates; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: yellow; font-size: 130%"></i>
+                                                }
+                                                @for (int i = khoahoc.CourseRates+1; i <=5; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #d0d0d0; font-size: 130%"></i>
+                                                } 
+                                                </div> 
+                                                </label> 
+                                                <span style="margin-top: -5px"> (<span class="rate_numb rate_num56">@khoahoc.Views</span>)</span>
+                                            <p style="margin-top: -5px;"> Giá : <span class="pl_5px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahoc.CoursePrice) 
+                                             
+                                                </span>
+                                            </p>
+                                        </div>>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            }
+
+                        }
+                        
+                    </div>
+                </div>
+
+                <div class="owl-nav">
+                    <div class="owl-prev disabled" style="display: none;"></div>
+                    <div class="owl-next" style="display: none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="course_visual_arts">
+    <div class="container">
+         @using (var connect = new CourseTeachCookContext())
+        {
+    
+            Category danhmuc = new Category();
+
+            danhmuc = connect.Categories.Single(C => C.CategoryId == 6);
+
+            <h2 class="item_title_mobile"> Khóa học - <a class="color_b22b25" href="/Customer/ViewAllCourse/ @danhmuc.CategoryId" title="" style="text-decoration: none">Nghệ thuật tạo hình
+                <a class="view_all color_b22b25" title="View all" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId">View all &gt;</a>
+            </h2>
+
+        }
+        <div class="box_course_visual_arts" style="overflow: hidden;">
+            <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="visual_arts"
+                style="display: block;">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transform: translate3d(-1170px, 0px, 0px); transition: all 0.25s ease 0s; width: 2340px;">
+                        
+                        @using (var connect = new CourseTeachCookContext())
+                        {
+                            
+                            List<Course> list = new List<Course>();
+                            
+                            list = @ViewBag.danhsacharts;
+
+                            int count = 1;
+
+                            foreach (Course khoahoc in list)
+                            {
+                                if (count >= 7)
+                                {
+                                    break;
+                                }
+                                count = count + 1;
+                                
+                            Category danhmuc = new Category();
+                            danhmuc = connect.Categories.Find(khoahoc.CategoryId);
+
+                            <div class="owl-item " style="width: 370px; margin-right: 15px;">
+                                <div class="box_content">
+                                    <div class="box_img">
+                                        <div class="product-image">
+                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId"><img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="body_course">
+                                        
+                                        <p class="cat_course"> <a  title=" @danhmuc.CategoryName">@danhmuc.CategoryName</a> </p>
+                                        <h4 class="title"><a title="@khoahoc.CourseName" asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">@khoahoc.CourseName</a></h4>
+                                        <div class="info_sub">
+                                             <label class="rate-1">
+                                                <div class="ratingStar ratingStar_pro56" course_id="56" number_rate="2"
+                                                style="overflow: auto;">
+                                                @for (int i = 1; i <= khoahoc.CourseRates; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: yellow; font-size: 130%"></i>
+                                                }
+                                                @for (int i = khoahoc.CourseRates+1; i <=5; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #d0d0d0; font-size: 130%"></i>
+                                                } 
+                                                </div> 
+                                                </label> 
+                                                <span style="margin-top: -5px"> (<span class="rate_numb rate_num56">@khoahoc.Views</span>)</span>
+                                            <p style="margin-top: -5px;"> Giá : <span class="pl_5px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahoc.CoursePrice) 
+                                             
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            }
+
+                        }
+                        
+                    </div>
+                </div>
+
+                <div class="owl-nav">
+                    <div class="owl-prev disabled" style="display: none;"></div>
+                    <div class="owl-next" style="display: none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="course_world_cuisine">
+    <div class="container">
+        @using (var connect = new CourseTeachCookContext())
+        {
+    
+            Category danhmuc = new Category();
+
+            danhmuc = connect.Categories.Single(C => C.CategoryId == 7);
+
+            <h2 class="item_title_mobile"> Khóa học - <a class="color_b22b25" href="/Customer/ViewAllCourse/ @danhmuc.CategoryId" title="" style="text-decoration: none">Ẩm thực thế giới
+                <a class="view_all color_b22b25" title="View all" asp-controller="Customer" asp-action="ViewAllCourse" asp-route-id="@danhmuc.CategoryId">View all &gt;</a>
+            </h2>
+
+        }
+       
+        <div class="box_course_world_cuisine" style="overflow: hidden;">
+            <div class="jcarousel-box owl-carousel owl-theme owl-responsive-1200 owl-loaded" id="world_cuisine"
+                style="display: block;">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage" style="transform: translate3d(-1170px, 0px, 0px); transition: all 0.25s ease 0s; width: 2340px;">
+                        
+                        @using (var connect = new CourseTeachCookContext())
+                        {
+                            
+                            List<Course> list = new List<Course>();
+                            
+                            list = @ViewBag.danhsachworld;
+
+                            int count = 1;
+
+                            foreach (Course khoahoc in list)
+                            {
+                                if (count >= 7)
+                                {
+                                    break;
+                                }
+                                count = count + 1;
+                                
+                            Category danhmuc = new Category();
+                            danhmuc = connect.Categories.Find(khoahoc.CategoryId);
+
+                            <div class="owl-item " style="width: 370px; margin-right: 15px;">
+                                <div class="box_content">
+                                    <div class="box_img">
+                                        <div class="product-image">
+                                            <a asp-controller="Customer" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId"><img class="avatar owl-lazy" src="/Image/ImageDesign/CourseImage/@khoahoc.FeatureImage" style="opacity: 1;">
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="body_course">
+                                        
+                                        <p class="cat_course"> <a  title=" @danhmuc.CategoryName">@danhmuc.CategoryName</a> </p>
+                                        <h4 class="title"><a title="@khoahoc.CourseName" asp-controller="Course" asp-action="GetCourseCus" asp-route-id ="@khoahoc.CourseId">@khoahoc.CourseName</a></h4>
+                                         <div class="info_sub">
+                                             <label class="rate-1">
+                                                <div class="ratingStar ratingStar_pro56" course_id="56" number_rate="2"
+                                                style="overflow: auto;">
+                                                @for (int i = 1; i <= khoahoc.CourseRates; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: yellow; font-size: 130%"></i>
+                                                }
+                                                @for (int i = khoahoc.CourseRates+1; i <=5; i++)
+                                                {
+                                                    <i class="fas fa-star" style="color: #d0d0d0; font-size: 130%"></i>
+                                                } 
+                                                </div> 
+                                                </label> 
+                                                <span style="margin-top: -5px"> (<span class="rate_numb rate_num56">@khoahoc.Views</span>)</span>
+                                            <p style="margin-top: -5px;"> Giá : <span class="pl_5px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahoc.CoursePrice) 
+                                             
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            }
+
+                        }
+                        
+                    </div>
+                </div>
+
+                <div class="owl-nav">
+                    <div class="owl-prev disabled" style="display: none;"></div>
+                    <div class="owl-next" style="display: none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

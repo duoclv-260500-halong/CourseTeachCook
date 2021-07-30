@@ -1,0 +1,164 @@
+@using CourseTeachCook.Models
+@using Microsoft.AspNetCore.Http;
+@using System.Globalization
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+<head>
+    <link rel="stylesheet" href="~/css/buy.css?v=9">
+    
+</head>
+@using (var connect = new CourseTeachCookContext())
+    {
+        Customer customer = new Customer();
+        int id1 = ViewBag.id1;
+        customer = customer.GetCustomer(id1);
+        Course coursedetails = ViewBag.chitietkhoahoc;
+
+<form id="formRegister" class="form-horizontal" method="post" action="" style="margin-top: 70px;">
+            <div class="container">
+             <div class="row">
+                    <div class="wrap mtm flex_mobile">
+                                        <div class="col-xs-12 col-md-6 pd_top_20px box_left_regist mbl">
+                                            <div class="body_regist">
+                                                <h3 class="head mb20">Thông tin học viên</h3>
+                                                    <div class="form-group"> 
+                                                        <label class="col-sm-4 control-label title" for="name"> Họ và tên 
+                                                        </label>
+                                                        <div class="col-sm-8"> 
+                                                        <p style="text-transform: capitalize;" >@customer.CustomerName<p>
+                                                        </div>
+                                                    </div>
+
+                                        <div class="form-group"> 
+                                            <label class="col-sm-4 control-label title" for="email"> Email 
+
+                                            </label>
+
+                                            <div class="col-sm-8"> 
+                                    @* <input class="required email form-control box_input_control" id="email" placeholder="Email" name="email" type="email" value=""> 
+                                    *@
+                                                <p>@customer.Email</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group"> 
+                                            <label class="col-sm-4 control-label title" for="phone">Điện thoại
+
+                                            </label>
+                                            <div class="col-sm-8"> 
+                                    @* <input class="form-control box_input_control" id="phone" placeholder="Điện thoại" name="phone" type="text" value="">
+                                    *@
+                                            <p>@customer.PhoneNumber</p>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group"> 
+                                            <label class="col-sm-4 control-label title" for="address">Địa chỉ
+
+                                            </label>
+                                            <div class="col-sm-8"> 
+                                    @* <input class="form-control box_input_control" id="address" placeholder="Địa chỉ" name="address" type="text" value=""> 
+                                    *@
+                                                <p>@customer.Address</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group"> 
+                                            <label class="col-sm-4 control-label title" for="required">Thông tin yêu cầu
+
+                                            </label>
+                                            <div class="col-sm-8"> 
+                                                <textarea class="form-control box_textarea_control" placeholder="Thông tin yêu cầu" cols="44" rows="5" name="requireInformation">
+
+                                                </textarea> 
+                                                </div>
+                                        </div>
+
+                                    </div>
+                                    </div>
+
+                
+                    
+
+                                    <div class="col-xs-12 col-md-6 box_right_regist pd_top_20px mbl">
+                                    <div class="body_regist">
+                                        <h3 class="head mb20">Thông tin khóa học</h3>
+                                        <p class="title_course_product"> @coursedetails.CourseName </p>
+                                        <ul class="menu_infor_course">
+                                            <li class="infor_course"> @coursedetails.NumberOfSession buổi</li>
+                                            <li class="infor_course"> @coursedetails.NumberOfDishs món</li>
+                                            <li class="infor_course"> @coursedetails.NumberOfHours h/buổi</li>
+                                        </ul>
+                                        <div class="content_need_course">
+                                            <ul>
+                                                <li> <span class="fs_13px">Học phí : </span> 
+                                                <span class="fs_16px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",coursedetails.CoursePrice)  </span> 
+                                                @* <span class="symbol">đ</span>  *@
+                                                </li>
+                                                <li> <span class="fs_13px">Nguyên liệu: </span> 
+                                                <span class="fs_16px"> @string.Format(new CultureInfo("vi-VN"),"{0:c}",coursedetails.CoursePrice)  </span> 
+                                                @* <span class="symbol">đ</span>  *@
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!--<div> <div class="form-group row"> <label class="col-sm-4 control-label title">Chọn nhóm khóa học <font color="red">*</font></label> <div class="col-sm-8 group_box"> <div class="line"> <div class="w30 fl"> <select class="form-control required" name="cat_id" id="cat_id"> </select> </div> </div> </div> </div> <div class="form-group row"> <label class="col-sm-4 control-label title">Chọn khóa học <font color="red">*</font></label> <div class="col-sm-8 group_box"> <div class="line"> <div class="w30 fl"> <select class="form-control required" name="course_id" id="course_id"> </select> </div> </div> </div> </div> </div> -->
+                            <div class="form-group row mt10"> <label class="col-sm-4 control-label title title1"
+                                    for="begin_date">Ngày khai giảng </label>
+                                            <div class="col-sm-8 date_pick"> <input name="begin_date" id="begin_date" autocomplete="off"
+                                        readonly="" maxlength="255" value="@coursedetails.DateOfOpening.ToString("dd/MM/yyyy")"
+                                        class="dateTxt form-control required box_input_control hasDatepicker valid"> </div>
+                                        </div>
+                                        <div class="form-group row"> <label class="col-sm-4 control-label title title1">Số người đăng ký <font
+                                        color="red">*</font></label>
+                                            <div class="col-sm-8 group_box">
+                                                <div class="line">
+                                                    <div class="w30 select_arrow"> <select class="form-control box_input_control valid"
+                                                name="quantity" id="number_guest">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                          
+                                        <div class="form-group row "> <label class="col-sm-4 control-label title"
+                                    for="payment_method">Hình thức thanh toán: <font color="red">*</font></label>
+                                            <div class="col-sm-8 group_box">
+                                                <div class="payment"> <input type="radio" name="payment_method" value="1" id="payment_1"
+                                            checked=""> <label for="payment_1" class="payment_2020">Tiền mặt</label> </div>
+                                                <div class="payment"> <input type="radio" name="payment_method" value="2"
+                                            id="payment_2"> <label for="payment_2" class="payment_2020">Chuyển khoản</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mtl btn_now"> 
+                                            <label class="col-sm-4 control-label title" for="secure_code">
+                                            </label>
+                                            <div class="col-sm-8"> 
+                                              
+                                                <button type="submit" class="submitBtn" asp-controller="Order" asp-action="CreateOrder" asp-route-id="@coursedetails.CourseId" asp-route-id1="@customer.CustomerId" >Đăng ký </button> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+</form>
+                }
+
+

@@ -1,0 +1,72 @@
+@{
+  ViewData["Title"] = "Thông tin cá nhân";
+}
+
+<head>
+  <link rel="stylesheet" href="~/css/layout.css" />
+  <link rel="stylesheet" href="~/css/changeCourse.css?v=2" />
+</head>
+@using System;
+@using CourseTeachCook.Models;
+@using System.Collections.Generic;
+@using System.Linq;
+
+
+  <div class="right-body col-lg-10">
+    <div class="content-body">
+      <h4>Cập nhật danh mục</h4>
+      @using (var system = new CourseTeachCookContext())
+      {
+          List<Category> categories = ViewBag.listCategories;
+          Course course = new Course();
+          course = ViewBag.course;
+        <div class="row" id="head">
+          
+          <form asp-controller="Course" asp-action="ChangeCategoryCourse" asp-route-id="@course.CourseId"
+          method="POST" enctype="multipart/form-data">
+            <div id="content">
+              <div class="row content" id="email">
+                <p class="col-lg-2">Khóa học</p>
+                <p class="col-lg-4 detail">@course.CourseName</p>
+              </div>
+              <div class="row content" id="email">
+                <p class="col-lg-2">Danh mục mới</p>
+                <select class="col-lg-5" name="categoryID" id="categoryID" style="background-color: #101010; color: white; border:none; width: 40.5%; outline: none;">
+                        @foreach (Category category in categories)
+                        {
+                            <option value="@category.CategoryId">@category.CategoryName</option>
+                        }                            
+                        </select>
+              </div>
+              @if (ViewBag.result != null)
+              {
+                @if (ViewBag.result.Equals(true))
+                {
+                  <div class="row content">
+                    <p class="col-lg-2"></p>
+                    <button class="result col-lg-3 btn btn-success">Đổi danh mục thành công</button>
+                  </div>
+                }
+                else
+                {
+                  <div class="row content">
+                    <p class="col-lg-2"></p>
+                    <button class="result col-lg-3 btn btn-danger">Đổi danh mục thất bại</button>
+                  </div>
+                }
+              }
+              <div class="submitForm">
+                <input type="submit" value="Lưu thông tin">
+              </div>
+                @if(ViewBag.result != null){
+                    ViewBag.result = null;
+                }
+            </div>
+          </form>
+        </div>
+
+      }
+
+
+    </div>
+  </div>

@@ -1,0 +1,57 @@
+<head>
+    <link rel="stylesheet" href="~/css/sign.css?v=15">
+
+</head>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+<div class="bg">
+
+    <div class="container-fluid" id="form-log">
+        <div class="forms-container">
+            <div class="signup">
+
+                <form asp-controller="Customer" asp-action="Register" method="POST" enctype="multipart/form-data">
+                    <h2 class="title">Đăng Ký <i class="fas fa-caret-right"
+                                style="color: red;margin-left: 100px;font-size:20px;"></i> <a asp-controller="Customer"
+                                asp-action="Login" style="color:red;font-size:20px;text-decoration: none">Đăng Nhập</a></h2>
+                    <div class="body_re">
+                        
+                        <label for="name" class="col-sm-4">Họ và Tên</label>
+                        <input name="name" id="name" type="name" placeholder="Họ và Tên" class="col-sm-8" />
+                        <br>
+                        <label for="phone" class="col-sm-4">Điện thoại</label>
+                        <input name="phone" id="phone" type="phone" placeholder="Điện thoại" class="col-sm-8" />
+                        <br>
+                        <label for="address" class="col-sm-4">Địa chỉ</label>
+                        <input name="address" id="address" type="address" placeholder="Địa chỉ" class="col-sm-8" />
+                        <br>
+                        <label for="email" class="col-sm-4">Email</label>
+                        <input name="email" id="email" type="email" placeholder="Email" class="col-sm-8" />
+                        <br>
+                        <label for="password" class="col-sm-4">Mật khẩu</label>
+                        <input name="password" id="password" type="password" placeholder="Mật khẩu" class="col-sm-8" />
+                        <br>
+                        <label for="Confirmpassword" class="col-sm-4">Xác nhận mật khẩu</label>
+                        <input id="Confirmpassword" type="password" placeholder="Xác nhận mật khẩu" class="col-sm-8" />
+                        <br>
+                        @* <p>Do you have an account then come back to login?<a asp-controller="Customer"
+                            asp-action="Login" style="color:blue">Login</a></p>
+                        *@
+                        @if (@ViewBag.result != null)
+                        {
+
+                            <p>@ViewBag.result</p>
+
+                        }
+                        <input type="submit" class="btn" value="Đăng ký" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
