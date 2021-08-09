@@ -156,37 +156,7 @@
                         </a>
                     </div>
                 </div>
-                @* <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTen">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen"
-                            style="background-color: #19232f">
-                            <i class="fas fa-book-reader"></i>
-                            <p>Giảng viên</p>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </h2>
-                    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
-                        data-bs-parent="#accordionExample" style="background-color: rgb(73,96,123)">
-                        <a asp-controller="Admin" asp-action="ViewTeachers" style="color: white">
-                            <div class="accordion-body">
-
-                                <i class="fas fa-book-reader"></i>
-                                Danh sách
-                            </div>
-                        </a>
-                    </div>
-                    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
-                        data-bs-parent="#accordionExample" style="background-color: rgb(73,96,123)">
-                        <a asp-controller="Admin" asp-action="AddTeacher" style="color: white">
-                            <div class="accordion-body">
-
-                                <i class="fas fa-book-reader"></i>
-                                Thêm giảng viên
-                            </div>
-                        </a>
-                    </div>
-                </div> *@
+              
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -245,13 +215,13 @@
                             data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"
                             style="background-color: #19232f; color:white;">
                             <i class="fas fa-file-invoice-dollar"></i>
-                            <p>Đăng kí học</p>@{
+                            <p>Đăng kí học</p>@{ using(var system = new CourseTeachCookContext()){
                                 Order order = new Order();
-                                if (order.GetListOrdersProcessing() != null)
+                                if (system.Orders.Where(o => (o.OrderStatus == -1) || (o.OrderStatus == 0)).ToList().Count() > 0)
                                 {
-                                    <span style="color: red;" class="notify">@(order.GetListOrdersProcessing().Count())</span>
+                                    <span style="color: red;" class="notify">@(system.Orders.Where(o => (o.OrderStatus == -1) || (o.OrderStatus == 0)).ToList().Count())</span>
                                 }
-                            }
+                            }}
                             <i class="fas fa-chevron-down"></i>
                         </button>
                     </h2>
@@ -262,13 +232,13 @@
 
                                 <i class="fas fa-file-invoice"></i>
                                 Đang chờ xử lí
-                                @{
-                                    if (order.GetListOrdersProcessing() != null)
+                                @{ using (var system = new CourseTeachCookContext()){
+                                    if (system.Orders.Where(o => (o.OrderStatus == -1) || (o.OrderStatus == 0)).ToList().Count() > 0)
                                     {
                                         <span style="color: red;"
-                                        class="notify">@(order.GetListOrdersProcessing().Count())</span>
+                                        class="notify">@(system.Orders.Where(o => (o.OrderStatus == -1) || (o.OrderStatus == 0)).ToList().Count())</span>
                                     }
-                                }
+                                }}
                             </div>
                         </a>
                     </div>
