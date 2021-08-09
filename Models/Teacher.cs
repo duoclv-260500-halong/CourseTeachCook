@@ -16,12 +16,8 @@ namespace CourseTeachCook.Models
             using (var connect = new CourseTeachCookContext())
             {
                 List<Teacher> danhsachgiangvien = new List<Teacher>();
-
                 danhsachgiangvien = connect.Teachers.Take(12).ToList();
-
                 return danhsachgiangvien;
-
-
             }
         }
     }
