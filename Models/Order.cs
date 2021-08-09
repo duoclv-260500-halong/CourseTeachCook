@@ -18,32 +18,7 @@ namespace CourseTeachCook.Models
 
         public virtual Customer Customer { get; set; }
         public virtual Staff Staff { get; set; }
-        public List<Order> GetListOrdersProcessing()
-        {
-            using (var system = new CourseTeachCookContext())
-            {
-                List<Order> orders = system.Orders.Where(o => (o.OrderStatus == -1) || (o.OrderStatus == 0)).ToList();
-                return orders;
-            }
-        }
-
-        public List<Order> GetListOrdersDone()
-        {
-            using (var system = new CourseTeachCookContext())
-            {
-                List<Order> orders = system.Orders.Where(o => o.OrderStatus == 1).ToList();
-                return orders;
-            }
-        }
-        public List<Order> GetListOrdersCanceled()
-        {
-            using (var system = new CourseTeachCookContext())
-            {
-                List<Order> orders = system.Orders.Where(o => o.OrderStatus == -2).ToList();
-                return orders;
-            }
-        }
-
+    
         public Order GetOrder(int id)
         {
             using (var system = new CourseTeachCookContext())
@@ -52,7 +27,6 @@ namespace CourseTeachCook.Models
                 return order;
             }
         }
-
         public List<Orderdetail> GetOrderDetails(int orderID)
         {
             using (var system = new CourseTeachCookContext())
@@ -138,7 +112,6 @@ namespace CourseTeachCook.Models
                 }
                 catch (System.Exception)
                 {
-
                     throw;
                 }
             }
@@ -147,7 +120,6 @@ namespace CourseTeachCook.Models
         {
             using (var connect = new CourseTeachCookContext())
             {
-
                 Order order = new Order();
                 order.OrderStatus = -1;
                 order.OrderDate = DateTime.Now;
@@ -155,7 +127,6 @@ namespace CourseTeachCook.Models
                 order.CustomerId = cus_id;
                 order.RequireInformation = requireInformation;
                 connect.Orders.Add(order);
-
                 if (connect.SaveChanges() >= 1)
                 {
                     Order order1 = new Order();
@@ -176,7 +147,6 @@ namespace CourseTeachCook.Models
                 {
                     return false;
                 }
-
             }
         }
         public List<Order> GetOrderByTimeRange(DateTime firstDate, DateTime secondDate)
@@ -188,7 +158,6 @@ namespace CourseTeachCook.Models
                                                     .Where(o => o.OrderStatus == 1).ToList();
                 return orders;
             }
-
         }
         public List<Order> GetOrdersProcessing(int index, int pageSize)
         {
@@ -198,7 +167,6 @@ namespace CourseTeachCook.Models
                                                     .Skip(index * pageSize).Take(pageSize).ToList();
                 return orders;
             }
-
         }
         public List<Order> GetOrdersDone(int index, int pageSize)
         {
@@ -207,7 +175,6 @@ namespace CourseTeachCook.Models
                 List<Order> orders = system.Orders.Where(o => o.OrderStatus == 1).Skip(index * pageSize).Take(pageSize).ToList();
                 return orders;
             }
-
         }
         public List<Order> GetOrdersCanceled(int index, int pageSize)
         {
