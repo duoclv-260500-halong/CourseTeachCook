@@ -81,7 +81,7 @@
             Course course1 = new Course();
             List<Course> courses = new List<Course>();
             courses = ViewBag.courses;
-            <h4>Bạn có: @course1.ViewListCourses().Count() khóa học</h4>
+            <h4>Bạn có: @system.Courses.ToList().Count() khóa học</h4>
             <table id="view-course">
                 <tr>
                     <th class="col-lg-2">KHÓA HỌC</th>
@@ -91,9 +91,6 @@
                     <th class="col-lg-2">GIÁ NGUYÊN LIỆU</th>
                     <th class="col-lg-1">MỞ DẠY</th>
                 </tr>
-
-
-
                 @foreach (Course course in courses)
                 {
                     Category category = system.Categories.Find(course.CategoryId);
