@@ -12,7 +12,6 @@
 {
     Customer customer = ViewBag.customer;
     List<Order> orders = connect.Orders.Where(o=>o.CustomerId == customer.CustomerId).ToList();
-
     <div class="main_child">
         <div class="container">
             <div class="row">
