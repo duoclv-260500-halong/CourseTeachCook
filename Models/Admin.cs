@@ -32,39 +32,7 @@ namespace CourseTeachCook.Models
 
             }
         }
-        public List<Staff> SearchStaffs(string type, string key)
-        {
-            using (var system = new CourseTeachCookContext())
-            {
-                List<Staff> staffs = null;
-                if (type.Equals("Họ tên"))
-                {
-                    staffs = system.Staffs.Where(s => s.StaffName.Contains(key)).ToList();
-                }
-                else if (type.Equals("ID"))
-                {
-                    staffs = system.Staffs.Where(s => s.StaffId.Equals(int.Parse(key))).ToList();
-                }
-                else if (type.Equals("Vị trí"))
-                {
-                    staffs = system.Staffs.Where(s => s.JobPosition.Contains(key)).ToList();
-                }
-                else if (type.Equals("Email"))
-                {
-                    staffs = system.Staffs.Where(s => s.Email.Contains(key)).ToList();
-                }
-                else if (type.Equals("Điện thoại"))
-                {
-                    staffs = system.Staffs.Where(s => s.PhoneNumber.Contains(key)).ToList();
-                }
-                else if (type.Equals("Trạng thái"))
-                {
-                    staffs = system.Staffs.Where(s => s.Status.Equals(int.Parse(key))).ToList();
-                }
-                return staffs;
-            }
-
-        }
+        
         public bool ChangeName(int id, string name)
         {
             if (name == null)
