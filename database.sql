@@ -158,7 +158,7 @@ insert into imagesCourse(imageSource,courseID) values
 ('pha-che-chuyen-nghiep1.jpg',23),
 ('pha-che-do-an1.jpg',24),
 
-('hoc-cam-hoa-voi-nghe-nhan.jpg1.jpg',25),
+('hoc-cam-hoa-voi-nghe-nhan.jpg',25),
 ('nghethuattaohinh.jpg',26),
 ('cat-tia-rau-cu-qua1.jpg',27),
 
