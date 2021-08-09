@@ -117,12 +117,12 @@
                                 {
                                     if (i == ViewBag.index)
                                     {
-                                        <li class="page-item active"><a class="page-link" asp-controller="Admin"
+                                        <li class="page-item active"><a class="page-link" asp-controller="Customer"
                                     asp-action="ViewCustomers" asp-route-index="@i">@(i+1)</a></li>
                                     }
                                     else
                                     {
-                                        <li class="page-item"><a class="page-link" asp-controller="Admin" asp-action="ViewCustomers"
+                                        <li class="page-item"><a class="page-link" asp-controller="Customer" asp-action="ViewCustomers"
                                     asp-route-index="@i">@(i+1)</a></li>
                                     }
                                 }
