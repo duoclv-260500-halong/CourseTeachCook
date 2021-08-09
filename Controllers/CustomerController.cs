@@ -23,39 +23,6 @@ namespace CourseTeachCook.Controllers
 
         public IActionResult Index()
         {
-            Course khoahoc = new Course();
-
-            List<Course> listhot = khoahoc.GetListKhoahochot();
-            ViewBag.listhot = listhot;
-
-            List<Course> danhsachkh = khoahoc.GetListNghebep();
-            ViewBag.danhsachkhoahoc = danhsachkh;
-
-            List<Course> danhsachgd = khoahoc.GetListGiadinh();
-            ViewBag.danhsachgiadinh = danhsachgd;
-
-            List<Course> danhsachchild = khoahoc.GetListTrevaobep();
-            ViewBag.danhsachtre = danhsachchild;
-
-            List<Course> danhsachcake = khoahoc.GetListCake();
-            ViewBag.danhsachcake = danhsachcake;
-
-            List<Course> danhsachban = khoahoc.GetListBartender();
-            ViewBag.danhsachban = danhsachban;
-
-            List<Course> danhsacharts = khoahoc.GetListvisual_arts();
-            ViewBag.danhsacharts = danhsacharts;
-
-            List<Course> danhsachworld = khoahoc.GetListworld_cuisine();
-            ViewBag.danhsachworld = danhsachworld;
-
-            Teacher giangvien = new Teacher();
-
-            List<Teacher> danhsachgiangvien = giangvien.GetListTeacher();
-            ViewBag.danhsachgiangvien = danhsachgiangvien;
-
-
-
             return View();
         }
 
@@ -65,18 +32,12 @@ namespace CourseTeachCook.Controllers
             return View();
         }
 
-
-
-
-
-
-        public IActionResult Infor(int id)
+        public IActionResult ViewInfor(int id)
         {
             Customer cus = new Customer();
 
             if (HttpContext.Session.GetString("CustomerName") == null)
             {
-
             }
             else
             {
@@ -87,11 +48,6 @@ namespace CourseTeachCook.Controllers
 
             return View();
         }
-
-
-
-
-
 
 
         [HttpPost]
@@ -222,8 +178,6 @@ namespace CourseTeachCook.Controllers
         }
         public IActionResult Confirmation(int id, int id1, int quantity)
         {
-
-
             Contactsinformation contact = new Contactsinformation();
             ViewBag.contact = contact.GetContact();
 
@@ -291,8 +245,5 @@ namespace CourseTeachCook.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
-
     }
 }
