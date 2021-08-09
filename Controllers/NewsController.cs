@@ -13,13 +13,10 @@ namespace CourseTeachCook.Controllers
 {
     public class NewsController : Controller
     {
-         public IActionResult ViewNews()
+        public IActionResult ViewNews()
         {
             return View();
         }
-        public IActionResult Newdetails()
-        {
-            return View();
-        }
+        
     }
 }
