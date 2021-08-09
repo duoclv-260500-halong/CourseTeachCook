@@ -13,10 +13,8 @@ namespace CourseTeachCook.Models
         public int CoursePrice { get; set; }
         public int MaterialPrice { get; set; }
         public int Quantity { get; set; }
-
         public virtual Course Course { get; set; }
         public virtual Order Order { get; set; }
-
         public Orderdetail GetDetails(int id)
         {
             using (var system = new CourseTeachCookContext())
@@ -80,7 +78,6 @@ namespace CourseTeachCook.Models
                 {
                     return false;
                 }
-
             }
         }
     }
