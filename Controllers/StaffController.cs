@@ -35,8 +35,8 @@ namespace CourseTeachCook.Controllers
             {
                 return RedirectToAction(controllerName: "Admin", actionName: "LoginAdmin");
             }
-            Admin admin = new Admin();
-            List<Staff> staffs = admin.SearchStaffs(type, key);
+            Staff staff = new Staff();
+            List<Staff> staffs = staff.SearchStaffs(type, key);
             ViewBag.SearchStaffs = staffs;
             ViewBag.NumberOfResult = staffs.Count();
             return View();
