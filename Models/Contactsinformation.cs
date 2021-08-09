@@ -34,7 +34,7 @@ namespace CourseTeachCook.Models
             }
 
         }
-          public Contactsinformation GetContact()
+        public Contactsinformation GetContact()
         {
             using (var system = new CourseTeachCookContext())
             {
