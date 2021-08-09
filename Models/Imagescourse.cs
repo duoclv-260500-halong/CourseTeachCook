@@ -16,11 +16,8 @@ namespace CourseTeachCook.Models
         {
             using (var connect = new CourseTeachCookContext())
             {
-                List<Imagescourse> image = new List<Imagescourse>();
-
-                image = connect.Imagescourses.Where(I => I.CourseId==id).ToList();
-
-                return image;
+                List<Imagescourse> images = connect.Imagescourses.Where(I => I.CourseId==id).ToList();
+                return images;
             }
         }
     }
