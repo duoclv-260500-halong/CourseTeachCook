@@ -95,12 +95,6 @@ namespace CourseTeachCook.Controllers
         }
 
 
-
-
-
-
-
-
         public IActionResult LoginAdmin()
         {
             return View();
@@ -139,7 +133,6 @@ namespace CourseTeachCook.Controllers
 
         public IActionResult Logout()
         {
-
             HttpContext.Session.Remove("adminName");
             return RedirectToAction("LoginAdmin");
         }
@@ -225,12 +218,5 @@ namespace CourseTeachCook.Controllers
             ViewData["result"] = result;
             return View();
         }
-
-      
-        
-        
-        
-       
-        
     }
 }
