@@ -232,7 +232,7 @@ namespace CourseTeachCook.Controllers
         {
             Course course = new Course();
             ViewBag.course = course.GetCourseDetails(id);
-            return View();
+            return View();  
         }
         [HttpPost]
         public IActionResult ChangeAddressLearn(int id, string addressLearn)
@@ -316,7 +316,7 @@ namespace CourseTeachCook.Controllers
             return View();
         }
         public IActionResult ViewCourseDetails(int id)
-        {
+        {   
             Course course = new Course();
             ViewBag.course = course.GetCourseDetails(id);
             return View();
@@ -402,7 +402,7 @@ namespace CourseTeachCook.Controllers
 
             Category danhmuc = new Category();
 
-            ViewBag.danhmuc = danhmuc.ViewCategory(id);
+            ViewBag.danhmuc = danhmuc.GetCategory(id);
             List<Course> xemtatca = khoahoc.GetAllCourse(id);
             ViewBag.ViewAllCourse = xemtatca;
 
