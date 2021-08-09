@@ -23,10 +23,7 @@ namespace CourseTeachCook.Models
         public virtual DbSet<Contactsinformation> Contactsinformations { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Imagelogo> Imagelogos { get; set; }
         public virtual DbSet<Imagescourse> Imagescourses { get; set; }
-        public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<Newsdetail> Newsdetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Orderdetail> Orderdetails { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
@@ -36,7 +33,7 @@ namespace CourseTeachCook.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("server=localhost;user id=DuocVanLe;password=Donationminimum100$;port=3306;database=CourseTeachCook;Persist Security Info=True;Character Set=UTF8");
+                optionsBuilder.UseMySQL("server=localhost;user id=root;password=Donationminimum100$;port=3306;database=CourseTeachCook;Persist Security Info=True;Character Set=UTF8");
             }
         }
 
@@ -275,20 +272,7 @@ namespace CourseTeachCook.Models
                 entity.Property(e => e.TimeRegister).HasColumnName("timeRegister");
             });
 
-            modelBuilder.Entity<Imagelogo>(entity =>
-            {
-                entity.HasKey(e => e.ImageId)
-                    .HasName("PRIMARY");
-
-                entity.ToTable("imageLogo");
-
-                entity.Property(e => e.ImageId).HasColumnName("imageID");
-
-                entity.Property(e => e.ImageSource)
-                    .IsRequired()
-                    .HasMaxLength(200)
-                    .HasColumnName("imageSource");
-            });
+            
 
             modelBuilder.Entity<Imagescourse>(entity =>
             {
@@ -313,51 +297,6 @@ namespace CourseTeachCook.Models
                     .HasForeignKey(d => d.CourseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("imagescourse_ibfk_1");
-            });
-
-            modelBuilder.Entity<News>(entity =>
-            {
-                entity.ToTable("news");
-
-                entity.Property(e => e.NewsId).HasColumnName("newsID");
-
-                entity.Property(e => e.FeatureImage)
-                    .IsRequired()
-                    .HasMaxLength(200)
-                    .HasColumnName("featureImage");
-
-                entity.Property(e => e.NewsDate).HasColumnName("newsDate");
-
-                entity.Property(e => e.NewsDescription)
-                    .IsRequired()
-                    .HasMaxLength(1000)
-                    .HasColumnName("newsDescription");
-
-                entity.Property(e => e.NewsTitle)
-                    .IsRequired()
-                    .HasMaxLength(200)
-                    .HasColumnName("newsTitle");
-            });
-
-            modelBuilder.Entity<Newsdetail>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("newsdetails");
-
-                entity.Property(e => e.NewsDescription)
-                    .HasMaxLength(1000)
-                    .HasColumnName("newsDescription");
-
-                entity.Property(e => e.NewsId).HasColumnName("newsID");
-
-                entity.Property(e => e.NewsImage)
-                    .HasMaxLength(200)
-                    .HasColumnName("newsImage");
-
-                entity.Property(e => e.NewsTitle)
-                    .HasMaxLength(200)
-                    .HasColumnName("newsTitle");
             });
 
             modelBuilder.Entity<Order>(entity =>
