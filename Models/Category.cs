@@ -24,6 +24,7 @@ namespace CourseTeachCook.Models
                 return category;
             }
         }
+        
         public List<Category> GetCategories()
         {
             using (var system = new CourseTeachCookContext())
@@ -31,16 +32,6 @@ namespace CourseTeachCook.Models
                 List<Category> categories = new List<Category>();
                 categories = system.Categories.Take(7).ToList();
                 return categories;
-            }
-        }
-        public Category ViewCategory(int id){
-            using (var connect = new CourseTeachCookContext())
-            {
-                Category category = new Category();
-
-                category = connect.Categories.Find(id);
-
-                return category;
             }
         }
         
