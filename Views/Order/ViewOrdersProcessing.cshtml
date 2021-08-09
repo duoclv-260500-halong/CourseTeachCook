@@ -41,7 +41,7 @@
 {
     Order order1 = new Order();
     List<Order> orders = ViewBag.orders;
-    double sum = Math.Ceiling(order1.GetListOrdersProcessing().Count()/(double)ViewBag.pageSize);
+    double sum = Math.Ceiling(system.Orders.Where(o => (o.OrderStatus == -1) || (o.OrderStatus == 0)).ToList().Count()/(double)ViewBag.pageSize);
     <div class="right-body col-lg-10">
         <div class="title-body">
             <div class="row">
