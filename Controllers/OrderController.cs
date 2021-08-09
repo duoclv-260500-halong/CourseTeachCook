@@ -113,6 +113,28 @@ namespace CourseTeachCook.Controllers
         }
         public IActionResult ViewOrderDetailsCustomer(int id, int id1)
         {
+            using (var connect = new CourseTeachCookContext())
+            {
+                int customerId = Int32.Parse(HttpContext.Session.GetString("CustomerId"));
+                List<Order> orders = connect.Orders.Where(o => o.CustomerId == customerId).ToList();
+                bool result = false;
+                foreach (Order order1 in orders)
+                {
+                    if (id == order1.OrderId)
+                    {
+                        result = true;
+                    }
+                }
+                if(id1 != customerId){
+                    result = false;
+                }
+                if (result == false)
+                {
+                    return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+                }
+                
+            }
+
             Customer customer = new Customer();
             ViewBag.customer = customer.GetCustomer(id1);
             Order order = new Order();
@@ -126,7 +148,7 @@ namespace CourseTeachCook.Controllers
                 return RedirectToAction(controllerName: "Admin", actionName: "LoginAdmin");
             }
             Order order = new Order();
-            ViewBag.result = order.AcceptOrder(id);
+            ViewBag.result = order.AcceptOrder(id); 
             return RedirectToAction("ViewOrderDetails", "Order", new { @id = id });
         }
         public IActionResult CancelOrder(int id)
@@ -192,25 +214,7 @@ namespace CourseTeachCook.Controllers
             ViewBag.customer = customer.GetCustomer(id);
             return View();
         }
-        
-        // public IActionResult CancelOrder(int id, int status)
-        // {
 
-        //     Customer customer = new Customer();
-        //     ViewBag.customer = customer.GetCustomer(Int32.Parse(HttpContext.Session.GetString("CustomerId")));
-        //     Order order = new Order();
-        //     ViewBag.order = order.GetOrder(id);
-        //     if (status == 1)
-        //     {
-        //         ViewBag.result = "Hủy khóa học thành công";
-        //     }
-        //     else if (status == -1)
-        //     {
-        //         ViewBag.result = "Hủy khóa học thất bại, vui lòng thử lại sau";
-        //     }
-
-        //     return View();
-        // }
         [HttpPost]
         public IActionResult SubmitReason(int id, string reasonCancel)
         {
@@ -225,7 +229,6 @@ namespace CourseTeachCook.Controllers
                 ViewBag.result = "Hủy khóa học thất bại, vui lòng thử lại sau";
                 return RedirectToAction("CancelOrder", new { id = id, status = -1 });
             }
-
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
