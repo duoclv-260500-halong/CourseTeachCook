@@ -31,16 +31,7 @@ namespace CourseTeachCook.Models
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Imagescourse> Imagescourses { get; set; }
-        public List<Course> ViewListCourses()
-        {
-            using (var system = new CourseTeachCookContext())
-            {
-                List<Course> courses = new List<Course>();
-                courses = system.Courses.OrderByDescending(c => c.CourseId).ToList();
-                return courses;
-            }
-        }
-
+       
         public bool AddCourse(int categoryID, string courseName, string courseDescription, string imageSource,
                             int coursePrice, int materialPrice, string numberOfStudent,
                             int numberOfSessions, int numberOfDishs, int numberOfHours,
@@ -83,7 +74,6 @@ namespace CourseTeachCook.Models
 
             }
         }
-
         public List<Course> GetAllCourse(int id)
         {
             using (var connect = new CourseTeachCookContext())
@@ -106,102 +96,11 @@ namespace CourseTeachCook.Models
                 return danhsachkhoahochot;
             }
         }
-
-        public List<Course> GetListNghebep()
-        {
-            using (var connect = new CourseTeachCookContext())
-            {
-                List<Course> danhsachkhoahoc = new List<Course>();
-
-                danhsachkhoahoc = connect.Courses.Where(C => C.CategoryId == 1).Take(6).ToList();
-
-                return danhsachkhoahoc;
-
-
-            }
-        }
-
-
-        public List<Course> GetListGiadinh()
-        {
-            using (var connect = new CourseTeachCookContext())
-            {
-                List<Course> danhsachgiadinh = new List<Course>();
-
-                danhsachgiadinh = connect.Courses.Where(C => C.CategoryId == 2).Take(6).ToList();
-
-                return danhsachgiadinh;
-
-
-            }
-        }
-
-        public List<Course> GetListTrevaobep()
-        {
-            using (var connect = new CourseTeachCookContext())
-            {
-                List<Course> danhsachtre = new List<Course>();
-
-                danhsachtre = connect.Courses.Where(C => C.CategoryId == 3).Take(6).ToList();
-
-                return danhsachtre;
-
-
-            }
-        }
-        public List<Course> GetListCake()
-        {
-            using (var connect = new CourseTeachCookContext())
-            {
-                List<Course> danhsachcake = new List<Course>();
-
-                danhsachcake = connect.Courses.Where(C => C.CategoryId == 4).Take(6).ToList();
-
-                return danhsachcake;
-
-
-            }
-        }
-
-        public List<Course> GetListBartender()
-        {
-            using (var connect = new CourseTeachCookContext())
-            {
-                List<Course> danhsachban = new List<Course>();
-
-                danhsachban = connect.Courses.Where(C => C.CategoryId == 5).Take(6).ToList();
-
-                return danhsachban;
-
-
-            }
-        }
-
-        public List<Course> GetListvisual_arts()
-        {
-            using (var connect = new CourseTeachCookContext())
-            {
-                List<Course> danhsacharts = new List<Course>();
-
-                danhsacharts = connect.Courses.Where(C => C.CategoryId == 6).Take(6).ToList();
-
-                return danhsacharts;
-
-
-            }
-        }
-
-        public List<Course> GetListworld_cuisine()
-        {
-            using (var connect = new CourseTeachCookContext())
-            {
-                List<Course> danhsachworld = new List<Course>();
-
-                danhsachworld = connect.Courses.Where(C => C.CategoryId == 7).Take(6).ToList();
-
-                return danhsachworld;
-
-
+        public List<Course> GetCourseByCategory(int cateId){
+            using (var connect = new CourseTeachCookContext()){
+                List<Course> listCourse = new List<Course>();
+                listCourse = connect.Courses.Where(c => c.CategoryId == cateId).Take(6).ToList();
+                return listCourse;
             }
         }
         public Course GetCourseDetails(int id)
