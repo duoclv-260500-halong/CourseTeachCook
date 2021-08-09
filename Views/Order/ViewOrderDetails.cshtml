@@ -62,11 +62,11 @@
 
         @if (@order.StaffId == null)
         {
-          <p class="head-of-order col-lg-9">Mã nhân viên: đơn hàng này chưa được chấp nhận bởi nhân viên nào</p>
+          <p class="head-of-order col-lg-9">Nhân viên xử lí: Admin</p>
         }
         else
         {
-          <p class="head-of-order col-lg-9">Mã nhân viên: @order.StaffId - @system.Staffs.Find(order.StaffId).StaffName
+          <p class="head-of-order col-lg-9">Nhân viên xử lí: Admin
           </p>
         }
         @if (@order.OrderStatus == -1)
