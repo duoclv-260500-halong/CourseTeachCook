@@ -15844,6 +15844,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\ViewInfor.cshtml",
+      "TargetPath": "Views\\Customer\\ViewInfor.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Admin\\LoginAdmin.cshtml",
       "TargetPath": "Views\\Admin\\LoginAdmin.cshtml",
       "FileKind": "mvc"
@@ -15899,11 +15904,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\Infor.cshtml",
-      "TargetPath": "Views\\Customer\\Infor.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\Buy.cshtml",
       "TargetPath": "Views\\Customer\\Buy.cshtml",
       "FileKind": "mvc"
@@ -15916,11 +15916,6 @@
     {
       "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Course\\SearchCourse.cshtml",
       "TargetPath": "Views\\Course\\SearchCourse.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\Contactsinformation.cshtml",
-      "TargetPath": "Views\\Customer\\Contactsinformation.cshtml",
       "FileKind": "mvc"
     },
     {
