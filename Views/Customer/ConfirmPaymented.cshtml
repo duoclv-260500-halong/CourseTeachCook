@@ -1,0 +1,41 @@
+@using CourseTeachCook.Models
+@using System.Globalization
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutCustomer";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/confir.css?v=0">
+</head>
+
+@using (var connect = new CourseTeachCookContext())
+{
+    int customerID = ViewBag.customerID;
+    int orderID = ViewBag.orderID;
+    Contactsinformation contact = new Contactsinformation();
+    contact = contact.GetContact();
+    Customer customer = connect.Customers.Find(customerID);
+    Orderdetail orderdetail = connect.Orderdetails.FirstOrDefault(c=>c.OrderId == orderID);
+    Course course = connect.Courses.Find(orderdetail.CourseId);
+    <div class="main_child main_success mb50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 bore-right bg_fff ">
+                    <h1 class="title"> Thanh toán thành công </h1>
+                    <div class="formatTextStandard">
+                        <p><strong>Thông báo thanh toán thành công!</strong></p>
+                        <p>Chúc mừng @customer.CustomerName (@customer.PhoneNumber) đã thanh toán khóa học thành công</p>
+                        <p>Khoá học: <strong>@course.CourseName</strong> </p>
+                        <p>Thời gian khai giảng: <strong>@course.DateOfOpening.ToString("dd/MM/yyyy")</strong> </p>
+                        <p> Vui lòng tới văn phòng tại tầng 5 - 142 Lê Duẩn, Hà Nội để tham gia khai giảng khóa học.</p>
+                        <p> Vui lòng liên hệ nếu bạn cần hỗ trợ và giải đáp thắc mắc.</p>
+                        <p>Hotline: @contact.PhoneNumber </p>
+                        <p>Email: <a href="" > info@ezcooking.vn</a></p>
+                        <p>Trân trọng cảm ơn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
