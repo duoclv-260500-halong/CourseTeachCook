@@ -46,8 +46,8 @@ namespace CourseTeachCook.Controllers
                 firstDate1 = DateTime.Parse(firstDate);
                 secondDate1 = DateTime.Parse(secondDate);
             }
-            ViewBag.firstDate = firstDate1.ToString("dd/MM/yyyy");
-            ViewBag.secondDate = secondDate1.ToString("dd/MM/yyyy");
+            ViewBag.firstDate = firstDate1.ToString("MM/dd/yyyy");
+            ViewBag.secondDate = secondDate1.ToString("MM/dd/yyyy");
             Order order = new Order();
             if (firstDate1 > secondDate1)
             {
