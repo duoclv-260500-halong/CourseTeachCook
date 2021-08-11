@@ -182,8 +182,7 @@
           }
           @if (@order.OrderStatus == 0)
           {
-            <button class="col-lg-2 btn btn-primary" style="margin-left:40px; margin-right: 40px"><a asp-controller="Order" asp-action="Payment" asp-route-id="@order.OrderId">Thanh
-                toán</a></button>
+            <span class="col-lg-2" style="margin-left:40px; margin-right: 40px"></span>
             <button class="col-lg-2 btn btn-danger"><a asp-controller="Order" asp-action="CancelOrder"
             asp-route-id="@order.OrderId">Hủy</a></button>
           }
