@@ -18,6 +18,9 @@ namespace CourseTeachCook.Controllers
         public static string EncryptPassword(string password)
         {
             MD5 mD5 = MD5.Create();
+            if(password == null){
+                password = "";
+            }
             var passwordByte = Encoding.UTF8.GetBytes(password);
             var hash = mD5.ComputeHash(passwordByte);
             var stringhash = BitConverter.ToString(hash).Replace("-", string.Empty);
