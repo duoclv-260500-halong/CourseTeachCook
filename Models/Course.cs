@@ -60,6 +60,12 @@ namespace CourseTeachCook.Models
                 {
                     if (system.SaveChanges() >= 1)
                     {
+                        Course course1 = system.Courses.OrderByDescending(c => c.CourseId).FirstOrDefault();
+                        Imagescourse imagescourse = new Imagescourse();
+                        imagescourse.CourseId =  course1.CourseId;
+                        imagescourse.ImageSource = imageSource;
+                        system.Imagescourses.Add(imagescourse);
+                        system.SaveChanges();
                         return true;
                     }
                     else
@@ -92,7 +98,6 @@ namespace CourseTeachCook.Models
             {
                 List<Course> danhsachkhoahochot = new List<Course>();
                 danhsachkhoahochot = connect.Courses.OrderByDescending(C => C.CourseRates).Take(12).ToList();
-
                 return danhsachkhoahochot;
             }
         }
@@ -108,9 +113,7 @@ namespace CourseTeachCook.Models
             using (var system = new CourseTeachCookContext())
             {
                 Course course = system.Courses.Find(id);
-                
                 return course;
-
             }
         }
         public List<Course> SearchCourse(string key)
