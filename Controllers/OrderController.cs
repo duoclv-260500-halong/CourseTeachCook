@@ -35,7 +35,7 @@ namespace CourseTeachCook.Controllers
 
             ViewBag.customer = customer.GetCustomer(id1);
 
-            return RedirectToAction("Confirmation", "Customer", new { id = id, id1 = id1, quantity = quantity });
+            return RedirectToAction("ViewConfirmation", "Customer", new { id = id, id1 = id1, quantity = quantity });
 
         }
         public IActionResult PrintOrder(int id)
@@ -113,6 +113,10 @@ namespace CourseTeachCook.Controllers
         }
         public IActionResult ViewOrderDetailsCustomer(int id, int id1)
         {
+            if (HttpContext.Session.GetString("CustomerName") == null)
+            {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+            }
             using (var connect = new CourseTeachCookContext())
             {
                 int customerId = Int32.Parse(HttpContext.Session.GetString("CustomerId"));
@@ -200,13 +204,15 @@ namespace CourseTeachCook.Controllers
         }
         public IActionResult Payment(int id)
         {
-            if (HttpContext.Session.GetString("adminName") == null)
+            if (HttpContext.Session.GetString("CustomerName") == null)
             {
-                return RedirectToAction(controllerName: "Admin", actionName: "LoginAdmin");
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
             }
             Order order = new Order();
             ViewBag.result = order.Payment(id);
-            return RedirectToAction("ViewOrderDetails", "Order", new { @id = id });
+            int customerID = Int16.Parse(HttpContext.Session.GetString("CustomerId"));
+
+            return RedirectToAction("ConfirmPaymented", "Customer", new {orderID = id, customerID = customerID});
         }
         public IActionResult ViewOrders(int id)
         {
