@@ -86,7 +86,7 @@
             </div>
             <div class="title-body" style="margin-top: 10px; margin-bottom: 10px">
                 <div class="row">
-                    <h4>Doanh thu (@ViewBag.firstDate - @ViewBag.secondDate)</h4>
+                    <h4>Doanh thu (@firstDate.ToString("dd/MM/yyyy") - @secondDate.ToString("dd/MM/yyyy"))</h4>
 
                 </div>
                 <div class="row" style="color: white;">
@@ -161,7 +161,7 @@
                                 <td class="col-lg-2">@customer.Email</td>
                                 <td class="col-lg-3">@order.OrderDate.ToString("dd/MM/yyyy")</td>
                                 <td class="col-lg-2">@string.Format(new CultureInfo("vi-VN"),"{0:c}", total)</td>
-                                <td class="col-lg-2"><a asp-controller="Admin" asp-action="ViewOrderDetails"
+                                <td class="col-lg-2"><a asp-controller="Order" asp-action="ViewOrderDetails"
                             asp-route-id="@order.OrderId" style="color: white;"><i class="fas fa-eye"></i></a></td>
                             </tr>
                         }
