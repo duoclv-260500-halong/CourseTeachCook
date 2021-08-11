@@ -7,52 +7,25 @@
 <head>
     <link rel="stylesheet" href="~/css/course.css?v=4">
 </head>
-
 <div class="main_child">
-
-    @* <div class="banner"> <img src="https://daynauan.vn/isocms/templates/default/skin/images/banner_cat.jpg"
-        alt="Chuyên nghiệp"> </div> 
-    *@
 
     @using (var connect = new CourseTeachCookContext())
     {
         List<Course> khoahoc = new List<Course>();
-
         Category danhmuc = new Category();
-
         khoahoc = ViewBag.ViewAllCourse;
-
         danhmuc = ViewBag.danhmuc;
-        
         <div class="container">
             <div class="select_course">
                 
                 <ul class="infor_select">
                     <li class="item_select item_select_course">
                         <h1 style="font-size: 18px; margin:0;"> @danhmuc.CategoryName </h1>
-                        @* <div class="dropdown"> <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-expanded="false">
-                            <h1> Khoa hoc </h1>
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                            <li><a href="">Đào tạo nghề bếp</a></li>
-                            <li><a href="">Bếp gia đình</a></li>
-                            <li><a href="">Trẻ vào bếp</a></li>
-                            <li><a href="">Bánh ngọt - Kem - Chè</a></li>
-                            <li><a href="">Học pha chế</a></li>
-                            <li><a href="">Nghệ thuật tạo hình</a></li>
-                            <li><a href="">Ẩm thực thế giới</a></li>
-                            </ul>
-                            </div> *@
                     </li>
                 </ul>
-                
             </div>
-
             <div class="list_clnew list_clnew1 " id="list_course_cat">
                 <div class="row">
-
                     @foreach (Course khoahocs in khoahoc)
                     {
                         <div class="col-xs-12 col-sm-6 col-md-4 box">
@@ -80,8 +53,6 @@
                                     </label>
                                     <span class="color_333 price"> Giá: <span class="color_b22b25" style="float: none">
                                             @string.Format(new CultureInfo("vi-VN"),"{0:c}",khoahocs.CoursePrice)  
-                                            @* <span class="unit color_b22b25"> đ</span> *@
-                                            </span>
                                     </span>
                                 </div>
                                 <div class="bot_boxli" style="display: none"> <a href="" class="mr_boxli">Chi tiết</a>
@@ -93,11 +64,6 @@
                         </div>
                     </div>
                     }
-
-                    
-
-
-
                 </div>
             </div>
 
