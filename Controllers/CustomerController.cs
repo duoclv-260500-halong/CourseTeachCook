@@ -38,6 +38,7 @@ namespace CourseTeachCook.Controllers
 
             if (HttpContext.Session.GetString("CustomerName") == null)
             {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
             }
             else
             {
@@ -83,6 +84,10 @@ namespace CourseTeachCook.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
+            if (password == null)
+            {
+                password = "";
+            }
             Customer cus = new Customer();
 
             cus = cus.Login(email, EncryptController.EncryptPassword(password));
@@ -120,7 +125,6 @@ namespace CourseTeachCook.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("CustomerName");
-
             HttpContext.Session.Remove("CustomerId");
             HttpContext.Session.Remove("Coursebuy");
             return RedirectToAction("Login");
@@ -156,7 +160,6 @@ namespace CourseTeachCook.Controllers
             }
 
             Course chitiet = new Course();
-
             Course chitietkhoahoc = chitiet.GetCourseDetails(id);
             ViewBag.chitietkhoahoc = chitietkhoahoc;
             return View();
@@ -172,17 +175,32 @@ namespace CourseTeachCook.Controllers
         }
         public IActionResult ViewOrders(int id)
         {
+            if (HttpContext.Session.GetString("CustomerName") == null)
+            {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+            }
             Customer customer = new Customer();
             ViewBag.customer = customer.GetCustomer(id);
             return View();
         }
-        public IActionResult Confirmation(int id, int id1, int quantity)
+        public IActionResult ConfirmPaymented(int orderID, int customerID){
+            if (HttpContext.Session.GetString("CustomerName") == null)
+            {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+            }
+            ViewBag.orderID = orderID;
+            ViewBag.customerID = customerID;
+            return View();
+        }
+        public IActionResult ViewConfirmation(int id, int id1, int quantity)
         {
+            if (HttpContext.Session.GetString("CustomerName") == null)
+            {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+            }
             Contactsinformation contact = new Contactsinformation();
             ViewBag.contact = contact.GetContact();
-
             Customer customer = new Customer();
-
             ViewBag.customer = customer.GetCustomer(id1);
             Course course = new Course();
             ViewBag.course = course.GetCourseDetails(id);
@@ -192,6 +210,10 @@ namespace CourseTeachCook.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangeInfor(int id, string name, string phoneNumber, string address, IFormFile imageUser)
         {
+            if (HttpContext.Session.GetString("CustomerName") == null)
+            {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+            }
             Customer customer = new Customer();
             if (imageUser != null)
             {
@@ -205,7 +227,7 @@ namespace CourseTeachCook.Controllers
                 //return Content(Path.GetExtension(file.FileName).ToLower());
                 string filePath = "wwwroot/Image/ImageDesign/UserImage";
                 string fileName = imageUser.FileName.Replace(Path.GetExtension(imageUser.FileName), "") + ".png";
-                var fileNameWithPath = string.Concat(filePath, "\\", fileName);
+                var fileNameWithPath = string.Concat(filePath, "/", fileName);
 
                 using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
                 {
@@ -215,11 +237,14 @@ namespace CourseTeachCook.Controllers
             }
             ViewBag.customer = customer.ChangeInfor(id, name, phoneNumber, address, null);
             HttpContext.Session.SetString("CustomerName", name);
-            return RedirectToAction("Infor", "Customer", new { id = id });
+            return RedirectToAction("ViewInfor", "Customer", new { id = id });
         }
         public IActionResult ChangePassword(int id)
         {
-
+            if (HttpContext.Session.GetString("CustomerName") == null)
+            {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+            }
             Customer customer = new Customer();
             ViewBag.customer = customer.GetCustomer(id);
             return View();
@@ -227,7 +252,10 @@ namespace CourseTeachCook.Controllers
         [HttpPost]
         public IActionResult ChangePassword(int id, string oldPassword, string newPassword)
         {
-
+            if (HttpContext.Session.GetString("CustomerName") == null)
+            {
+                return RedirectToAction(controllerName: "Customer", actionName: "Logout");
+            }
             Customer customer = new Customer();
             ViewBag.customer = customer.GetCustomer(id);
             ViewBag.result = customer.ChangePassword(id, EncryptController.EncryptPassword(oldPassword), EncryptController.EncryptPassword(newPassword));
@@ -235,6 +263,10 @@ namespace CourseTeachCook.Controllers
         }
         public IActionResult ChangeStatusCustomer(int id)
         {
+            if (HttpContext.Session.GetString("adminName") == null)
+            {
+                return RedirectToAction(controllerName: "Admin", actionName: "LoginAdmin");
+            }
             Customer customer = new Customer();
             customer.ChangeStatus(id);
             return RedirectToAction("ViewCustomers", "Customer");
