@@ -15644,11 +15644,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\Confirmation.cshtml",
-      "TargetPath": "Views\\Customer\\Confirmation.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Category\\ViewCategories.cshtml",
       "TargetPath": "Views\\Category\\ViewCategories.cshtml",
       "FileKind": "mvc"
@@ -15701,6 +15696,11 @@
     {
       "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Course\\ChangeNumberOfDishs.cshtml",
       "TargetPath": "Views\\Course\\ChangeNumberOfDishs.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\ViewConfirmation.cshtml",
+      "TargetPath": "Views\\Customer\\ViewConfirmation.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15906,6 +15906,11 @@
     {
       "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\Buy.cshtml",
       "TargetPath": "Views\\Customer\\Buy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Administrator\\OneDrive\\Máy tính\\CourseTeachCook\\Views\\Customer\\ConfirmPaymented.cshtml",
+      "TargetPath": "Views\\Customer\\ConfirmPaymented.cshtml",
       "FileKind": "mvc"
     },
     {

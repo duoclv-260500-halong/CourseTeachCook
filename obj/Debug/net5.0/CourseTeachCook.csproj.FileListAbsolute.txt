@@ -298,11 +298,8 @@ C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razo
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Course\ViewCourses.cshtml.g.cs
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Buy.cshtml.g.cs
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\ChangePassword.cshtml.g.cs
-C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Confirmation.cshtml.g.cs
-C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Contactsinformation.cshtml.g.cs
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\GetCourseCus.cshtml.g.cs
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Index.cshtml.g.cs
-C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Infor.cshtml.g.cs
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Login.cshtml.g.cs
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Privacy.cshtml.g.cs
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\Register.cshtml.g.cs
@@ -337,3 +334,6 @@ C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Cour
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\ref\CourseTeachCook.dll
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\CourseTeachCook.pdb
 C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\CourseTeachCook.genruntimeconfig.cache
+C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\ViewInfor.cshtml.g.cs
+C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\ViewConfirmation.cshtml.g.cs
+C:\Users\Administrator\OneDrive\Máy tính\CourseTeachCook\obj\Debug\net5.0\Razor\Views\Customer\ConfirmPaymented.cshtml.g.cs
