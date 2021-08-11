@@ -102,12 +102,11 @@ namespace CourseTeachCook.Models
                 }
                 catch (System.Exception)
                 {
-                    throw;
+                    return false;
                 }
 
             }
         }
-
         public Customer Login(string email, string password)
         {
             using (var connect = new CourseTeachCookContext())
@@ -137,8 +136,6 @@ namespace CourseTeachCook.Models
 
                     return null;
                 }
-
-
             }
         }
         public List<Customer> GetCustomers(int index, int pageSize)
