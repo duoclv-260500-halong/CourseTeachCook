@@ -18,19 +18,19 @@
                                 asp-action="Login" style="color:red;font-size:20px;text-decoration: none">Đăng Nhập</a></h2>
                     <div class="body_re">
                         
-                        <label for="name" class="col-sm-4">Họ và Tên</label>
+                        <label for="name" class="col-sm-4" style="margin-left: -26px; margin-right: 26px">Họ và Tên</label>
                         <input name="name" id="name" type="name" placeholder="Họ và Tên" class="col-sm-8" />
                         <br>
-                        <label for="phone" class="col-sm-4">Điện thoại</label>
+                        <label for="phone" class="col-sm-4" style="margin-left: -26px; margin-right: 26px">Điện thoại</label>
                         <input name="phone" id="phone" type="phone" placeholder="Điện thoại" class="col-sm-8" />
                         <br>
-                        <label for="address" class="col-sm-4">Địa chỉ</label>
+                        <label for="address" class="col-sm-4" style="margin-left: -36px; margin-right: 36px">Địa chỉ</label>
                         <input name="address" id="address" type="address" placeholder="Địa chỉ" class="col-sm-8" />
                         <br>
-                        <label for="email" class="col-sm-4">Email</label>
+                        <label for="email" class="col-sm-4" style="margin-left: -40px; margin-right: 40px">Email</label>
                         <input name="email" id="email" type="email" placeholder="Email" class="col-sm-8" />
                         <br>
-                        <label for="password" class="col-sm-4">Mật khẩu</label>
+                        <label for="password" class="col-sm-4" style="margin-left: -30px; margin-right: 30px">Mật khẩu</label>
                         <input name="password" id="password" type="password" placeholder="Mật khẩu" class="col-sm-8" />
                         <br>
                         <label for="Confirmpassword" class="col-sm-4">Xác nhận mật khẩu</label>
@@ -42,7 +42,7 @@
                         @if (@ViewBag.result != null)
                         {
 
-                            <p>@ViewBag.result</p>
+                            <p style="color: red;">@ViewBag.result</p>
 
                         }
                         <input type="submit" class="btn" value="Đăng ký" />
