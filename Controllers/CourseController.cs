@@ -299,9 +299,9 @@ namespace CourseTeachCook.Controllers
             }
             string filePath = "wwwroot/Image/ImageDesign/CourseImage";
             string fileName = imageCourse.FileName.Replace(Path.GetExtension(imageCourse.FileName), "") + ".png";
-            var fileNameWithPath = string.Concat(filePath, "\\", fileName);
+            var fileNameWithPath = string.Concat(filePath, "/", fileName);
 
-            var fileNameWithPath1 = string.Concat(filePath, "\\", course.FeatureImage);
+            var fileNameWithPath1 = string.Concat(filePath, "/", course.FeatureImage);
             System.IO.File.Delete(fileNameWithPath1);
             bool result = course.ChangeImage(id, fileName);
             if (result)
@@ -332,7 +332,7 @@ namespace CourseTeachCook.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddCourse(int categoryID, string courseName, string courseDescription,
+        public async Task<IActionResult> AddCourse(int categoryID, string courseName, string courseDescription,
                                         IFormFile imageCourse, int coursePrice, int materialPrice,
                                         int numberOfSessions, int numberOfDishs, int numberOfHours,
                                         string numberOfStudent, string addressLearn, DateTime dateOfOpening)
@@ -368,12 +368,13 @@ namespace CourseTeachCook.Controllers
             }
             //return Content(Path.GetExtension(file.FileName).ToLower());
             string filePath = "wwwroot/Image/ImageDesign/CourseImage";
-            string fileName = imageCourse.FileName.Replace(Path.GetExtension(imageCourse.FileName), "") + ".png";
-            var fileNameWithPath = string.Concat(filePath, "\\", fileName);
+            string fileName = imageCourse.FileName.Replace(Path.GetExtension(imageCourse.FileName), 
+            "") + ".png";
+            var fileNameWithPath = string.Concat(filePath, "/", fileName);
 
             using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
             {
-                imageCourse.CopyToAsync(stream);
+                await imageCourse.CopyToAsync(stream);
             }
             //System.IO.File.Delete(fileNameWithPath);
 
